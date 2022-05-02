@@ -21,7 +21,7 @@ const allEnvPresent = Object.keys(envVariables).every((variableName) => {
 });
 
 if (!allEnvPresent) {
-  return process.exit(1);
+ process.exit(1);
 }
 
 module.exports = envVariables;
