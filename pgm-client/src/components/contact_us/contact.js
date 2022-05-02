@@ -4,7 +4,7 @@ import Typography from '@mui/material/Typography';
 import { ThemeProvider } from '@mui/material/styles';
 import { theme } from '../../theme'
 import { Link } from 'react-router-dom'
-import './contact.scss'
+
 function Contact() {
 	return(
 	<ThemeProvider theme={theme}>

@@ -1,12 +1,12 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 import './Messenger.scss'
+
 import { PublicKeyList } from './PublicKeyList/PublicKeyList'
 import { MessageList } from './MessageList/MessageList'
 // import { Search } from './Search/Search'
 // import { Sender } from './Sender/Sender'
 import shortId from 'shortid'
-
 import LinearProgress from '@mui/material/LinearProgress';
 import Container from '@mui/material/Container';
 import Box from '@mui/material/Box';
@@ -82,21 +82,21 @@ class Messenger extends Component {
 		const { activeKey, publicKeys } = this.state
 		return (
 			<ThemeProvider theme={theme}>
-			<section>
-				{/* <Search /> */}
-				{/* <Container align="center" sx={{height:"50%",display:"flex",backgroundColor:"#a17645"}}> */}
-					<Box align="center" display="flex" > 	
-					{/* sx={{  display:{ xs: 'block', md: 'block' } }} */}
+				<section>
+					{/* <Search /> */}
+					{/* <Container align="center" sx={{height:"50%",display:"flex",backgroundColor:"#a17645"}}> */}
+					<Box align="center" display="flex" >
+						{/* sx={{  display:{ xs: 'block', md: 'block' } }} */}
 						{this.state.loading ?
 							<Box sx={{ width: '100%' }}>
-      <LinearProgress />
-    </Box>: <MessageList activeKey={activeKey} addNewMessage={this.addNewMessage} />}
-						<PublicKeyList 
-						addPublicKey={this.addPublicKey} 
-						publicKeys={publicKeys} 
-						showActivePublicKeyMessaging={this.showActivePublicKeyMessaging} />
+								<LinearProgress />
+							</Box> : <MessageList activeKey={activeKey} addNewMessage={this.addNewMessage} />}
+						<PublicKeyList
+							addPublicKey={this.addPublicKey}
+							publicKeys={publicKeys}
+							showActivePublicKeyMessaging={this.showActivePublicKeyMessaging} />
 					</Box>
-				{/* </Container> */}
+					{/* </Container> */}
 				</section>
 			</ThemeProvider>
 		)
