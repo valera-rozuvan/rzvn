@@ -5,7 +5,7 @@ import FormHelperText from '@mui/material/FormHelperText';
 
 import { ThemeProvider } from '@mui/material/styles';
 import { theme } from '../../../theme'
-import "./Search.scss"
+
 function Search() {
 	return (
 		<ThemeProvider theme={theme}>

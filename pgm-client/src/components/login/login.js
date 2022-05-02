@@ -11,11 +11,8 @@ import Input from '@mui/material/Input';
 import FormHelperText from '@mui/material/FormHelperText';
 import CheckCircleOutlinedIcon from '@mui/icons-material/CheckCircleOutlined';
 
-
 import { ThemeProvider } from '@mui/material/styles';
 import { theme } from '../../theme'
-
-import './login.scss'
 
 const Login = () => {
 	const keys = useSelector(state => state.keys);
@@ -52,7 +49,7 @@ const Login = () => {
 				</Box>
 				<Box display="block" sx={{ mt: "2rem" }}>
 					<Link className="check-key-link" to="/msg">
-						<CheckCircleOutlinedIcon sx={{ fontSize: "4rem", color:'#ac9fbf' }}></CheckCircleOutlinedIcon>
+						<CheckCircleOutlinedIcon sx={{ fontSize: "4rem", color: '#ac9fbf' }}></CheckCircleOutlinedIcon>
 					</Link>
 				</Box>
 				<Link to="/keys/generate">

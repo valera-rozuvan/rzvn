@@ -13,7 +13,6 @@ import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
-// import './landing.scss'
 
 function Landing() {
 	return (
@@ -21,7 +20,7 @@ function Landing() {
 			<Container align="center" maxWidth="sm" sx={{ mt: "4rem" }}>
 				<Button variant="contained"><Link to="/login">new message</Link></Button>
 				<section>
-					<List  size="sm" sx={{ mt:'2rem' }}>
+					<List size="sm" sx={{ mt: '2rem' }}>
 						<ListItem>
 							<ListItemButton>
 								<ListItemIcon>
@@ -35,10 +34,10 @@ function Landing() {
 						<ListItem >
 							<ListItemButton>
 								<ListItemIcon >
-									<ShieldOutlinedIcon   sx={{ fontSize: "4rem" }}></ShieldOutlinedIcon>
+									<ShieldOutlinedIcon sx={{ fontSize: "4rem" }}></ShieldOutlinedIcon>
 								</ListItemIcon>
 								<ListItemText >
-									<Typography   variant="h6">anonymous</Typography>
+									<Typography variant="h6">anonymous</Typography>
 								</ListItemText>
 							</ListItemButton>
 						</ListItem>
