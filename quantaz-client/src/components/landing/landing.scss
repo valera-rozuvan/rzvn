@@ -1,0 +1,103 @@
+// .main-landing-container {
+//   margin-top: 50px;
+// }
+
+// // -----------------Header landing
+// .landing-logo-div {
+//   // margin-left: 542px;
+//   position: relative;
+//   // margin: 0 auto;
+// }
+// .header-logo-landing {
+//   font-weight: 250;
+//   font-size: 24px;
+//   line-height: 1.254;
+//   color: white;
+//   text-transform: uppercase;
+//   display: flex;
+//   text-align: center;
+//   align-items: center;
+//   justify-content: center;
+
+//   width: 50px;
+//   height: 50px;
+//   border-radius: 50%;
+//   background-color: rgba(6, 86, 91, 1);
+// }
+
+// // -----------------END Header landing
+// .cool-button {
+//   margin-left: 0;
+//   display: flex;
+//   text-align: center;
+//   align-items: center;
+//   justify-content: center;
+
+//   margin-left: auto;
+//   font-weight: 100;
+//   font-size: 24px;
+//   line-height: 1.484;
+
+//   color: #000000;
+//   width: 140px;
+//   height: 40px;
+//   background: #cee3ec;
+//   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+//   border-radius: 10px;
+// }
+// .cool-button:active {
+//   background: rgba(194, 221, 228, 1);
+// }
+// .landing-logo-messaging {
+//   position: absolute;
+//   display: block;
+//   font-family: Nothing You Could Do;
+//   font-style: normal;
+//   font-weight: 400;
+//   font-size: 24px;
+//   line-height: 1.334;
+//   color: #000000;
+//   transform-origin: top left;
+//   transform: rotate(-19deg);
+//   bottom: -45px;
+//   left: 0px;
+// }
+// .benefit-item {
+//   position: relative;
+//   width: 310px;
+//   height: 110px;
+//   background: rgba(61, 174, 222, 0.29);
+//   border-radius: 5px;
+
+//   font-family: Nothing You Could Do;
+//   font-style: normal;
+//   font-weight: 400;
+//   font-size: 22px;
+//   line-height: 1.333;
+//   color: #000000;
+//   box-sizing: border-box;
+//   padding-left: 20px;
+// }
+// .benefits-list {
+//   margin-top: 60px;
+//   padding: 0 245px 100px;
+// }
+// .benefit-item:not(:last-child) {
+//   margin-bottom: 80px;
+// }
+// .benefit-item:nth-child(odd) {
+//   margin-left: auto;
+// }
+// .benefit-item > svg {
+//   position: absolute;
+// }
+// .benefit-item:nth-child(odd) > svg {
+//   right: 100%;
+//   margin-right: 60px;
+//   margin-top: 32px;
+// }
+// .benefit-item:nth-child(even) > svg {
+//   left: 100%;
+//   margin-left: 60px;
+//   margin-top: 32px;
+// }

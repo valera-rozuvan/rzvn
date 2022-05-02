@@ -1,0 +1,65 @@
+{
+  "name": "react-webpack-starter",
+  "version": "0.0.3",
+  "private": true,
+  "main": "src/index.tsx",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/valera-rozuvan/react-webpack-starter.git"
+  },
+  "engines": {
+    "node": ">=12.0.0"
+  },
+  "author": "Valera Rozuvan",
+  "license": "MIT",
+  "browserslist": [
+    "> 0.25%",
+    "not dead"
+  ],
+  "scripts": {
+    "build": "webpack --env BUILD_ENV=production",
+    "build:local": "webpack --env BUILD_ENV=development",
+    "start": "webpack-dev-server --env BUILD_ENV=development",
+    "lint": "eslint ./",
+    "lint:fix": "eslint --fix ./"
+  },
+  "devDependencies": {
+    "@babel/core": "7.17.9",
+    "@babel/preset-env": "7.16.11",
+    "@babel/preset-react": "7.16.7",
+    "@types/react": "17.0.44",
+    "@types/react-dom": "17.0.15",
+    "@types/react-redux": "7.1.24",
+    "@types/react-router-dom": "5.3.3",
+    "@types/webpack": "5.28.0",
+    "@typescript-eslint/eslint-plugin": "5.21.0",
+    "@typescript-eslint/parser": "5.21.0",
+    "babel-loader": "8.2.5",
+    "copy-webpack-plugin": "10.2.4",
+    "css-loader": "6.7.1",
+    "dotenv": "16.0.0",
+    "eslint": "8.14.0",
+    "eslint-config-airbnb": "19.0.4",
+    "eslint-plugin-import": "2.26.0",
+    "eslint-plugin-jsx-a11y": "6.5.1",
+    "eslint-plugin-react": "7.29.4",
+    "eslint-plugin-react-hooks": "4.5.0",
+    "html-webpack-plugin": "5.5.0",
+    "sass": "1.51.0",
+    "sass-loader": "12.6.0",
+    "style-loader": "3.3.1",
+    "ts-loader": "9.2.9",
+    "typescript": "4.6.3",
+    "webpack": "5.72.0",
+    "webpack-cli": "4.9.2",
+    "webpack-dev-server": "4.8.1"
+  },
+  "dependencies": {
+    "axios": "^0.27.2",
+    "react": "17.0.2",
+    "react-dom": "17.0.2",
+    "react-redux": "8.0.1",
+    "react-router-dom": "6.3.0",
+    "redux": "4.2.0"
+  }
+}

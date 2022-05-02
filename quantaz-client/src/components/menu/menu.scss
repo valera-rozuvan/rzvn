@@ -1,0 +1,88 @@
+.menu-close {
+  background: none;
+  border: none;
+  float: right;
+  margin: 10px 10px 0 0;
+}
+
+.menu-close>svg {
+  fill: #06565b;
+}
+
+.menu-open {
+  background: #c2dde4;
+  border: 1px solid rgba(0, 0, 0, 0.4);
+  box-sizing: border-box;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.4);
+  background-color: rgba(194, 221, 228, 1);
+  z-index: 1;
+  position: absolute;
+  right: 0px;
+  top: 0px;
+}
+
+.menu-open-hide {
+  display: none;
+}
+
+.menu-list {
+  font-weight: 300;
+  font-size: 24px;
+  color: black;
+
+  padding-left: 10px;
+}
+
+.menu-item {
+  margin: 15px;
+}
+
+.menu-item:active>a {
+  color: #66a4ac;
+}
+
+.menu-top-row {
+  display: flex;
+  justify-content: space-between;
+}
+
+.day-night-container {
+  margin-top: 13px;
+}
+
+.day-night {
+  float: left;
+  position: relative;
+  width: 30px;
+  height: 15px;
+  background: rgba(39, 68, 84, 0.51);
+  outline: none;
+  border-radius: 20px;
+  -webkit-appearance: none;
+  transition: 500ms;
+  box-shadow: inset 0 0 5px rgba(0, 0, 0, 20%);
+  margin-bottom: -4px;
+  margin: 0 20px;
+}
+
+.day-night:checked {
+  background: rgba(194, 221, 228, 1);
+}
+
+.day-night:before {
+  content: "";
+  width: 15px;
+  height: 15px;
+  border-radius: 20px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  transition: 500ms;
+  background: #fff;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 20%);
+}
+
+.day-night:checked:before {
+  left: 15px;
+  background: black;
+}

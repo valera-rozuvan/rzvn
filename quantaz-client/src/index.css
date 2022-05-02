@@ -1,0 +1,42 @@
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  margin: 0;
+  font-style: normal;
+  font-family: -apple-system, BlinkMacSystemFont, 'Noto Sans JP', 'Segoe UI',
+    'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans',
+    'Helvetica Neue', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  width: 100%;
+	min-height: 100%;
+  /* overflow: hidden; for horizontal scroll */
+}
+html {
+  width: 100%;
+  /* overflow: hidden; for horizontal scroll */
+}
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+main {
+	/* Выставляем отступ с высотой footer */
+ padding-bottom: 30px;
+ /* background: rgb(209, 209, 209); */
+ margin-top: 100px;
+}
+footer {
+  /* Позиционируем footer внизу main */
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  /* Высота footer */
+  height: 30px;
+}

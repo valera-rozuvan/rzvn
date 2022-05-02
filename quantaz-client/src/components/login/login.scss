@@ -1,0 +1,97 @@
+// .info-text-keys {
+//   max-width: 400px;
+
+//   font-family: Nothing You Could Do;
+//   font-weight: 400;
+//   font-size: 24px;
+//   line-height: 1.334;
+//   color: #000000;
+
+//   //   margin-left: 234px;
+// }
+// .keys-items-container {
+//   display: flex;
+//   flex-direction: column;
+//   align-items: center;
+//   position: relative;
+//   //   margin-left: 234px;
+// }
+
+// .check-key-btn {
+//   width: 104px;
+//   height: 104px;
+//   position: absolute;
+//   border-radius: 50%;
+//   background:transparent;
+//   border:transparent;
+//   top: 240px;
+//   left: 700px;
+  
+// }
+// .check-key-btn > svg{
+//   fill:black;
+// }
+// .check-key-btn-active{
+//   background: rgba(0, 255, 148, 1);
+// }
+// .keys-items-container:not(:last-child) {
+//   margin-bottom: 50px;
+// }
+
+// .keys-input {
+//   width: 270px;
+//   height: 40px;
+//   left: 458px;
+//   top: 496px;
+
+//   background: #ffffff;
+//   border: 1px solid #000000;
+//   box-sizing: border-box;
+//   border-radius: 10px;
+//   outline: transparent;
+//   padding-left: 5px;
+//   padding-right: 5px;
+
+//   font-weight: 100;
+//   font-size: 20px;
+//   line-height: 1.375;
+//   //   font-family: Noto Sans;
+//   font-style: normal;
+//   color: black;
+// }
+
+// .keys-list-item:not(:last-child) {
+//   margin-bottom: 50px;
+// }
+// .generate-new {
+//   //   font-family: Noto Sans JP;
+//   font-weight: 400;
+//   font-size: 18px;
+//   line-height: 1.358;
+//   color: #003a44;
+//   display: inline-block;
+
+//   //   transition-property: color;
+//   transition-duration: 100ms;
+//   transition-timing-function: linear;
+// }
+
+// .generate-new::after {
+//   content: "";
+//   display: inline-block;
+//   width: 100%;
+//   height: 1px;
+//   background: rgba(0, 58, 68, 1);
+//   margin-bottom: 15px;
+
+//   transition-duration: 100ms;
+//   transition-timing-function: linear;
+// }
+// .generate-new:active {
+//   color: rgba(39, 68, 84, 0.51);
+// }
+// .generate-new:active::after {
+//   background: rgba(39, 68, 84, 0.51);
+//   animation-duration: 1000ms;
+//   animation-timing-function: linear;
+// }

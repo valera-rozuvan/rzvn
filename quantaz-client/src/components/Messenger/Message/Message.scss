@@ -1,0 +1,53 @@
+// .message-item {
+//   width: 304px;
+//   height: 144px;
+//   border: 0.5px solid #000000;
+//   box-sizing: border-box;
+//   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+//   border-radius: 20px;
+//   position: relative;
+// }
+
+// // new styles for messages!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+// .message-item:not(:first-child) {
+//   margin-top: 48px;
+// }
+// .friend-message {
+//   background: #82f4c4;
+// }
+// .my-message {
+//   margin-left: 320px;
+//   margin-right: 0px;
+//   background: #cee3ec;
+// }
+// .key-in-message {
+//   font-weight: 300;
+//   font-size: 24px;
+//   line-height: 1.375;
+//   color: #000000;
+//   position: absolute;
+//   top: 10px;
+//   left: 20px;
+// }
+// .text-message {
+//   font-weight: 300;
+//   font-size: 18px;
+//   line-height: 1.389;
+//   color: #000000;
+//   width: 270px;
+//   height: 80px;
+
+//   position: absolute;
+//   right: 18px;
+//   bottom: 8px;
+// }
+// .text-message::before {
+//   content: '';
+//   position: absolute;
+//   width: 303px;
+//   height: 1px;
+//   background: #000;
+
+//   top: -10px;
+//   left: -15px;
+// }
