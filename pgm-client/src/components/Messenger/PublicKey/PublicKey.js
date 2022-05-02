@@ -13,11 +13,11 @@ function PublicKey(props) {
     return (
 			<div>
 			<ListItem sx={{  display: { xs: 'flex', md: 'flex' } }} onClick={() => props.onPublicKeyClick(publicKey)} id={publicKey.key}>
-			 <ListItemButton sx={{maxHeight:'1.5rem'}}>
+			 {/* <ListItemButton sx={{maxHeight:'1.5rem'}}> */}
 				<ListItemText align="left"> 
 					<Typography variant="h9">{publicKey.userName}</Typography>
 				</ListItemText> 
-			</ListItemButton> 
+			{/* </ListItemButton>  */}
 		</ListItem>
 		
 					</div>
