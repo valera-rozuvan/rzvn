@@ -1,125 +1,166 @@
-const AppModel = require('../model/app')
+const AppModel = require('../model/app');
+const { AppCreateValidator, AppUpdateValidator } = require('../validators/App');
 
-
-// Create and Save a new app
+// Create and save a new app.
 exports.create = async (req, res) => {
+  const { valid, errors } = AppCreateValidator.validate(req.body);
+  if (!valid) {
+    return res.status(400).json({ message: 'Bad input data.', errors });
+  }
 
-	if (!req.body.serviceName && !req.body.publicKey && !req.body.privateKey) {
-		return res.status(400).json({ message: "Content can not be empty!" });
-	}
-	const app = new AppModel({
-		serviceName: req.body.serviceName,
-		publicKey: req.body.publicKey,
-		privateKey: req.body.privateKey,
-		isActive: req.body.isActive,
-		callbackUrl: req.body.callbackUrl,
-	});
+  const appModel = new AppModel({
+    serviceName: req.body.serviceName,
+    publicKey: req.body.publicKey,
+    privateKey: req.body.privateKey,
+    isActive: req.body.isActive,
+    callbackUrl: req.body.callbackUrl,
+  });
 
-	await app.save().then(data => {
-		res.json({
-			serviceName: data.serviceName,
-			publicKey: data.publicKey,
-			privateKey: data.privateKey,
-			isActive: data.isActive,
-			callbackUrl: data.callbackUrl,
-			createdAt: data.createdAt,
-			id: data._id.toString()
-		});
-	}).catch(err => {
-		res.status(500).json({
-			message: err.message || "Some error occurred while creating app"
-		});
-	});
+  let data;
+
+  try {
+    data = await appModel.save();
+  } catch (err) {
+    return res.status(500).json({
+      message: err.message || 'Some error occurred while creating app.',
+    });
+  }
+
+  const app = {
+    serviceName: data.serviceName,
+    publicKey: data.publicKey,
+    privateKey: data.privateKey,
+    isActive: data.isActive,
+    callbackUrl: data.callbackUrl,
+    createdAt: data.createdAt,
+    id: data._id.toString(),
+  };
+
+  return res.status(200).json(app);
 };
 
-// Retrieve all apps from the database.
+// Retrieve all apps.
 exports.findAll = async (req, res) => {
-	try {
-		const apps = await AppModel.find();
-		const newApps = apps.map(app => {
-			return {
-				serviceName: app.serviceName,
-				publicKey: app.publicKey,
-				privateKey: app.privateKey,
-				isActive: app.isActive,
-				callbackUrl: app.callbackUrl,
-				createdAt: app.createdAt,
-				id: app._id.toString()
-			}
-		})
-		res.status(200).json(newApps);
-	} catch (error) {
-		res.status(404).json({ message: error.message });
-	}
+  let data;
+
+  try {
+    data = await AppModel.find();
+  } catch (err) {
+    return res.status(500).json({
+      message: err.message || 'Some error occurred while getting all apps.',
+    });
+  }
+
+  if (
+    !data
+    || (Array.isArray(data) && data.length === 0)
+  ) {
+    return res.status(200).json([]);
+  }
+
+  const apps = data.map((app) => ({
+    serviceName: app.serviceName,
+    publicKey: app.publicKey,
+    privateKey: app.privateKey,
+    isActive: app.isActive,
+    callbackUrl: app.callbackUrl,
+    createdAt: app.createdAt,
+    id: app._id.toString(),
+  }));
+
+  return res.status(200).json(apps);
 };
 
-// Find a single App with a id
+// Find a single app with a given id.
 exports.findOne = async (req, res) => {
-	const id = req.params.id;
-	try {
-		const app = await AppModel.findById(id);
-		const newApp = {
-			serviceName: app.serviceName,
-			publicKey: app.publicKey,
-			privateKey: app.privateKey,
-			isActive: app.isActive,
-			callbackUrl: app.callbackUrl,
-			createdAt: app.createdAt,
-			id: app._id.toString()
-		}
-		res.status(200).json(newApp);
-	} catch (error) {
-		res.status(404).json({ message: error.message });
-	}
+  const { id } = req.params;
+
+  let data;
+
+  try {
+    data = await AppModel.findById(id);
+  } catch (err) {
+    return res.status(500).json({
+      message: err.message || 'Some error occurred while getting app.',
+    });
+  }
+
+  if (!data) {
+    return res.status(404).json({
+      message: 'App not found.',
+    });
+  }
+
+  const app = {
+    serviceName: data.serviceName,
+    publicKey: data.publicKey,
+    privateKey: data.privateKey,
+    isActive: data.isActive,
+    callbackUrl: data.callbackUrl,
+    createdAt: data.createdAt,
+    id: data._id.toString(),
+  };
+
+  return res.status(200).json(app);
 };
 
-// Update an app by the id in the request
+// Update a single app with a given id.
 exports.update = async (req, res) => {
+  const { valid, errors } = AppUpdateValidator.validate(req.body);
+  if (!valid) {
+    return res.status(400).json({ message: 'Bad input data.', errors });
+  }
 
-	if (!req.body) {
-		res.status(400).json({
-			message: "Data to update can not be empty!"
-		});
-	}
-	const id = req.params.id;
-	await AppModel.findByIdAndUpdate(id, req.body, { useFindAndModify: false, new: true }).then(data => {
-		if (!data) {
-			res.status(404).json({
-				message: `App not found.`
-			});
-		} else {
-			res.json({
-				serviceName: data.serviceName,
-				publicKey: data.publicKey,
-				privateKey: data.privateKey,
-				isActive: data.isActive,
-				callbackUrl: data.callbackUrl,
-				createdAt: data.createdAt,
-				id: data._id.toString()
-			})
-		}
-	}).catch(err => {
-		res.status(500).json({
-			message: err.message
-		});
-	});
+  const { id } = req.params;
+
+  let data;
+
+  try {
+    data = await AppModel.findByIdAndUpdate(id, req.body, { useFindAndModify: false, new: true });
+  } catch (err) {
+    return res.status(500).json({
+      message: err.message || 'Some error occurred while updating app.',
+    });
+  }
+
+  if (!data) {
+    return res.status(404).json({
+      message: 'App not found.',
+    });
+  }
+
+  const app = {
+    serviceName: data.serviceName,
+    publicKey: data.publicKey,
+    privateKey: data.privateKey,
+    isActive: data.isActive,
+    callbackUrl: data.callbackUrl,
+    createdAt: data.createdAt,
+    id: data._id.toString(),
+  };
+
+  return res.status(200).json(app);
 };
 
-// Delete an app with the specified id in the request
+// Delete a single app with a given id.
 exports.destroy = async (req, res) => {
+  const { id } = req.params;
 
-	const id = req.params.id;
-	await AppModel.findByIdAndRemove(id).then(data => {
-		if (!data) {
-			res.status(404).json({
-				message: `App not found.`
-			});
-		} else {
-			res.json({ status: 'ok' });
-		}
-	}).catch(err => {
-		res.status(500).json({
-			message: err.message
-		});
-	});
+  let data;
+
+  try {
+    data = await AppModel.findByIdAndRemove(id);
+  } catch (err) {
+    return res.status(500).json({
+      message: err.message || 'Some error occurred while deleting app.',
+    });
+  }
+
+  if (!data) {
+    return res.status(404).json({
+      message: 'App not found.',
+    });
+  }
+
+  return res.status(200).json({ status: 'OK' });
 };

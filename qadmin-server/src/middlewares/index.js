@@ -1,7 +1,7 @@
-const authenticate = require("./authenticate").authenticate;
-const getToken = require("./authenticate").getToken;
+const { authenticate } = require('./authenticate');
+const { getToken } = require('./authenticate');
 
 module.exports = {
-    authenticate,
-		getToken,
-}
+  authenticate,
+  getToken,
+};

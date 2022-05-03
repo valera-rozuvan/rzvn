@@ -4,17 +4,17 @@ const schema = new mongoose.Schema({
   email: {
     type: String,
     required: true,
-    unique: true
+    unique: true,
   },
   password: {
     type: String,
-    default: ''
+    default: '',
   },
   authToken: {
     type: String,
-    default: ''
+    default: '',
   },
-}, {versionKey: false, timestamps: true});
+}, { versionKey: false, timestamps: true });
 
 const superAdmins = new mongoose.model('SuperAdmin', schema);
 
