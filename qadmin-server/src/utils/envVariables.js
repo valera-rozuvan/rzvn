@@ -25,4 +25,4 @@ if (!allEnvPresent) {
   process.exit(1);
 }
 
-module.exports = envVariables;
+module.exports = { envVariables };

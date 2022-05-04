@@ -1,28 +1,27 @@
 const mongoose = require('mongoose');
 
 const schema = new mongoose.Schema({
-  serviceName: {
+  email: {
     type: String,
+    required: true,
     unique: true,
   },
-  publicKey: {
+  password: {
     type: String,
     required: true,
+    default: '',
   },
-  privateKey: {
+  authToken: {
     type: String,
     required: true,
+    default: '',
   },
   isActive: {
     type: Boolean,
     required: true,
   },
-  callbackUrl: {
-    type: String,
-    required: true,
-  },
 }, { versionKey: false, timestamps: true });
 
-const app = new mongoose.model('App', schema);
+const SuperAdminModel = new mongoose.model('SuperAdmin', schema);
 
-module.exports = app;
+module.exports = { SuperAdminModel };

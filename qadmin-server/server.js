@@ -2,12 +2,15 @@ const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const cors = require('cors');
-const envVariables = require('./src/utils/envVariables');
 
-const UserRoute = require('./src/routes/User');
-const AppRoute = require('./src/routes/App');
-const AuthRoute = require('./src/routes/Auth');
-const SuperAdminRoute = require('./src/routes/SuperAdmin');
+const { envVariables } = require('./src/utils');
+
+const {
+  AppRouter,
+  AuthRouter,
+  SuperAdminRouter,
+  UserRouter,
+} = require('./src/routers');
 
 function initService() {
   console.log('Trying to initialize Express.js server...');
@@ -28,10 +31,10 @@ function initService() {
 
   app.use(artificialSleep);
 
-  app.use('/user', UserRoute);
-  app.use('/app', AppRoute);
-  app.use('/auth', AuthRoute);
-  app.use('/superadmin', SuperAdminRoute);
+  app.use('/app', AppRouter);
+  app.use('/auth', AuthRouter);
+  app.use('/superadmin', SuperAdminRouter);
+  app.use('/user', UserRouter);
 
   app.get('/', (req, res) => {
     res.json({ message: 'Hello, world!' });

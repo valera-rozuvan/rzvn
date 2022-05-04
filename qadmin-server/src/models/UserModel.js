@@ -6,16 +6,16 @@ const schema = new mongoose.Schema({
     required: true,
     unique: true,
   },
-  password: {
+  firstName: {
     type: String,
     default: '',
   },
-  authToken: {
+  lastName: {
     type: String,
     default: '',
   },
 }, { versionKey: false, timestamps: true });
 
-const superAdmins = new mongoose.model('SuperAdmin', schema);
+const UserModel = new mongoose.model('User', schema);
 
-module.exports = superAdmins;
+module.exports = { UserModel };

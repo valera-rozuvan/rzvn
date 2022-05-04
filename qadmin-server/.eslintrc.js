@@ -12,7 +12,7 @@ module.exports = {
   parser: 'esprima',
   parserOptions: {
     ecmaFeatures: {},
-    ecmaVersion: 12,
+    ecmaVersion: 2022,
     sourceType: 'module',
   },
   plugins: [],
@@ -22,6 +22,20 @@ module.exports = {
     'default-param-last': 'off',
     'no-console': 'off',
     'no-underscore-dangle': 'off',
+    'no-plusplus': 'off',
+    'class-methods-use-this': 'off',
+    'new-cap': 'off',
+    'max-len': [
+      'error',
+      {
+        code: 120,
+        comments: 120,
+        ignoreTrailingComments: true,
+        ignoreStrings: true,
+        ignoreTemplateLiterals: true,
+        ignoreRegExpLiterals: true,
+      },
+    ],
   },
   settings: {
     'import/resolver': {
