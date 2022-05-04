@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "mocha ./tests/**/*.spec.js",
     "lint": "eslint ./",
     "lint:fix": "eslint --fix ./"
   },
@@ -19,16 +19,19 @@
   },
   "homepage": "https://github.com/DarinaSednevets/back-qa#readme",
   "devDependencies": {
-    "eslint": "^8.14.0",
-    "eslint-config-airbnb": "^19.0.4",
-    "esprima": "^4.0.1"
+    "chai": "4.3.6",
+    "chai-as-promised": "7.1.1",
+    "eslint": "8.14.0",
+    "eslint-config-airbnb": "19.0.4",
+    "esprima": "4.0.1",
+    "mocha": "10.0.0"
   },
   "dependencies": {
     "body-parser": "1.19.2",
-    "cors": "^2.8.5",
+    "cors": "2.8.5",
     "dotenv": "16.0.0",
     "express": "4.17.3",
     "mongoose": "6.2.9",
-    "structure": "^2.0.1"
+    "structure": "2.0.1"
   }
 }

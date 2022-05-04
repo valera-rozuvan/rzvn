@@ -1252,7 +1252,7 @@ const getRandomSubSet = (arr, N) => {
   return result;
 };
 
-const randomPassword = () => getRandomSubSet(randomWords, 5).join(' ');
+const randomPassword = (N = 5) => getRandomSubSet(randomWords, N).join(' ');
 
 const randomString = (length) => {
   let result = '';

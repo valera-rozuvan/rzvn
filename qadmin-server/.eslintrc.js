@@ -5,6 +5,7 @@ module.exports = {
     es6: true,
     amd: true,
     node: true,
+    mocha: true,
   },
   extends: [
     'airbnb/base',
