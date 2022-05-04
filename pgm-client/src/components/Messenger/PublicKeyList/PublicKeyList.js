@@ -20,6 +20,7 @@ import { PublicKey } from "../PublicKey/PublicKey"
 
 function PublicKeyList(props) {
 	const [key, setKey] = useState('');
+	const [name, setName] = useState('');
 	const [open, setOpen] = React.useState(false);
 
 	const handleSubmit = event => {
@@ -41,6 +42,7 @@ function PublicKeyList(props) {
 	};
 	const reset = () => {
 		setKey('');
+		setName('');
 	}
 	const { publicKeys } = props;
 	return (
@@ -74,9 +76,18 @@ function PublicKeyList(props) {
 								autoFocus
 								margin="dense"
 								id="new-key"
-								aria-describedby="new public key"
+								aria-describedby="friend's public key"
 								type="text" />
 							<FormHelperText id="my-helper-text">Write new public key</FormHelperText>
+							<Input
+								onChange={event => setKey(event.currentTarget.value)}
+								autoComplete="off"
+								value={name}
+								margin="dense"
+								id="name"
+								aria-describedby="friend's name"
+								type="text" />
+									<FormHelperText id="my-helper-text">Write name of your friend</FormHelperText>
 						</DialogContent>
 						<DialogActions>
 							<Button type="button" onClick={handleClose}>Cancel</Button>
