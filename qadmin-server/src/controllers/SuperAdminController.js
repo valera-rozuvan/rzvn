@@ -170,7 +170,7 @@ class SuperAdminController {
       authToken: randomString(64),
     };
 
-    await this.update(req, res);
+    return this.update(req, res);
   }
 
   // Delete a single super admin with a given id.
