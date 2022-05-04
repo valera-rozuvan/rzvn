@@ -28,7 +28,7 @@ function MessageList(props) {
 
 			<Container>
 				<Box>
-					<Typography
+					{/* <Typography
 						variant="h6">messages from {props.activeKey.publicKey}
 					</Typography>
 				</Box>
@@ -45,7 +45,7 @@ function MessageList(props) {
 							style={{ float: "left", clear: "both", paddingTop: "1em", paddingBottom: "1em" }}
 							ref={messagesEndRef}>
 						</Box>
-					</List>
+					</List> */}
 					<Sender addNewMessage={props.addNewMessage} />
 				</Box>
 			</Container>

@@ -49,7 +49,7 @@ function PublicKeyList(props) {
 		<ThemeProvider theme={theme}>
 			<List align="left"  >
 				<Typography variant="h6" >public keys</Typography>
-				{
+				{/* {
 					publicKeys.map(publicKey => {
 						return (
 							<PublicKey publicKey={publicKey}
@@ -57,7 +57,7 @@ function PublicKeyList(props) {
 								onPublicKeyClick={onPublicKeyClick} />
 						)
 					})
-				}
+				} */}
 				<Button sx={{ mt: '2rem' }} variant="outlined"
 					onClick={handleClickOpen} type="button">add key</Button>
 			</List>{open === true && (
