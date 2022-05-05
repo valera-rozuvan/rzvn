@@ -21,12 +21,20 @@ function initService() {
   app.use(bodyParser.urlencoded({ extended: true }));
   app.use(bodyParser.json());
 
-  function artificialSleep(req, res, next) {
-    const SLEEP_TIMEOUT_SECONDS = 1.5;
+  const sleepTimeoutSeconds = Number.parseFloat(envVariables.SLEEP_TIMEOUT_SECONDS);
+  if (Number.isNaN(sleepTimeoutSeconds)) {
+    console.error('"SLEEP_TIMEOUT_SECONDS" should be set to a numeric value.');
+    process.exit(1);
+  }
+  if (sleepTimeoutSeconds < 0 || sleepTimeoutSeconds > 60) {
+    console.error('"SLEEP_TIMEOUT_SECONDS" should be a number in the range 0-60 (inclusive).');
+    process.exit(1);
+  }
 
+  function artificialSleep(req, res, next) {
     setTimeout(() => {
       next();
-    }, SLEEP_TIMEOUT_SECONDS * 1000);
+    }, sleepTimeoutSeconds * 1000);
   }
 
   app.use(artificialSleep);

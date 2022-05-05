@@ -8,11 +8,17 @@ const schema = new mongoose.Schema({
   },
   firstName: {
     type: String,
+    required: true,
     default: '',
   },
   lastName: {
     type: String,
+    required: true,
     default: '',
+  },
+  isActive: {
+    type: Boolean,
+    required: true,
   },
 }, { versionKey: false, timestamps: true });
 

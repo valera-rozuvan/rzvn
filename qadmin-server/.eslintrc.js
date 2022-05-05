@@ -26,6 +26,7 @@ module.exports = {
     'no-plusplus': 'off',
     'class-methods-use-this': 'off',
     'new-cap': 'off',
+    'prefer-object-spread': 'off',
     'max-len': [
       'error',
       {

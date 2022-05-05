@@ -1,8 +1,6 @@
-const { SuperAdminModel, AppModel } = require('../models');
+const { SuperAdminModel } = require('../models');
 const { randomPassword, randomString } = require('../utils');
-const {
-  ObjIdValidator, SuperAdminCreateValidator, SuperAdminUpdateValidator, AppUpdateValidator,
-} = require('../validators');
+const { ObjIdValidator, SuperAdminCreateValidator, SuperAdminUpdateValidator } = require('../validators');
 
 class SuperAdminController {
   constructor() {

@@ -5,6 +5,11 @@ dotenv.config();
 const envVariables = {
   MONGO_URL: '',
   SERVICE_PORT: '',
+  SLEEP_TIMEOUT_SECONDS: '',
+  ENABLE_TEST_USER: '',
+  TEST_USER_EMAIL: '',
+  TEST_USER_PASSWORD: '',
+  TEST_USER_AUTH_TOKEN: '',
 };
 
 const allEnvPresent = Object.keys(envVariables).every((variableName) => {

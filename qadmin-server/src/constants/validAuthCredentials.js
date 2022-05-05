@@ -1,3 +1,5 @@
+const { envVariables } = require('../utils');
+
 const validAuthCredentials = [
   {
     email: 'valera@rozuvan.net',
@@ -10,5 +12,13 @@ const validAuthCredentials = [
     authToken: 'RybxH1swHUxW9i0vAbZ37H4owKWMAJDyPin36gffTi0OYCWiaVYEUJJXxx1A8nAAHhD8E2QqvZaHYQToHfXspDeF8q6bpHX0bIrz6uWBdsVyRbLSl7VF0B7vlJ3uWgT8',
   },
 ];
+
+if (envVariables.ENABLE_TEST_USER === 'true') {
+  validAuthCredentials.push({
+    email: envVariables.TEST_USER_EMAIL,
+    password: envVariables.TEST_USER_PASSWORD,
+    authToken: envVariables.TEST_USER_AUTH_TOKEN,
+  });
+}
 
 module.exports = { validAuthCredentials };
