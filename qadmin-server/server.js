@@ -1,14 +1,67 @@
-const envVariables = require('./src/utils/envVariables');
-
 const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 
-const UserRoute = require('./src/routes/User');
-const AppRoute = require('./src/routes/App');
-const AuthRoute = require('./src/routes/Auth');
-const SuperAdminRoute = require('./src/routes/SuperAdmin');
+const { envVariables } = require('./src/utils');
+
+const {
+  AppRouter,
+  AuthRouter,
+  SuperAdminRouter,
+  UserRouter,
+} = require('./src/routers');
+
+function initService() {
+  console.log('Trying to initialize Express.js server...');
+
+  const app = express();
+
+  app.use(cors());
+  app.use(bodyParser.urlencoded({ extended: true }));
+  app.use(bodyParser.json());
+
+  const sleepTimeoutSeconds = Number.parseFloat(envVariables.SLEEP_TIMEOUT_SECONDS);
+  if (Number.isNaN(sleepTimeoutSeconds)) {
+    console.error('"SLEEP_TIMEOUT_SECONDS" should be set to a numeric value.');
+    process.exit(1);
+  }
+  if (sleepTimeoutSeconds < 0 || sleepTimeoutSeconds > 60) {
+    console.error('"SLEEP_TIMEOUT_SECONDS" should be a number in the range 0-60 (inclusive).');
+    process.exit(1);
+  }
+
+  function artificialSleep(req, res, next) {
+    setTimeout(() => {
+      next();
+    }, sleepTimeoutSeconds * 1000);
+  }
+
+  app.use(artificialSleep);
+
+  app.use('/app', AppRouter);
+  app.use('/auth', AuthRouter);
+  app.use('/superadmin', SuperAdminRouter);
+  app.use('/user', UserRouter);
+
+  app.get('/', (req, res) => {
+    res.json({ message: 'Hello, world!' });
+  });
+
+  const servicePort = Number.parseInt(envVariables.SERVICE_PORT, 10);
+  if (Number.isNaN(servicePort)) {
+    console.error('"SERVICE_PORT" should be set to a numeric value.');
+    process.exit(1);
+  }
+  if (servicePort < 1000 || servicePort > 65535) {
+    console.error('"SERVICE_PORT" should be a number in the range 1000-65535 (inclusive).');
+    process.exit(1);
+  }
+
+  app.listen(servicePort, () => {
+    console.log(`Server is listening on port '${servicePort}'.`);
+  });
+}
 
 function initMongo() {
   console.log('Trying to connect to MongoDB...');
@@ -21,52 +74,9 @@ function initMongo() {
       return;
     }
 
-    console.log("Connected to MongoDB database successfully.");
+    console.log('Connected to MongoDB database successfully.');
 
     initService();
-  });
-}
-
-function initService() {
-  console.log('Trying to initialize Express.js server...');
-
-  const app = express();
-
-  app.use(cors());
-  app.use(bodyParser.urlencoded({extended: true}));
-  app.use(bodyParser.json());
-
-  const artificialSleep = function (req, res, next) {
-    const SLEEP_TIMEOUT_SECONDS = 1.5;
-
-    setTimeout(() => {
-      next();
-    }, SLEEP_TIMEOUT_SECONDS * 1000);
-  };
-
-  app.use(artificialSleep);
-
-  app.use('/user', UserRoute);
-  app.use('/app', AppRoute);
-  app.use('/auth', AuthRoute);
-	app.use('/superadmin', SuperAdminRoute);
-
-  app.get('/', (req, res) => {
-    res.json({"message": "Hello, world!"});
-  });
-
-  const servicePort = Number.parseInt(envVariables.SERVICE_PORT, 10);
-  if (Number.isNaN(servicePort)) {
-    console.error('"SERVICE_PORT" should be set to a numeric value.');
-    return process.exit(1);
-  }
-  if (servicePort < 1000 || servicePort > 65535) {
-    console.error('"SERVICE_PORT" should be a number in the range 1000-65535 (inclusive).');
-    return process.exit(1);
-  }
-
-  app.listen(servicePort, () => {
-    console.log(`Server is listening on port '${servicePort}'.`);
   });
 }
 
