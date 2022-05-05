@@ -5,9 +5,11 @@ import ListItemButton from '@mui/material/ListItemButton';
 import ListItemText from '@mui/material/ListItemText';
 import Typography from '@mui/material/Typography';
 
+import { IconButton } from '@mui/material';
 import ClearIcon from '@mui/icons-material/Clear';
+import EditIcon from '@mui/icons-material/Edit';
 
-function PublicKey({friend}) {
+function PublicKey({friend,deleteFriend}) {
 
 		const onPublicKeyClick = (friend) => {
 		// props.showActivePublicKeyMessaging(publicKey);
@@ -24,7 +26,14 @@ function PublicKey({friend}) {
 						<Typography variant="h9">{friend.name}</Typography>
 					</ListItemText>
 				</ListItemButton>
-				<ClearIcon/>
+				<IconButton>
+				<EditIcon size="small" sx={{cursor:"pointer"}}/>
+				</IconButton>
+				<IconButton onClick={deleteFriend(friend.id)}>
+				<ClearIcon size="small" sx={{cursor:"pointer"}}/>
+				</IconButton>
+				
+				
 			</ListItem>
 		</div>
 	)
