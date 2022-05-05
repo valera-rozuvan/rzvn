@@ -15,13 +15,78 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 
-import { useState } from 'react'
-import { PublicKey } from "../PublicKey/PublicKey"
+import {Api} from '../../../api/apiFriends'
 
+import { useState, useEffect } from 'react'
+import {useSelector, useDispatch} from "react-redux";
+import {useNavigate} from "react-router-dom";
+import { PublicKey } from "../PublicKey/PublicKey"
+const copyFriendData = ({id, publicKey, name, userId}) => ({
+  id,
+  publicKey,
+  name,
+  userId,
+});
 function PublicKeyList(props) {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const friends = useSelector(state => state.friends);
+
+
 	const [key, setKey] = useState('');
 	const [name, setName] = useState('');
-	const [open, setOpen] = React.useState(false);
+	const [activeModal, setActiveModal] = useState({name: "", active: false});
+	const [open, setOpen] = useState(false);
+  const [loading, setLoading] = useState(true);
+  const [currentFriend, setCurrentFriend] = useState(copyFriendData({
+    id: "",
+    publicKey: "",
+    name: "",
+    userId: "",
+  }));
+
+
+	useEffect(() => {
+    clearModal();
+		setLoading(true);
+		
+		 async function getAllFriends() {
+			try {
+				const api = new Api();
+				const result = await api.getFriends();
+				const friendList = await result.data;
+	
+				dispatch({type: "SET_FRIENDS", data: friendList});
+			} catch (err) {
+			console.log('Failed to fetch friends.');
+			}
+			return true;
+		}
+		getAllFriends();
+		setLoading(false);
+
+  }, [loading,dispatch]);
+
+	// async function getAllUsers() {
+	// 	try {
+	// 		const api = new Api();
+	// 		const result = await api.getFriends();
+	// 		const friendList = result.data;
+
+	// 		dispatch({type: "SET_FRIENDS", data: friendList});
+	// 	} catch (err) {
+	// 	console.log('Failed to fetch friends.');
+	// 	}
+	// 	return true;
+	// }
+
+  const setModal = modal => {
+    setActiveModal({name: modal, active: true});
+  };
+
+  const clearModal = () => {
+    setActiveModal({name: "", active: false});
+  };
 
 	const handleSubmit = event => {
 		event.preventDefault();
@@ -29,9 +94,10 @@ function PublicKeyList(props) {
 		props.addPublicKey({ key });
 		handleClose();
 	}
-	const onPublicKeyClick = (publicKey) => {
-		props.showActivePublicKeyMessaging(publicKey);
-	}
+	// const onPublicKeyClick = (someText) => {
+	// 	// props.showActivePublicKeyMessaging(publicKey);
+	// 	console.log(someText);
+	// }
 	const handleClickOpen = () => {
 		setOpen(true);
 	};
@@ -44,24 +110,22 @@ function PublicKeyList(props) {
 		setKey('');
 		setName('');
 	}
-	const { publicKeys } = props;
+	// const { publicKeys } = props;
 	return (
 		<ThemeProvider theme={theme}>
-			<List align="left"  >
-				<Typography variant="h6" >public keys</Typography>
-				{/* {
-					publicKeys.map(publicKey => {
+			<List align="center"  >
+			<Typography variant="h6" >friends</Typography>
+				{
+					friends.map(friend => {
 						return (
-							<PublicKey publicKey={publicKey}
-								key={publicKey.key}
-								onPublicKeyClick={onPublicKeyClick} />
+							<PublicKey friend={friend}
+								key={friend.id} />
 						)
 					})
-				} */}
+				}
 				<Button sx={{ mt: '2rem' }} variant="outlined"
 					onClick={handleClickOpen} type="button">add key</Button>
 			</List>{open === true && (
-
 				<Dialog open={open} >
 					<form onSubmit={handleSubmit} >
 						<DialogTitle>Add new public key</DialogTitle>

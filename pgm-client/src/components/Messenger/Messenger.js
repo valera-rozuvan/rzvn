@@ -96,11 +96,11 @@ function Messenger () {
 							//  addNewMessage={addNewMessage} 
 							/>
 						
-						<PublicKeyList
+						 <PublicKeyList
 							// addPublicKey={addPublicKey}
-							publicKeys={publicKeys}
+							// publicKeys={publicKeys}
 							// showActivePublicKeyMessaging={showActivePublicKeyMessaging}
-							/>
+							/> 
 					</Box>
 					{/* </Container> */}
 				</section>
