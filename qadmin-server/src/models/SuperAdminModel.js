@@ -11,7 +11,7 @@ const schema = new mongoose.Schema({
     required: true,
     default: '',
   },
-  authToken: {
+  authSecret: {
     type: String,
     required: true,
     default: '',

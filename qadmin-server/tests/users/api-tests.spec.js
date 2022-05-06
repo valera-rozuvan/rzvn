@@ -1,3 +1,4 @@
+const jwt = require('jsonwebtoken');
 const { attributes } = require('structure');
 const axios = require('axios').default;
 const { expect } = require('chai');
@@ -41,7 +42,7 @@ describe('Users API tests', () => {
   });
 
   describe('good credentials', () => {
-    it('proper email and password produce auth token', async () => {
+    it('proper email and password produce proper auth token', async () => {
       let response = null;
 
       try {
@@ -53,16 +54,49 @@ describe('Users API tests', () => {
       }
 
       expect(response.status).to.equal(200);
-      expect(response.data).to.deep.equal({
+
+      const AuthResponseValidator = attributes({
+        email: {
+          type: String,
+          required: true,
+          minLength: 1,
+          maxLength: 64,
+        },
+        jwtToken: {
+          type: String,
+          required: true,
+          minLength: 1,
+        },
+      })(class AuthResponseValidator {});
+
+      const validationResults = AuthResponseValidator.validate(response.data);
+
+      if (validationResults.errors) {
+        console.log(validationResults.errors);
+      }
+
+      expect(validationResults.valid).to.equal(true);
+
+      const { jwtToken } = response.data;
+
+      let token;
+      try {
+        token = jwt.verify(jwtToken, envVariables.TEST_USER_AUTH_SECRET);
+      } catch (error) {
+        outputAxiosResponseError(error);
+
+        throw new Error('we should not have reached this place');
+      }
+
+      expect(token.data).to.deep.equal({
         email: envVariables.TEST_USER_EMAIL,
-        password: envVariables.TEST_USER_PASSWORD,
-        authToken: envVariables.TEST_USER_AUTH_TOKEN,
+        type: 'super_admin',
       });
     });
   });
 
   describe('happy path', () => {
-    let authToken = null;
+    let jwtToken = null;
     let newUser = null;
 
     it('super admin login', async () => {
@@ -76,9 +110,7 @@ describe('Users API tests', () => {
         throw new Error('we should not have reached this place');
       }
 
-      authToken = response.data.authToken;
-
-      expect(authToken).to.equal(envVariables.TEST_USER_AUTH_TOKEN);
+      jwtToken = response.data.jwtToken;
     });
 
     it('create user', async () => {
@@ -88,11 +120,14 @@ describe('Users API tests', () => {
         response = await axios.post(
           `${BASE_API_URL}/user`,
           {
-            email: `test_user_${randomString(32)}@example.com`, firstName: randomString(12), lastName: randomString(12), isActive: false,
+            email: `test_user_${randomString(32)}@example.com`,
+            firstName: randomString(12),
+            lastName: randomString(12),
+            isActive: false,
           },
           {
             headers: {
-              Authorization: `Bearer: ${authToken}`,
+              Authorization: `Bearer: ${jwtToken}`,
             },
           },
         );
@@ -141,13 +176,13 @@ describe('Users API tests', () => {
         },
       })(class UserResponseValidator {});
 
-      const { valid, errors } = UserResponseValidator.validate(response.data);
+      const validationResults = UserResponseValidator.validate(response.data);
 
-      if (errors) {
-        console.log(errors);
+      if (validationResults.errors) {
+        console.log(validationResults.errors);
       }
 
-      expect(valid).to.equal(true);
+      expect(validationResults.valid).to.equal(true);
 
       newUser = response.data;
     });
@@ -160,7 +195,7 @@ describe('Users API tests', () => {
           `${BASE_API_URL}/user/${newUser.id}`,
           {
             headers: {
-              Authorization: `Bearer: ${authToken}`,
+              Authorization: `Bearer: ${jwtToken}`,
             },
           },
         );
@@ -187,7 +222,7 @@ describe('Users API tests', () => {
           },
           {
             headers: {
-              Authorization: `Bearer: ${authToken}`,
+              Authorization: `Bearer: ${jwtToken}`,
             },
           },
         );
@@ -216,7 +251,7 @@ describe('Users API tests', () => {
           },
           {
             headers: {
-              Authorization: `Bearer: ${authToken}`,
+              Authorization: `Bearer: ${jwtToken}`,
             },
           },
         );
@@ -245,7 +280,7 @@ describe('Users API tests', () => {
           },
           {
             headers: {
-              Authorization: `Bearer: ${authToken}`,
+              Authorization: `Bearer: ${jwtToken}`,
             },
           },
         );
@@ -272,7 +307,7 @@ describe('Users API tests', () => {
           },
           {
             headers: {
-              Authorization: `Bearer: ${authToken}`,
+              Authorization: `Bearer: ${jwtToken}`,
             },
           },
         );
@@ -296,7 +331,7 @@ describe('Users API tests', () => {
           `${BASE_API_URL}/user`,
           {
             headers: {
-              Authorization: `Bearer: ${authToken}`,
+              Authorization: `Bearer: ${jwtToken}`,
             },
           },
         );
@@ -323,7 +358,7 @@ describe('Users API tests', () => {
           `${BASE_API_URL}/user/${newUser.id}`,
           {
             headers: {
-              Authorization: `Bearer: ${authToken}`,
+              Authorization: `Bearer: ${jwtToken}`,
             },
           },
         );
@@ -345,7 +380,7 @@ describe('Users API tests', () => {
           `${BASE_API_URL}/user`,
           {
             headers: {
-              Authorization: `Bearer: ${authToken}`,
+              Authorization: `Bearer: ${jwtToken}`,
             },
           },
         );

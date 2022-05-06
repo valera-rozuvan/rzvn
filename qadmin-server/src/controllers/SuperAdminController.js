@@ -17,7 +17,10 @@ class SuperAdminController {
     return {
       email: data.email,
       password: data.password,
-      authToken: data.authToken,
+
+      // NOTE: We do not expose the `authSecret`!
+      // authSecret: data.authSecret,
+
       isActive: data.isActive,
       createdAt: data.createdAt,
       id: data._id.toString(),
@@ -34,7 +37,16 @@ class SuperAdminController {
       });
     }
 
-    const superAdminModel = new SuperAdminModel(req.body);
+    const superAdminModel = new SuperAdminModel(
+      JSON.assign(
+        {},
+        req.body,
+        {
+          password: randomPassword(),
+          authSecret: randomString(64),
+        },
+      ),
+    );
 
     let data;
 
@@ -163,12 +175,44 @@ class SuperAdminController {
 
   // Update the password of a single super admin with a given id.
   async updatePassword(req, res) {
-    req.body = {
+    const { id } = req.params;
+
+    const validationResults = new ObjIdValidator(id).validate();
+    if (!validationResults.valid) {
+      return res.status(400).json({
+        message: 'Bad input data.',
+        errors: validationResults.errors,
+      });
+    }
+
+    const { objId } = validationResults;
+
+    const dataToUpdate = {
       password: randomPassword(),
-      authToken: randomString(64),
+      authSecret: randomString(64),
     };
 
-    return this.update(req, res);
+    let data;
+
+    try {
+      data = await SuperAdminModel.findByIdAndUpdate(objId, dataToUpdate, { useFindAndModify: false, new: true });
+    } catch (err) {
+      return res.status(500).json({
+        message: err.message || 'Some error occurred while updating password for super admin.',
+      });
+    }
+
+    if (!data) {
+      return res.status(404).json({
+        message: 'Super admin not found.',
+      });
+    }
+
+    const superAdmin = this.dbSuperAdminDataToJson(data);
+
+    return res.status(200).json(
+      superAdmin,
+    );
   }
 
   // Delete a single super admin with a given id.
