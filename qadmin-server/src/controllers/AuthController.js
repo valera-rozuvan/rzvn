@@ -1,17 +1,19 @@
-const { validAuthCredentials } = require('../constants');
+const jwt = require('jsonwebtoken');
+
+const { findAllSuperAdmins } = require('../utils');
 
 class AuthController {
   constructor() {
-    this.matchEmailAndPassword = this.matchEmailAndPassword.bind(this);
+    this.findSuperAdmin = this.findSuperAdmin.bind(this);
     this.getToken = this.getToken.bind(this);
   }
 
-  matchEmailAndPassword(email, password) {
-    const match = validAuthCredentials.find(
-      (credentials) => credentials.email === email && credentials.password === password,
-    );
+  async findSuperAdmin(email, password) {
+    const superAdmins = await findAllSuperAdmins();
 
-    return match;
+    return superAdmins.find(
+      (superAdmin) => superAdmin.email === email && superAdmin.password === password,
+    );
   }
 
   async getToken(req, res) {
@@ -29,14 +31,39 @@ class AuthController {
     }
     const { password } = req.body;
 
-    const match = this.matchEmailAndPassword(email, password);
-    if (!match) {
+    let superAdmin;
+
+    try {
+      superAdmin = await this.findSuperAdmin(email, password);
+    } catch (err) {
       return res.status(400).json({
         message: 'Bad auth credentials.',
       });
     }
 
-    return res.status(200).json(match);
+    if (!superAdmin) {
+      return res.status(400).json({
+        message: 'Bad auth credentials.',
+      });
+    }
+
+    const jwtToken = jwt.sign(
+      {
+        data: {
+          email: superAdmin.email,
+          type: 'super_admin',
+        },
+      },
+      superAdmin.authSecret,
+      {
+        expiresIn: '1h',
+      },
+    );
+
+    return res.status(200).json({
+      email: superAdmin.email,
+      jwtToken,
+    });
   }
 }
 

@@ -1,8 +1,11 @@
 const { envVariables } = require('./envVariables');
-const { randomString, randomPassword } = require('./rnd');
+const { randomString } = require('./randomString');
+const { randomPassword } = require('./randomPassword');
+const { findAllSuperAdmins } = require('./findAllSuperAdmins');
 
 module.exports = {
   envVariables,
   randomString,
   randomPassword,
+  findAllSuperAdmins,
 };

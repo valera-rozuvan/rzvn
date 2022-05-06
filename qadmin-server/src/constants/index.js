@@ -1,3 +1,3 @@
-const { validAuthCredentials } = require('./validAuthCredentials');
+const { largeWordList } = require('./largeWordList');
 
-module.exports = { validAuthCredentials };
+module.exports = { largeWordList };

@@ -9,7 +9,7 @@ const envVariables = {
   ENABLE_TEST_USER: '',
   TEST_USER_EMAIL: '',
   TEST_USER_PASSWORD: '',
-  TEST_USER_AUTH_TOKEN: '',
+  TEST_USER_AUTH_SECRET: '',
 };
 
 const allEnvPresent = Object.keys(envVariables).every((variableName) => {
