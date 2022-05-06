@@ -1,6 +1,6 @@
-# qadmin-server
+# pgm-server
 
-Back-end API for QAdmin service. Allows for management of friends.
+Back-end API for PGM service. Allows for management of friends and messages.
 
 ## Setup
 
@@ -15,8 +15,8 @@ npm install
 3. Create `.env` file, put there something like this:
 
 ```text
-MONGO_URL=mongodb://sharky:3m2n45b23nm4b23n55bn23m5b@localhost:27017/sharky
-SERVICE_PORT=3001
+MONGO_URL=mongodb://superman:3m2n45b23nm4b23n55bn23m5b@localhost:27017/crypton
+SERVICE_PORT=2001
 ```
 
 ## Running
