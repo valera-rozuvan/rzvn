@@ -1,27 +1,25 @@
-import React from 'react'
+import React from 'react';
 import ListItem from '@mui/material/ListItem';
-// import ListItemButton from '@mui/material/ListItemButton';
 import ListItemText from '@mui/material/ListItemText';
 import Typography from '@mui/material/Typography';
 
 function Message(props) {
-	function color() {
-		return props.sender === 'me' ? "#ac9fbf" : "#f2b8ff"
-	}
-	function textAlign() {
-		return props.sender === 'me' ? "left" : "right"
-	}
+  function color() {
+    return props.sender === 'me' ? '#ac9fbf' : '#f2b8ff';
+  }
 
-	return (
-		<ListItem sx={{ backgroundColor: color(), textAlign: textAlign() }}>
-			<ListItemText>
-				<Typography className="key-in-message ">{props.sender}</Typography>
-				<Typography className="text-message">{props.body}</Typography>
-			</ListItemText>
+  function textAlign() {
+    return props.sender === 'me' ? 'left' : 'right';
+  }
 
-		</ListItem>
-
-	)
+  return (
+    <ListItem sx={{ backgroundColor: color(), textAlign: textAlign() }}>
+      <ListItemText>
+        <Typography className='key-in-message '>{props.sender}</Typography>
+        <Typography className='text-message'>{props.body}</Typography>
+      </ListItemText>
+    </ListItem>
+  );
 }
-export { Message }
 
+export { Message };
