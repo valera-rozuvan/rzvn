@@ -47,14 +47,20 @@ function PublicKeyList(props) {
 
 
 	useEffect(() => {
+		if (!loading) {
+			return;
+		}
+
 		async function getAllFriends() {
 			console.log("getAllFriends");
 			try {
 				const api = new Api();
 				const result = await api.getFriends();
 				const friendList = await result.data;
-	
+
 				dispatch({type: "SET_FRIENDS", data: friendList});
+
+				setLoading(false);
 			} catch (err) {
 			console.log('Failed to fetch friends.');
 			}
@@ -128,9 +134,9 @@ function PublicKeyList(props) {
 				{
 					friends.map(friend => {
 						return (
-							<PublicKey 
+							<PublicKey
 							// deleteFriend={deleteFriend}
-							friend={friend} 
+							friend={friend}
 							key={friend.id} />
 						)
 					})
