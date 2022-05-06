@@ -29,7 +29,9 @@ function PublicKey({friend,deleteFriend}) {
 				<IconButton>
 				<EditIcon size="small" sx={{cursor:"pointer"}}/>
 				</IconButton>
-				<IconButton onClick={deleteFriend(friend.id)}>
+				<IconButton 
+			 onClick={deleteFriend(friend.id)}
+				>
 				<ClearIcon size="small" sx={{cursor:"pointer"}}/>
 				</IconButton>
 				

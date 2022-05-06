@@ -47,6 +47,19 @@ function PublicKeyList(props) {
 
 
 	useEffect(() => {
+		async function getAllFriends() {
+			console.log("getAllFriends");
+			try {
+				const api = new Api();
+				const result = await api.getFriends();
+				const friendList = await result.data;
+	
+				dispatch({type: "SET_FRIENDS", data: friendList});
+			} catch (err) {
+			console.log('Failed to fetch friends.');
+			}
+			return true;
+		}
     clearModal();
 		setLoading(true);
 		getAllFriends();
@@ -54,34 +67,28 @@ function PublicKeyList(props) {
 
   }, [loading, dispatch, friends]);
 
-	async function getAllFriends() {
-		try {
-			const api = new Api();
-			const result = await api.getFriends();
-			const friendList = await result.data;
 
-			dispatch({type: "SET_FRIENDS", data: friendList});
-		} catch (err) {
-		console.log('Failed to fetch friends.');
-		}
-		return true;
-	}
 
- async function deleteFriend (id)  {
-	clearModal();
-	setLoading(true);
+// function deleteFriend (id)  {
+// 	clearModal();
+// 	setLoading(true);
+// 	async function  deleteFriendApi(){
+// 		try {
+// 			const api = new Api();
+// 			await api.deleteFriend(id);
 
-      try {
-        const api = new Api();
-        await api.deleteFriend(id);
+// 			dispatch({type: "DELETE_FRIEND",data: {id}});
 
-        dispatch({type: "DELETE_FRIEND",data: {id}});
+// 		} catch (err) {
+// 			console.log("something wrong with delete friend")
+// 		}
+// 		return true;
+// 	}
+// 	deleteFriendApi(id);
+// 	setLoading(false);
+//   };
 
-      } catch (err) {
-				console.log("something wrong with delete friend")
-      }
-      return true;
-  };
+
 
   const setModal = modal => {
     setActiveModal({name: modal, active: true});
@@ -122,7 +129,7 @@ function PublicKeyList(props) {
 					friends.map(friend => {
 						return (
 							<PublicKey 
-							deleteUser={deleteFriend}
+							// deleteFriend={deleteFriend}
 							friend={friend} 
 							key={friend.id} />
 						)
