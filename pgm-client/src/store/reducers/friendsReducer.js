@@ -5,7 +5,7 @@ const copyFriendItem = (item) => ({
   userId: item.userId,
 });
 
- export const friendsReducer = (state = [], action) => {
+export const friendsReducer = (state = [], action) => {
   let newState = state;
 
   switch (action.type) {

@@ -54,38 +54,39 @@
 
 // External imports
 // import React, { Component } from 'react'
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route } from 'react-router-dom';
 
-import './app.scss'
+import './app.scss';
 // Component imports
-import { Landing } from './components/landing/landing'
-import { Messenger } from './components/Messenger/Messenger'
-import { About } from './components/about/about'
-import { License } from './components/license/license'
-import { Contact } from './components/contact_us/contact'
-import { Login } from './components/login/login'
-import { SignUp } from './components/signUp/signUp'
+import { Landing } from './components/landing/landing';
+import { Messenger } from './components/Messenger/Messenger';
+import { About } from './components/about/about';
+import { License } from './components/license/license';
+import { Contact } from './components/contact_us/contact';
+import { Login } from './components/login/login';
+import { SignUp } from './components/signUp/signUp';
 
 // import {ThemeProvider} from 'material-ui-core';
 // import { ThemeProvider, createTheme } from '@material-ui/core';
 
 
-function App () {
-    return (
-		 <main>
+function App() {
+  return (
+    <main>
       <Routes>
-            <Route  path="/" element={<Landing />}></Route>
-            <Route  path="/msg"	element={<Messenger />}></Route>
-            <Route  path="/about" element={<About />} ></Route>
-            <Route  path="/license" element={<License />}></Route>
-            <Route  path="/contact" element={<Contact />}></Route>
-            <Route  path="/login" element={<Login />}></Route>
-            <Route path="/keys/signup" element={<SignUp />}></Route>
+        <Route path='/' element={<Landing />}></Route>
+        <Route path='/msg' element={<Messenger />}></Route>
+        <Route path='/about' element={<About />}></Route>
+        <Route path='/license' element={<License />}></Route>
+        <Route path='/contact' element={<Contact />}></Route>
+        <Route path='/login' element={<Login />}></Route>
+        <Route path='/keys/signup' element={<SignUp />}></Route>
       </Routes>
-		 </main>
-    )
-  }
-export default App
+    </main>
+  );
+}
+
+export default App;
 
 
 // class App extends Component {

@@ -1,34 +1,35 @@
-import React from 'react'
+import React from 'react';
 import { useState, useEffect, useRef } from 'react';
-import { Message } from '../Message/Message'
-import { Sender } from '../Sender/Sender'
+// import { Message } from '../Message/Message'
+import { Sender } from '../Sender/Sender';
 
 import { ThemeProvider } from '@mui/material/styles';
-import { theme } from '../../../theme'
+import { theme } from '../../../theme';
 
-import List from '@mui/material/List';
+// import List from '@mui/material/List';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
-import Typography from '@mui/material/Typography';
+
+// import Typography from '@mui/material/Typography';
 
 function MessageList(props) {
-	const [messages] = useState([]);
-	const messagesEndRef = useRef(null)
+  const [messages] = useState([]);
+  const messagesEndRef = useRef(null);
 
-	useEffect(() => {
-		scrollToBottom()
-	}, [messages]);
+  useEffect(() => {
+    scrollToBottom();
+  }, [messages]);
 
-	const scrollToBottom = () => {
-		return messagesEndRef.current?.scrollIntoView({ behavior: "smooth" })
-	}
+  const scrollToBottom = () => {
+    return messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+  };
 
-	return (
-		<ThemeProvider theme={theme}>
+  return (
+    <ThemeProvider theme={theme}>
 
-			<Container>
-				<Box>
-					{/* <Typography
+      <Container>
+        <Box>
+          {/* <Typography
 						variant="h6">messages from {props.activeKey.publicKey}
 					</Typography>
 				</Box>
@@ -46,12 +47,11 @@ function MessageList(props) {
 							ref={messagesEndRef}>
 						</Box>
 					</List> */}
-					<Sender addNewMessage={props.addNewMessage} />
-				</Box>
-			</Container>
-		</ThemeProvider>
-	)
-
+          <Sender addNewMessage={props.addNewMessage} />
+        </Box>
+      </Container>
+    </ThemeProvider>
+  );
 }
-export { MessageList };
 
+export { MessageList };
