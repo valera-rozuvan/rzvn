@@ -44,17 +44,17 @@ export default function Login() {
           return;
         }
 
-        if (typeof authData.authToken !== 'string') {
-          console.error('"authData.authToken" is not a string');
+        if (typeof authData.jwtToken !== 'string') {
+          console.error('"authData.jwtToken" is not a string');
           return;
         }
 
-        if (authData.authToken.length === 0) {
-          console.error('"authData.authToken" is of length 0');
+        if (authData.jwtToken.length === 0) {
+          console.error('"authData.jwtToken" is of length 0');
           return;
         }
 
-        dispatch({type: "SET_AUTH_TOKEN", data: authData.authToken});
+        dispatch({type: "SET_AUTH_TOKEN", data: authData.jwtToken});
       } catch (err) {
         logApiError(err);
 

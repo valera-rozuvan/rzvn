@@ -5,7 +5,6 @@ const UpdateApp = props => {
   const [toggle, setToggle] = useState(app.isActive);
 
 	const onInputChange = event => {
-
 		const { name, value } = event.target;
 		if (name === "isActive") {
 			setApp({ ...app, [name]: !toggle});
@@ -28,7 +27,15 @@ const UpdateApp = props => {
 		<form
 			onSubmit={event => {
 				event.preventDefault();
-				props.updateApp(app.id, app);
+				props.updateApp(
+          app.id,
+          {
+						serviceName: app.serviceName,
+						publicKey: app.publicKey,
+						privateKey: app.privateKey,
+						callbackUrl: app.callbackUrl,
+						isActive: app.isActive,
+					});
 			}}
 		>
 			<div className="form-group">
