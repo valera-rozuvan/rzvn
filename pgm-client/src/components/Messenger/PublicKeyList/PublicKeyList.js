@@ -75,24 +75,25 @@ function PublicKeyList(props) {
 
 
 
-// function deleteFriend (id)  {
-// 	clearModal();
-// 	setLoading(true);
-// 	async function  deleteFriendApi(){
-// 		try {
-// 			const api = new Api();
-// 			await api.deleteFriend(id);
+async function deleteFriend (id)  {
+	debugger;
+	clearModal();
+	setLoading(true);
+	async function  deleteFriendApi(){
+		try {
+			const api = new Api();
+			await api.deleteFriend(id);
 
-// 			dispatch({type: "DELETE_FRIEND",data: {id}});
+			dispatch({type: "DELETE_FRIEND",data: {id}});
 
-// 		} catch (err) {
-// 			console.log("something wrong with delete friend")
-// 		}
-// 		return true;
-// 	}
-// 	deleteFriendApi(id);
-// 	setLoading(false);
-//   };
+		} catch (err) {
+			console.log("something wrong with delete friend")
+		}
+		return true;
+	}
+	await deleteFriendApi(id);
+	setLoading(false);
+  };
 
 
 
@@ -135,7 +136,7 @@ function PublicKeyList(props) {
 					friends.map(friend => {
 						return (
 							<PublicKey
-							// deleteFriend={deleteFriend}
+							deleteFriend={deleteFriend}
 							friend={friend}
 							key={friend.id} />
 						)
