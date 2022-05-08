@@ -1,12 +1,12 @@
 import axios from "axios";
 
-const REACT_APP_REQRES_API = process.env.REACT_APP_REQRES_API;
+const REACT_APP_REQUEST_API = process.env.REACT_APP_REQUEST_API;
 
 class Api {
   baseUrl = "";
 
   constructor() {
-    this.baseUrl = REACT_APP_REQRES_API;
+    this.baseUrl = REACT_APP_REQUEST_API;
   }
 
   async getAuthToken(data) {

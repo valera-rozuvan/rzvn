@@ -2,7 +2,6 @@ import React, { useState } from "react";
 
 const CreateApp = props => {
   const [app, setApp] = useState({
-    id: null,
     serviceName: "",
     publicKey: "",
     privateKey: "",
@@ -11,7 +10,7 @@ const CreateApp = props => {
   });
 
 	const [toggle, setToggle] = useState(app.isActive);
-	
+
 	const onInputChange = event => {
 
 		const { name, value } = event.target;
