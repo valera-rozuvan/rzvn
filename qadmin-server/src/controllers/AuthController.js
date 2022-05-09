@@ -6,6 +6,7 @@ class AuthController {
   constructor() {
     this.findSuperAdmin = this.findSuperAdmin.bind(this);
     this.getToken = this.getToken.bind(this);
+    this.checkToken = this.checkToken.bind(this);
   }
 
   async findSuperAdmin(email, password) {
@@ -56,13 +57,19 @@ class AuthController {
       },
       superAdmin.authSecret,
       {
-        expiresIn: '1h',
+        expiresIn: '1m',
       },
     );
 
     return res.status(200).json({
       email: superAdmin.email,
       jwtToken,
+    });
+  }
+
+  async checkToken(req, res) {
+    return res.status(200).json({
+      status: 'OK',
     });
   }
 }
