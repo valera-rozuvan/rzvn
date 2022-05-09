@@ -8,8 +8,8 @@ var schema = new mongoose.Schema({
   },
   userId: {
     type: String,
-    required: true,
-    unique: true
+    required: true
+    // unique: true
   },
   name: {
     type: String,
