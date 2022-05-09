@@ -5,8 +5,6 @@ import { theme } from '../../../theme';
 import List from '@mui/material/List';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
-// import TextField from '@mui/material/TextField';
-// import InputLabel from '@mui/material/InputLabel';
 import Input from '@mui/material/Input';
 import FormHelperText from '@mui/material/FormHelperText';
 import Dialog from '@mui/material/Dialog';
@@ -19,171 +17,167 @@ import { Api } from '../../../api/apiFriends';
 
 import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
 import { PublicKey } from '../PublicKey/PublicKey';
 
-const copyFriendData = ({ id, publicKey, name, userId }) => ({
-  id,
-  publicKey,
-  name,
-  userId,
-});
+function PublicKeyList() {
+	const dispatch = useDispatch();
+	const friends = useSelector(state => state.friends);
+	const [open, setOpen] = useState(false);
+	const [loading, setLoading] = useState(true);
+	const [friend, setFriend] = useState({ name: "", publicKey: "", userId: "" });
 
-function PublicKeyList(props) {
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
-  const friends = useSelector(state => state.friends);
+	const onInputChange = event => {
+		const { name, value } = event.target;
+		setFriend({ ...friend, [name]: value });
+	};
 
+	useEffect(() => {
+		if (!loading) {
+			return;
+		}
 
-  const [key, setKey] = useState('');
-  const [name, setName] = useState('');
-  const [activeModal, setActiveModal] = useState({ name: '', active: false });
-  const [open, setOpen] = useState(false);
-  const [loading, setLoading] = useState(true);
-  const [currentFriend, setCurrentFriend] = useState(copyFriendData({
-    id: '',
-    publicKey: '',
-    name: '',
-    userId: '',
-  }));
+		async function getAllFriends() {
+			console.log('getAllFriends');
+			try {
+				const api = new Api();
+				const result = await api.getFriends();
+				const friendList = await result.data;
 
+				dispatch({ type: 'SET_FRIENDS', data: friendList });
 
-  useEffect(() => {
-    if (!loading) {
-      return;
-    }
+				setLoading(false);
+			} catch (err) {
+				console.log('Failed to fetch friends.');
+			}
+			return true;
+		}
 
-    async function getAllFriends() {
-      console.log('getAllFriends');
-      try {
-        const api = new Api();
-        const result = await api.getFriends();
-        const friendList = await result.data;
+		setLoading(true);
+		getAllFriends();
+		setLoading(false);
 
-        dispatch({ type: 'SET_FRIENDS', data: friendList });
-
-        setLoading(false);
-      } catch (err) {
-        console.log('Failed to fetch friends.');
-      }
-      return true;
-    }
-
-    clearModal();
-    setLoading(true);
-    getAllFriends();
-    setLoading(false);
-
-  }, [loading, dispatch, friends]);
+	}, [loading, dispatch, friends]);
 
 
-  async function deleteFriend(id) {
-    debugger;
-    clearModal();
-    setLoading(true);
+	async function deleteFriend(id) {
 
-    async function deleteFriendApi() {
-      try {
-        const api = new Api();
-        await api.deleteFriend(id);
+		setLoading(true);
 
-        dispatch({ type: 'DELETE_FRIEND', data: { id } });
+		async function deleteFriendApi() {
+			try {
+				const api = new Api();
+				await api.deleteFriend(id);
 
-      } catch (err) {
-        console.log('something wrong with delete friend');
-      }
-      return true;
-    }
+				dispatch({ type: 'DELETE_FRIEND', data: { id } });
 
-    await deleteFriendApi(id);
-    setLoading(false);
-  };
+			} catch (err) {
+				console.log('something wrong with delete friend');
+			}
+			return true;
+		}
+
+		await deleteFriendApi(id);
+		setLoading(false);
+	};
 
 
-  const setModal = modal => {
-    setActiveModal({ name: modal, active: true });
-  };
+	async function createFriend(newFriendData) {
 
-  const clearModal = () => {
-    setActiveModal({ name: '', active: false });
-  };
+		setLoading(true);
 
-  const handleSubmit = event => {
-    event.preventDefault();
-    console.log('new key');
-    props.addPublicKey({ key });
-    handleClose();
-  };
-  // const onPublicKeyClick = (someText) => {
-  // 	// props.showActivePublicKeyMessaging(publicKey);
-  // 	console.log(someText);
-  // }
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
+		async function createFriendApi() {
+			try {
+				const api = new Api();
+				const result = await api.createFriend(newFriendData);
+				const newFriend = result.data;
 
-  const handleClose = () => {
-    setOpen(false);
-    reset();
-  };
-  const reset = () => {
-    setKey('');
-    setName('');
-  };
-  // const { publicKeys } = props;
-  return (
-    <ThemeProvider theme={theme}>
-      <List align='center'>
-        <Typography variant='h6'>friends</Typography>
-        {
-          friends.map(friend => {
-            return (
-              <PublicKey
-                deleteFriend={deleteFriend}
-                friend={friend}
-                key={friend.id} />
-            );
-          })
-        }
-        <Button sx={{ mt: '2rem' }} variant='outlined'
-                onClick={handleClickOpen} type='button'>add key</Button>
-      </List>{open === true && (
-      <Dialog open={open}>
-        <form onSubmit={handleSubmit}>
-          <DialogTitle>Add new public key</DialogTitle>
-          <DialogContent>
-            <DialogContentText>
-            </DialogContentText>
-            {/* <InputLabel htmlFor="my-input">new public key</InputLabel> */}
-            <Input
-              onChange={event => setKey(event.currentTarget.value)}
-              autoComplete='off'
-              value={key}
-              autoFocus
-              margin='dense'
-              id='new-key'
-              aria-describedby="friend's public key"
-              type='text' />
-            <FormHelperText id='my-helper-text'>Write new public key</FormHelperText>
-            <Input
-              onChange={event => setKey(event.currentTarget.value)}
-              autoComplete='off'
-              value={name}
-              margin='dense'
-              id='name'
-              aria-describedby="friend's name"
-              type='text' />
-            <FormHelperText id='my-helper-text'>Write name of your friend</FormHelperText>
-          </DialogContent>
-          <DialogActions>
-            <Button type='button' onClick={handleClose}>Cancel</Button>
-            <Button type='submit'>Add key</Button>
-          </DialogActions>
-        </form>
-      </Dialog>
-    )}
-    </ThemeProvider>
-  );
+				dispatch({ type: "CREATE_FRIEND", data: newFriend });
+			} catch (err) {
+				console.log('Failed to create friend');
+			}
+
+			return true;
+		}
+
+		await createFriendApi();
+		setLoading(false);
+	};
+
+	function handleSubmit(event) {
+
+		event.preventDefault();
+		console.log('new key');
+		createFriend(friend);
+		handleClose();
+	};
+
+	const handleClickOpen = () => {
+		setOpen(true);
+	};
+
+	const handleClose = () => {
+		setOpen(false);
+		reset();
+	};
+
+	const reset = () => {
+		setFriend({ name: "", publicKey: "", userId: "" })
+	};
+
+	return (
+		<ThemeProvider theme={theme}>
+			<List align='center'>
+				<Typography variant='h6'>friends</Typography>
+				{
+					friends.map(friend => {
+						return (
+							<PublicKey
+								deleteFriend={deleteFriend}
+								friend={friend}
+								key={friend.id} />
+						);
+					})
+				}
+				<Button sx={{ mt: '2rem' }} variant='outlined'
+					onClick={handleClickOpen} type='button'>add key</Button>
+			</List>{open === true && (
+				<Dialog open={open}>
+					<form onSubmit={handleSubmit}>
+						<DialogTitle>Add new public key</DialogTitle>
+						<DialogContent>
+							<DialogContentText>
+							</DialogContentText>
+							<Input
+								name="publicKey"
+								onChange={onInputChange}
+								autoComplete='off'
+								value={friend.publicKey}
+								autoFocus
+								margin='dense'
+								id='new-key'
+								aria-describedby="friend's public key"
+								type='text' />
+							<FormHelperText id='my-helper-text'>Write new public key</FormHelperText>
+							<Input
+								name="name"
+								onChange={onInputChange}
+								autoComplete='off'
+								value={friend.name}
+								margin='dense'
+								id='name'
+								aria-describedby="friend's name"
+								type='text' />
+							<FormHelperText id='my-helper-text'>Write name of your friend</FormHelperText>
+						</DialogContent>
+						<DialogActions>
+							<Button type='button' onClick={handleClose}>Cancel</Button>
+							<Button type='submit'>Add key</Button>
+						</DialogActions>
+					</form>
+				</Dialog>
+			)}
+		</ThemeProvider>
+	);
 }
 
 export { PublicKeyList };
