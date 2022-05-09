@@ -6,9 +6,10 @@ import {useNavigate, Link} from "react-router-dom";
 // Styles
 import "./style.scss";
 
-import {Api} from "../../api/apiAuth";
-import {isUnauthorizedError, logApiError} from "../../api/logApiError";
+import {AuthApi} from "../../api";
+import {isUnauthorizedError, logApiError} from "../../api/tools";
 import {AuthUserAuthStates} from '../../constants';
+import {AuthUserActionTypes} from '../../constants/actions/AuthUserActionTypes';
 
 const Header = () => {
   const navigate = useNavigate();
@@ -22,7 +23,7 @@ const Header = () => {
       case AuthUserAuthStates.loggedIn:
         break;
       case AuthUserAuthStates.loggingOut:
-        dispatch({type: "LOGOUT"});
+        dispatch({type: AuthUserActionTypes.logout});
         break;
       case AuthUserAuthStates.loggedOut:
         navigate('/login');
@@ -30,7 +31,7 @@ const Header = () => {
       case AuthUserAuthStates.unverified:
         async function callCheckAuthTokenApi() {
           try {
-            const api = new Api(authToken);
+            const api = new AuthApi(authToken);
             await api.checkAuthToken();
           } catch (err) {
             logApiError(err);
@@ -46,10 +47,10 @@ const Header = () => {
         callCheckAuthTokenApi().then((isAuthorized) => {
           switch (isAuthorized) {
             case true:
-              dispatch({type: "LOGIN_VERIFIED"});
+              dispatch({type: AuthUserActionTypes.loginVerified});
               break;
             default:
-              dispatch({type: "INIT_LOGOUT"});
+              dispatch({type: AuthUserActionTypes.initLogout});
               break;
           }
         });

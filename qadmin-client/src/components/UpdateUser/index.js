@@ -1,30 +1,37 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 
 const UpdateUser = props => {
-  const [user, setUser] = useState(props.currentUser);
+  const [userId] = useState(props.currentUser.id);
+
+  const [user, setUser] = useState({
+    firstName: props.currentUser.firstName,
+    lastName: props.currentUser.lastName,
+    email: props.currentUser.email,
+    isActive: props.currentUser.isActive,
+  });
 
   const onInputChange = event => {
-    const { name, value } = event.target;
+    const {name, value} = event.target;
 
-    setUser({ ...user, [name]: value });
+    if (name === "isActive") {
+      setUser({ ...user, [name]: !user.isActive});
+    } else {
+      setUser({...user, [name]: value});
+    }
   };
 
   const cancel = event => {
     event.preventDefault();
-    props.setActiveModal({ active: false });
+    props.setActiveModal({active: false});
   };
 
-  useEffect(() => {
-    setUser(props.currentUser);
-  }, [props]);
+  const submit = event => {
+    event.preventDefault();
+    props.updateUser(userId, user);
+  };
 
   return (
-    <form
-      onSubmit={event => {
-        event.preventDefault();
-        props.updateUser(user.id, user);
-      }}
-    >
+    <form onSubmit={submit}>
       <div className="form-group">
         <label>First Name</label>
         <input
@@ -49,6 +56,15 @@ const UpdateUser = props => {
           type="email"
           name="email"
           value={user.email}
+          onChange={onInputChange}
+        />
+      </div>
+      <div className="form-group">
+        <label>Is active</label>
+        <input
+          type="checkbox"
+          name="isActive"
+          defaultChecked={user.isActive}
           onChange={onInputChange}
         />
       </div>

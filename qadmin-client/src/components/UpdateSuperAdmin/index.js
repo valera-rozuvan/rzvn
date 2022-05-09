@@ -1,40 +1,51 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 
 const UpdateSuperAdmin = props => {
-	const [superAdmin, setSuperAdmin] = useState(props.currentSuperAdmin);
+	const [superAdminId] = useState(props.currentSuperAdmin.id);
 
+	const [superAdmin, setSuperAdmin] = useState({
+		email: props.currentSuperAdmin.email,
+		isActive: props.currentSuperAdmin.isActive,
+	});
+
+	const onInputChange = event => {
+		const {name, value} = event.target;
+
+		if (name === "isActive") {
+			setSuperAdmin({ ...superAdmin, [name]: !superAdmin.isActive});
+		} else {
+			setSuperAdmin({...superAdmin, [name]: value});
+		}
+	};
 
 	const cancel = event => {
 		event.preventDefault();
-		props.setActiveModal({ active: false });
+		props.setActiveModal({active: false});
 	};
 
-
-	useEffect(() => {
-		setSuperAdmin(props.currentSuperAdmin);
-	}, [props]);
+	const submit = event => {
+		event.preventDefault();
+		props.updateSuperAdmin(superAdminId, superAdmin);
+	};
 
 	return (
-		<form
-			onSubmit={event => {
-				event.preventDefault();
-				props.updateSuperAdmin(superAdmin.id, superAdmin);
-			}}
-		>
+		<form onSubmit={submit}>
 			<div className="form-group">
-				<label>E-Mail</label>
+				<label>Email</label>
 				<input
 					type="email"
 					name="email"
 					value={superAdmin.email}
+					onChange={onInputChange}
 				/>
 			</div>
 			<div className="form-group">
-				<label>Password</label>
+				<label>Is active</label>
 				<input
-					type="text"
-					name="password"
-					value={superAdmin.password}
+					type="checkbox"
+					name="isActive"
+					defaultChecked={superAdmin.isActive}
+					onChange={onInputChange}
 				/>
 			</div>
 			<div className="form-group form-group--actions">

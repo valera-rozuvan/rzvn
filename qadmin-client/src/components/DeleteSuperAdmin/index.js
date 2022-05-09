@@ -1,26 +1,23 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 
 const DeleteSuperAdmin = props => {
-  const [superAdmin, setSuperAdmin] = useState(props.currentSuperAdmin);
+  const [superAdminId] = useState(props.currentSuperAdmin.id);
+  const [email] = useState(props.currentSuperAdmin.email);
 
   const cancel = event => {
     event.preventDefault();
     props.setActiveModal({ active: false });
   };
 
-  useEffect(() => {
-    setSuperAdmin(props.currentSuperAdmin);
-  }, [props]);
+  const submit = event => {
+    event.preventDefault();
+    props.deleteSuperAdmin(superAdminId);
+  };
 
   return (
-    <form
-      onSubmit={event => {
-        event.preventDefault();
-        props.deleteSuperAdmin(superAdmin.id);
-      }}
-    >
+    <form onSubmit={submit}>
       <div className="form-group">
-        Are you sure you want to delete {superAdmin.email} {superAdmin.password}?
+        Are you sure you want to delete "{email}"?
       </div>
       <div className="form-group form-group--actions">
         <button className="primary-btn">Delete</button>

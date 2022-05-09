@@ -1,14 +1,21 @@
 import React, { useState, useEffect } from "react";
 
 const UpdateApp = props => {
-	const [app, setApp] = useState(props.currentApp);
-  const [toggle, setToggle] = useState(app.isActive);
+	const [appId] = useState(props.currentApp.id);
+
+	const [app, setApp] = useState({
+		serviceName: props.currentApp.serviceName,
+		publicKey: props.currentApp.publicKey,
+		privateKey: props.currentApp.privateKey,
+		callbackUrl: props.currentApp.callbackUrl,
+		isActive: props.currentApp.isActive,
+	});
 
 	const onInputChange = event => {
 		const { name, value } = event.target;
+
 		if (name === "isActive") {
-			setApp({ ...app, [name]: !toggle});
-			setToggle(!toggle)
+			setApp({ ...app, [name]: !app.isActive});
 		} else {
 			setApp({ ...app, [name]: value });
 		}
@@ -19,25 +26,13 @@ const UpdateApp = props => {
 		props.setActiveModal({ active: false });
 	};
 
-	useEffect(() => {
-		setApp(props.currentApp);
-	}, [props]);
+	const submit = event => {
+		event.preventDefault();
+		props.updateApp(appId, app);
+	};
 
 	return (
-		<form
-			onSubmit={event => {
-				event.preventDefault();
-				props.updateApp(
-          app.id,
-          {
-						serviceName: app.serviceName,
-						publicKey: app.publicKey,
-						privateKey: app.privateKey,
-						callbackUrl: app.callbackUrl,
-						isActive: app.isActive,
-					});
-			}}
-		>
+		<form onSubmit={submit}>
 			<div className="form-group">
 				<label>Service name</label>
 				<input
@@ -79,7 +74,7 @@ const UpdateApp = props => {
 				<input
 					type="checkbox"
 					name="isActive"
-					defaultChecked={toggle}
+					defaultChecked={app.isActive}
 					onChange={onInputChange}
 				/>
 			</div>

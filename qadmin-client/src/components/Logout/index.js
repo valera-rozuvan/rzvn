@@ -3,6 +3,7 @@ import React, {useEffect, useMemo} from "react";
 import {useDispatch, useSelector} from "react-redux";
 
 import {AuthUserAuthStates} from '../../constants';
+import {AuthUserActionTypes} from '../../constants/actions/AuthUserActionTypes';
 
 export default function Logout() {
   const dispatch = useDispatch();
@@ -13,7 +14,7 @@ export default function Logout() {
   useEffect(() => {
     switch (authState) {
       case AuthUserAuthStates.loggedIn:
-        dispatch({type: "INIT_LOGOUT"});
+        dispatch({type: AuthUserActionTypes.initLogout});
         break;
       default:
         break;

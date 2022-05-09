@@ -4,8 +4,8 @@ import {useSelector, useDispatch} from "react-redux";
 import {useNavigate} from "react-router-dom";
 
 // API utilities
-import {Api} from "../../api/apiSuperAdmin";
-import {logApiError, isUnauthorizedError} from "../../api/logApiError";
+import {SuperAdminsApi} from "../../api";
+import {logApiError, isUnauthorizedError} from "../../api/tools";
 
 // Styles
 import "./SuperAdmins.scss";
@@ -13,18 +13,22 @@ import "./SuperAdmins.scss";
 // Components
 import DataTableSuperAdmins from "../DataTableSuperAdmins";
 import CreateSuperAdmin from "../CreateSuperAdmin";
-// import UpdateSuperAdmin from "../UpdateSuperAdmin";
+import UpdateSuperAdmin from "../UpdateSuperAdmin";
 import DeleteSuperAdmin from "../DeleteSuperAdmin";
 import Modal from "../Modal";
 import Pagination from "../Pagination";
 import Loader from "../Loader";
 import MySwal from "../../index";
 
-const copySuperAdminData = ({id, password, authToken, email}) => ({
+// Constants
+import { SuperAdminsActionTypes } from '../../constants/actions/SuperAdminsActionTypes';
+
+const copySuperAdminData = ({id, email, password, isActive, createdAt}) => ({
   id,
-  password,
-  authToken,
   email,
+  password,
+  isActive,
+  createdAt,
 });
 
 function SuperAdmins() {
@@ -36,11 +40,12 @@ function SuperAdmins() {
 
   const [loading, setLoading] = useState(true);
 
-  const [currentSuperAdmin, setcurrentSuperAdmin] = useState(copySuperAdminData({
+  const [currentSuperAdmin, setCurrentSuperAdmin] = useState(copySuperAdminData({
     id: "",
-    password: "",
-    authToken: "",
     email: "",
+    password: "",
+    isActive: false,
+    createdAt: "",
   }));
   const [activeModal, setActiveModal] = useState({name: "", active: false});
   const [pageSize] = useState(5);
@@ -67,11 +72,25 @@ function SuperAdmins() {
     setModal("Create SuperAdmin");
   };
 
+  // Invoke "Update superAdmin" modal dialog
+  const updateRow = (superAdmin) => {
+    setCurrentSuperAdmin(copySuperAdminData(superAdmin));
+
+    setModal("Update SuperAdmin");
+  };
+
+  // Invoke "Delete superAdmin" modal dialog
+  const deleteRow = (superAdmin) => {
+    setCurrentSuperAdmin(copySuperAdminData(superAdmin));
+
+    setModal("Delete SuperAdmin");
+  };
+
   // Handles of updating the password for a SuperAdmin.
   const updatePassword = (id) => {
     async function callUpdateSuperAdminPasswordApi() {
       try {
-        const api = new Api(authToken);
+        const api = new SuperAdminsApi(authToken);
         const result = await api.updateSuperAdminPassword(id);
         const updatedSuperAdmin = result.data;
 
@@ -81,7 +100,7 @@ function SuperAdmins() {
         });
 
         dispatch({
-          type: "UPDATE_SUPERADMIN",
+          type: SuperAdminsActionTypes.updateSuperAdmin,
           data: updatedSuperAdmin
         });
       } catch (err) {
@@ -113,19 +132,15 @@ function SuperAdmins() {
     });
   };
 
-  // Invoke "Delete superAdmin" modal dialog
-  const deleteRow = (superAdmin) => {
-    setcurrentSuperAdmin(copySuperAdminData(superAdmin));
-
-    setModal("Delete SuperAdmin");
-  };
-
   // Handles creation of a new SuperAdmin.
   const createSuperAdmin = (newSuperAdminData) => {
     async function callCreateSuperAdminApi() {
       try {
-        const api = new Api(authToken);
-        const result = await api.createSuperAdmin(newSuperAdminData);
+        const api = new SuperAdminsApi(authToken);
+        const result = await api.createSuperAdmin({
+          email: newSuperAdminData.email,
+          isActive: newSuperAdminData.isActive,
+        });
         const newSuperAdmin = result.data;
 
         await MySwal.fire({
@@ -133,7 +148,7 @@ function SuperAdmins() {
           title: "Super admin created successfully."
         });
         dispatch({
-          type: "CREATE_SUPERADMIN",
+          type: SuperAdminsActionTypes.createSuperAdmin,
           data: newSuperAdmin
         });
       } catch (err) {
@@ -165,57 +180,60 @@ function SuperAdmins() {
     });
   };
 
-  // // Handles updating of an existing SuperAdmin.
-  // const updateSuperAdmin = (id, updatedSuperAdminData) => {
-  //   async function callUpdateSuperAdminApi() {
-  //     try {
-  //       const api = new Api(authToken);
-  //       const result = await api.updateUser(id, updatedSuperAdminData);
-  //       const updatedSuperAdmin = result.data;
-  //
-  //       await MySwal.fire({
-  //         icon: "success",
-  //         title: "Super admin updated successfully."
-  //       });
-  //
-  //       dispatch({
-  //         type: "UPDATE_SUPERADMIN",
-  //         data: updatedSuperAdmin
-  //       });
-  //     } catch (err) {
-  //       logApiError(err);
-  //
-  //       if (isUnauthorizedError(err)) {
-  //         return false;
-  //       }
-  //
-  //       await MySwal.fire({
-  //         icon: "error",
-  //         title: "Failed to update super admin."
-  //       });
-  //     }
-  //
-  //     return true;
-  //   }
-  //
-  //   clearModal();
-  //   setLoading(true);
-  //
-  //   callUpdateSuperAdminApi().then((isAuthorized) => {
-  //     if (!isAuthorized) {
-  //       navigate('/logout');
-  //       return;
-  //     }
-  //
-  //     setLoading(false);
-  //   });
-  // };
+  // Handles updating of an existing SuperAdmin.
+  const updateSuperAdmin = (id, updatedSuperAdminData) => {
+    async function callUpdateSuperAdminApi() {
+      try {
+        const api = new SuperAdminsApi(authToken);
+        const result = await api.updateSuperAdmin(id, {
+          email: updatedSuperAdminData.email,
+          isActive: updatedSuperAdminData.isActive,
+        });
+        const updatedSuperAdmin = result.data;
+
+        await MySwal.fire({
+          icon: "success",
+          title: "Super admin updated successfully."
+        });
+
+        dispatch({
+          type: SuperAdminsActionTypes.updateSuperAdmin,
+          data: updatedSuperAdmin
+        });
+      } catch (err) {
+        logApiError(err);
+
+        if (isUnauthorizedError(err)) {
+          return false;
+        }
+
+        await MySwal.fire({
+          icon: "error",
+          title: "Failed to update super admin."
+        });
+      }
+
+      return true;
+    }
+
+    clearModal();
+    setLoading(true);
+
+    callUpdateSuperAdminApi().then((isAuthorized) => {
+      if (!isAuthorized) {
+        navigate('/logout');
+        return;
+      }
+
+      setLoading(false);
+    });
+  };
 
   // Handles deletion of an existing SuperAdmin.
   const deleteSuperAdmin = (id) => {
     async function callDeleteSuperAdminApi() {
       try {
-        const api = new Api(authToken);
+        const api = new SuperAdminsApi(authToken);
         await api.deleteSuperAdmin(id);
 
         await MySwal.fire({
@@ -224,7 +242,7 @@ function SuperAdmins() {
         });
 
         dispatch({
-          type: "DELETE_SUPERADMIN",
+          type: SuperAdminsActionTypes.deleteSuperAdmin,
           data: {id}
         });
 
@@ -258,15 +276,15 @@ function SuperAdmins() {
     });
   };
 
-  // Populates the User list.
+  // Populates the SuperAdmin list.
   useEffect(() => {
     async function callGetSuperAdminsApi() {
       try {
-        const api = new Api(authToken);
+        const api = new SuperAdminsApi(authToken);
         const result = await api.getSuperAdmins();
         const superAdminList = result.data;
 
-        dispatch({type: "SET_SUPERADMINS", data: superAdminList});
+        dispatch({type: SuperAdminsActionTypes.setSuperAdmins, data: superAdminList});
       } catch (err) {
         logApiError(err);
 
@@ -314,6 +332,7 @@ function SuperAdmins() {
             <DataTableSuperAdmins
               superAdmins={currentSuperAdmins}
               updatePassword={updatePassword}
+              updateRow={updateRow}
               deleteRow={deleteRow}
             />
             <Pagination
@@ -333,13 +352,13 @@ function SuperAdmins() {
               setActiveModal={setActiveModal}
             />
           )}
-          {/*{activeModal.name === "Update SuperAdmin" && (*/}
-          {/*  <UpdateSuperAdmin*/}
-          {/*    currentSuperAdmin={currentSuperAdmin}*/}
-          {/*    updateSuperAdmin={updateSuperAdmin}*/}
-          {/*    setActiveModal={setActiveModal}*/}
-          {/*  />*/}
-          {/*)}*/}
+          {activeModal.name === "Update SuperAdmin" && (
+            <UpdateSuperAdmin
+              currentSuperAdmin={currentSuperAdmin}
+              updateSuperAdmin={updateSuperAdmin}
+              setActiveModal={setActiveModal}
+            />
+          )}
           {activeModal.name === "Delete SuperAdmin" && (
             <DeleteSuperAdmin
               currentSuperAdmin={currentSuperAdmin}

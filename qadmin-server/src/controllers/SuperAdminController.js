@@ -38,11 +38,11 @@ class SuperAdminController {
     }
 
     const superAdminModel = new SuperAdminModel(
-      JSON.assign(
+      Object.assign(
         {},
         req.body,
         {
-          password: randomPassword(),
+          password: randomPassword(7),
           authSecret: randomString(64),
         },
       ),
@@ -188,7 +188,7 @@ class SuperAdminController {
     const { objId } = validationResults;
 
     const dataToUpdate = {
-      password: randomPassword(),
+      password: randomPassword(7),
       authSecret: randomString(64),
     };
 

@@ -4,8 +4,8 @@ import {useSelector, useDispatch} from "react-redux";
 import {useNavigate} from "react-router-dom";
 
 // API utilities
-import {Api} from "../../api/apiApps";
-import {logApiError, isUnauthorizedError} from "../../api/logApiError";
+import {AppsApi} from "../../api";
+import {logApiError, isUnauthorizedError} from "../../api/tools";
 
 // Styles
 import "./Apps.scss";
@@ -19,6 +19,9 @@ import Modal from "../../components/Modal";
 import Pagination from "../../components/Pagination";
 import Loader from "../../components/Loader";
 import MySwal from "../../index";
+
+// Constants
+import { AppsActionTypes } from '../../constants/actions/AppsActionTypes';
 
 const copyAppData = ({id, serviceName, publicKey, privateKey, isActive, callbackUrl, createdAt}) => ({
   id,
@@ -91,8 +94,14 @@ function Apps() {
   const createApp = (newAppData) => {
     async function callCreateAppApi() {
       try {
-        const api = new Api(authToken);
-        const result = await api.createApp(newAppData);
+        const api = new AppsApi(authToken);
+        const result = await api.createApp({
+          serviceName: newAppData.serviceName,
+          publicKey: newAppData.publicKey,
+          privateKey: newAppData.privateKey,
+          callbackUrl: newAppData.callbackUrl,
+          isActive: newAppData.isActive,
+        });
         const newApp = result.data;
 
         await MySwal.fire({
@@ -101,7 +110,7 @@ function Apps() {
         });
 
         dispatch({
-          type: "CREATE_APP",
+          type: AppsActionTypes.createApp,
           data: newApp
         });
       } catch (err) {
@@ -137,8 +146,14 @@ function Apps() {
   const updateApp = (id, updatedAppData) => {
     async function callUpdateAppApi() {
       try {
-        const api = new Api(authToken);
-        const result = await api.updateApp(id, updatedAppData);
+        const api = new AppsApi(authToken);
+        const result = await api.updateApp(id, {
+          serviceName: updatedAppData.serviceName,
+          publicKey: updatedAppData.publicKey,
+          privateKey: updatedAppData.privateKey,
+          callbackUrl: updatedAppData.callbackUrl,
+          isActive: updatedAppData.isActive,
+        });
         const updatedApp = result.data;
 
         await MySwal.fire({
@@ -147,7 +162,7 @@ function Apps() {
         });
 
         dispatch({
-          type: "UPDATE_APP",
+          type: AppsActionTypes.updateApp,
           data: updatedApp
         });
       } catch (err) {
@@ -183,7 +198,7 @@ function Apps() {
   const deleteApp = (id) => {
     async function callDeleteAppApi() {
       try {
-        const api = new Api(authToken);
+        const api = new AppsApi(authToken);
         await api.deleteApp(id);
 
         await MySwal.fire({
@@ -192,7 +207,7 @@ function Apps() {
         });
 
         dispatch({
-          type: "DELETE_APP",
+          type: AppsActionTypes.deleteApp,
           data: {id}
         });
 
@@ -226,13 +241,15 @@ function Apps() {
     });
   };
 
+  // Populates the App list.
   useEffect(() => {
     async function callGetAppsApi() {
       try {
-        const api = new Api(authToken);
+        const api = new AppsApi(authToken);
         const result = await api.getApps();
         const appList = result.data;
-        dispatch({type: "SET_APPS", data: appList});
+
+        dispatch({type: AppsActionTypes.setApps, data: appList});
       } catch (err) {
         logApiError(err);
 

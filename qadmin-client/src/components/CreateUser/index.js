@@ -1,12 +1,21 @@
 import React, {useState} from "react";
 
 const CreateUser = props => {
-  const [user, setUser] = useState({firstName: "", lastName: "", email: ""});
+  const [user, setUser] = useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+    isActive: false,
+  });
 
   const onInputChange = event => {
     const {name, value} = event.target;
 
-    setUser({...user, [name]: value});
+    if (name === "isActive") {
+      setUser({ ...user, [name]: !user.isActive});
+    } else {
+      setUser({...user, [name]: value});
+    }
   };
 
   const cancel = event => {
@@ -14,14 +23,13 @@ const CreateUser = props => {
     props.setActiveModal({active: false});
   };
 
+  const submit = event => {
+    event.preventDefault();
+    props.createUser(user);
+  };
+
   return (
-    <form
-      onSubmit={event => {
-        event.preventDefault();
-        if (!user.firstName || !user.lastName) return;
-        props.createUser(user);
-      }}
-    >
+    <form onSubmit={submit}>
       <div className="form-group">
         <label>First Name</label>
         <input
@@ -46,6 +54,15 @@ const CreateUser = props => {
           type="email"
           name="email"
           value={user.email}
+          onChange={onInputChange}
+        />
+      </div>
+      <div className="form-group">
+        <label>Is active</label>
+        <input
+          type="checkbox"
+          name="isActive"
+          defaultChecked={user.isActive}
           onChange={onInputChange}
         />
       </div>

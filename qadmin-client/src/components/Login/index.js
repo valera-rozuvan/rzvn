@@ -12,11 +12,12 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Container from '@mui/material/Container';
 import {createTheme, ThemeProvider} from '@mui/material/styles';
 
-import {Api} from "../../api/apiAuth";
-import {logApiError} from "../../api/logApiError";
+import {AuthApi} from "../../api";
+import {logApiError} from "../../api/tools";
 
 import Loader from "../Loader";
 import MySwal from "../../index";
+import {AuthUserActionTypes} from '../../constants/actions/AuthUserActionTypes';
 
 const theme = createTheme();
 
@@ -42,7 +43,7 @@ export default function Login() {
   const handleSubmit = async (event) => {
     async function getAuthToken(email, password) {
       try {
-        const api = new Api("");
+        const api = new AuthApi("");
         const response = await api.getAuthToken({email, password});
         const authData = response.data;
 
@@ -61,7 +62,7 @@ export default function Login() {
           return;
         }
 
-        dispatch({type: "LOGIN", data: { authToken: authData.jwtToken, email, password }});
+        dispatch({type: AuthUserActionTypes.login, data: { authToken: authData.jwtToken, email, password }});
       } catch (err) {
         logApiError(err);
 

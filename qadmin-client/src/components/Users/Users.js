@@ -4,8 +4,8 @@ import {useSelector, useDispatch} from "react-redux";
 import {useNavigate} from "react-router-dom";
 
 // API utilities
-import {Api} from "../../api/apiUsers";
-import {logApiError, isUnauthorizedError} from "../../api/logApiError";
+import {UsersApi} from "../../api";
+import {logApiError, isUnauthorizedError} from "../../api/tools";
 
 // Styles
 import "./Users.scss";
@@ -20,11 +20,16 @@ import Pagination from "../../components/Pagination";
 import Loader from "../../components/Loader";
 import MySwal from "../../index";
 
-const copyUserData = ({id, firstName, lastName, email}) => ({
+// Constants
+import { UsersActionTypes } from '../../constants/actions/UsersActionTypes';
+
+const copyUserData = ({id, firstName, lastName, email, isActive, createdAt}) => ({
   id,
   firstName,
   lastName,
   email,
+  isActive,
+  createdAt,
 });
 
 function Users() {
@@ -41,6 +46,8 @@ function Users() {
     firstName: "",
     lastName: "",
     email: "",
+    isActive: false,
+    createdAt: "",
   }));
   const [activeModal, setActiveModal] = useState({name: "", active: false});
   const [pageSize] = useState(5);
@@ -85,8 +92,13 @@ function Users() {
   const createUser = (newUserData) => {
     async function callCreateUserApi() {
       try {
-        const api = new Api(authToken);
-        const result = await api.createUser(newUserData);
+        const api = new UsersApi(authToken);
+        const result = await api.createUser({
+          firstName: newUserData.firstName,
+          lastName: newUserData.lastName,
+          email: newUserData.email,
+          isActive: newUserData.isActive,
+        });
         const newUser = result.data;
 
         await MySwal.fire({
@@ -95,7 +107,7 @@ function Users() {
         });
 
         dispatch({
-          type: "CREATE_USER",
+          type: UsersActionTypes.createUser,
           data: newUser
         });
       } catch (err) {
@@ -131,8 +143,13 @@ function Users() {
   const updateUser = (id, updatedUserData) => {
     async function callUpdateUserApi() {
       try {
-        const api = new Api(authToken);
-        const result = await api.updateUser(id, updatedUserData);
+        const api = new UsersApi(authToken);
+        const result = await api.updateUser(id, {
+          firstName: updatedUserData.firstName,
+          lastName: updatedUserData.lastName,
+          email: updatedUserData.email,
+          isActive: updatedUserData.isActive,
+        });
         const updatedUser = result.data;
 
         await MySwal.fire({
@@ -141,7 +158,7 @@ function Users() {
         });
 
         dispatch({
-          type: "UPDATE_USER",
+          type: UsersActionTypes.updateUser,
           data: updatedUser
         });
       } catch (err) {
@@ -177,7 +194,7 @@ function Users() {
   const deleteUser = (id) => {
     async function callDeleteUserApi() {
       try {
-        const api = new Api(authToken);
+        const api = new UsersApi(authToken);
         await api.deleteUser(id);
 
         await MySwal.fire({
@@ -186,7 +203,7 @@ function Users() {
         });
 
         dispatch({
-          type: "DELETE_USER",
+          type: UsersActionTypes.deleteUser,
           data: {id}
         });
 
@@ -224,11 +241,11 @@ function Users() {
   useEffect(() => {
     async function callGetUsersApi() {
       try {
-        const api = new Api(authToken);
+        const api = new UsersApi(authToken);
         const result = await api.getUsers();
         const userList = result.data;
 
-        dispatch({type: "SET_USERS", data: userList});
+        dispatch({type: UsersActionTypes.setUsers, data: userList});
       } catch (err) {
         logApiError(err);
 

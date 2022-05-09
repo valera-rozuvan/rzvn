@@ -57,7 +57,7 @@ class AuthController {
       },
       superAdmin.authSecret,
       {
-        expiresIn: '1m',
+        expiresIn: '60m',
       },
     );
 

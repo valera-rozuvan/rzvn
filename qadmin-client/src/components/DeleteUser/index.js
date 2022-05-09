@@ -1,26 +1,23 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 
 const DeleteUser = props => {
-  const [user, setUser] = useState(props.currentUser);
+  const [userId] = useState(props.currentUser.id);
+  const [email] = useState(props.currentUser.email);
 
   const cancel = event => {
     event.preventDefault();
     props.setActiveModal({ active: false });
   };
 
-  useEffect(() => {
-    setUser(props.currentUser);
-  }, [props]);
+  const submit = event => {
+    event.preventDefault();
+    props.deleteUser(userId);
+  };
 
   return (
-    <form
-      onSubmit={event => {
-        event.preventDefault();
-        props.deleteUser(user.id);
-      }}
-    >
+    <form onSubmit={submit}>
       <div className="form-group">
-        Are you sure you want to delete {user.firstName} {user.lastName}?
+        Are you sure you want to delete "{email}"?
       </div>
       <div className="form-group form-group--actions">
         <button className="primary-btn">Delete</button>
