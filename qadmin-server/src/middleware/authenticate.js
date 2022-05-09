@@ -23,6 +23,10 @@ const isJwtTokenValid = async (jwtToken) => {
     return false;
   }
 
+  if (!token) {
+    return false;
+  }
+
   const TokenDataValidator = attributes({
     email: {
       type: String,
@@ -36,7 +40,7 @@ const isJwtTokenValid = async (jwtToken) => {
       minLength: 1,
       maxLength: 32,
     },
-  })(class TokenValidator {});
+  })(class TokenDataValidator {});
 
   const validationResults = TokenDataValidator.validate(token.data);
   if (!validationResults.valid) {
@@ -59,7 +63,7 @@ const isJwtTokenValid = async (jwtToken) => {
   return true;
 };
 
-function authenticate(req, res, next) {
+async function authenticate(req, res, next) {
   if (
     !req.headers
     || typeof req.headers.authorization !== 'string'
@@ -70,7 +74,8 @@ function authenticate(req, res, next) {
   }
 
   const jwtToken = req.headers.authorization.replace('Bearer: ', '');
-  if (!isJwtTokenValid(jwtToken)) {
+  const valid = await isJwtTokenValid(jwtToken);
+  if (!valid) {
     res.status(401).json({ message: 'Unauthorized' });
     return false;
   }

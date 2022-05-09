@@ -1,5 +1,5 @@
-import * as React from 'react';
-import {useEffect, useState} from "react";
+// Library deps
+import React, {useEffect, useState, useMemo} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {useNavigate} from "react-router-dom";
 
@@ -24,13 +24,20 @@ export default function Login() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const authUser = useSelector(state => state.authUser);
+  const authToken = useMemo(() => authUser.authToken, [authUser]);
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    if (authUser && typeof authUser.authToken === 'string' && authUser.authToken.length > 0) {
+    if (loading) {
+      return;
+    }
+
+    if (typeof authToken === 'string' && authToken.length > 0) {
+      console.log('login :: authToken is present -> redirect to "/"');
+
       navigate('/');
     }
-  }, [navigate, authUser]);
+  }, [navigate, authToken, loading]);
 
   const handleSubmit = async (event) => {
     async function getAuthToken(email, password) {
@@ -54,7 +61,7 @@ export default function Login() {
           return;
         }
 
-        dispatch({type: "SET_AUTH_TOKEN", data: authData.jwtToken});
+        dispatch({type: "LOGIN", data: { authToken: authData.jwtToken, email, password }});
       } catch (err) {
         logApiError(err);
 
@@ -72,9 +79,6 @@ export default function Login() {
 
     const email = data.get('email');
     const password = data.get('password');
-
-    dispatch({type: "SET_EMAIL", data: email});
-    dispatch({type: "SET_PASSWORD", data: password});
 
     getAuthToken(email, password).then(() => {
       console.log("login op end");
