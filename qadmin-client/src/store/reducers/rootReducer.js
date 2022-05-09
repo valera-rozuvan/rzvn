@@ -1,4 +1,6 @@
-import {combineReducers} from 'redux'
+import {combineReducers} from 'redux';
+
+import {AuthUserAuthStates} from '../../constants';
 
 const copyUserItem = (item) => ({
   id: item.id,
@@ -259,69 +261,76 @@ const appsReducer = (state = [], action) => {
   return newState;
 };
 
-const copyAuthUser = (state) => ({
-  email: state.email,
-  password: state.password,
-  authToken: state.authToken,
+const copyAuthUserItem = (item) => ({
+  email: item.email,
+  authToken: item.authToken,
+  authState: item.authState,
 });
 
-const cachedAuthUser = {
+const defaultAuthUser = {
   email: "",
-  password: "",
   authToken: "",
+  authState: AuthUserAuthStates.loggedOut,
 };
+
 if (localStorage && localStorage.getItem) {
-  const cachedKeys = ['email', 'password', 'authToken'];
+  const cachedKeys = ['email', 'authToken'];
   cachedKeys.forEach((key) => {
     const value = localStorage.getItem(key);
     if (typeof value === 'string' && value.length !== 0) {
-      cachedAuthUser[key] = value;
+      defaultAuthUser[key] = value;
     }
   });
 }
 
-const authUserReducer = (state = cachedAuthUser, action) => {
+if (typeof defaultAuthUser.authToken === 'string' && defaultAuthUser.authToken.length > 0) {
+  defaultAuthUser.authState = AuthUserAuthStates.unverified;
+}
+
+const authUserReducer = (state = defaultAuthUser, action) => {
   let newState = state;
 
   switch (action.type) {
-    case 'SET_EMAIL':
-      if (typeof action.data !== 'string') {
+    case 'LOGIN':
+      if (typeof action.data === 'undefined') {
         break;
       }
 
-      newState = copyAuthUser(state);
-      newState.email = action.data;
+      newState = {
+        email: (typeof action.data.email === 'string') ? action.data.email : '',
+        authToken: (typeof action.data.authToken === 'string') ? action.data.authToken : '',
+        authState: AuthUserAuthStates.loggedIn,
+      };
 
       if (localStorage && localStorage.setItem) {
-        localStorage.setItem('email', action.data);
+        localStorage.setItem('email', newState.email);
+        localStorage.setItem('authToken', newState.authToken);
       }
 
       break;
 
-    case 'SET_PASSWORD':
-      if (typeof action.data !== 'string') {
-        break;
-      }
-
-      newState = copyAuthUser(state);
-      newState.password = action.data;
-
-      if (localStorage && localStorage.setItem) {
-        localStorage.setItem('password', action.data);
-      }
+    case 'INIT_LOGOUT':
+      newState = copyAuthUserItem(state);
+      newState.authState = AuthUserAuthStates.loggingOut;
 
       break;
 
-    case 'SET_AUTH_TOKEN':
-      if (typeof action.data !== 'string') {
-        break;
-      }
+    case 'LOGIN_VERIFIED':
+      newState = copyAuthUserItem(state);
+      newState.authState = AuthUserAuthStates.loggedIn;
 
-      newState = copyAuthUser(state);
-      newState.authToken = action.data;
+      break;
+
+    case 'LOGOUT':
+      newState = {
+        email: "",
+        authToken: "",
+        authState: AuthUserAuthStates.loggedOut,
+      };
 
       if (localStorage && localStorage.setItem) {
-        localStorage.setItem('authToken', action.data);
+        localStorage.setItem('email', "");
+        localStorage.setItem('authToken', "");
       }
 
       break;
