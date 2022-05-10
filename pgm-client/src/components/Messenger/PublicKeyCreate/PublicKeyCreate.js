@@ -23,7 +23,6 @@ function PublicKeyCreate(props) {
 	const [friend, setFriend] = useState({ name: "", publicKey: "", userId: "" });
 
 
-
 	const onInputChange = event => {
 		const { name, value } = event.target;
 		setFriend({ ...friend, [name]: value });
@@ -57,7 +56,6 @@ function PublicKeyCreate(props) {
 		createFriend(friend);
 		props.handleCloseCreate();
 	};
-
 
 	return (
 		<ThemeProvider theme={theme}>
