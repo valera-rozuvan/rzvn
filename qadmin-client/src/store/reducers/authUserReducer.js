@@ -31,6 +31,12 @@ const authUserReducer = (state = defaultAuthUser, action) => {
   let newState = state;
 
   switch (action.type) {
+    case AuthUserActionTypes.triggerVerification:
+      newState = copyAuthUserItem(state);
+      newState.authState = AuthUserAuthStates.unverified;
+
+      break;
+
     case AuthUserActionTypes.login:
       if (typeof action.data === 'undefined') {
         break;

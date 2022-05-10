@@ -1,6 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 
 const UpdateApp = props => {
+	console.log('UpdateApp');
+
 	const [appId] = useState(props.currentApp.id);
 
 	const [app, setApp] = useState({

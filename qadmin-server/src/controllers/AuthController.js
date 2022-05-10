@@ -48,7 +48,7 @@ class AuthController {
       });
     }
 
-    const jwtToken = jwt.sign(
+    const authToken = jwt.sign(
       {
         data: {
           email: superAdmin.email,
@@ -63,7 +63,7 @@ class AuthController {
 
     return res.status(200).json({
       email: superAdmin.email,
-      jwtToken,
+      authToken,
     });
   }
 
