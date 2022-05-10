@@ -2,6 +2,9 @@ import React from 'react';
 import { ThemeProvider } from '@mui/material/styles';
 import { theme } from '../../../theme';
 
+import { PublicKey } from '../PublicKey/PublicKey';
+import {PublicKeyCreate} from '../PublicKeyCreate/PublicKeyCreate'
+
 import List from '@mui/material/List';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
@@ -17,12 +20,12 @@ import { Api } from '../../../api/apiFriends';
 
 import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { PublicKey } from '../PublicKey/PublicKey';
+
 
 function PublicKeyList() {
 	const dispatch = useDispatch();
 	const friends = useSelector(state => state.friends);
-	const [open, setOpen] = useState(false);
+	const [openCreateWindow, setOpenCreateWindow] = useState(false);
 	const [openUpdateWindow, setOpenUpdateWindow] = useState(false);
 	const [loading, setLoading] = useState(true)
 	const [friend, setFriend] = useState({ name: "", publicKey: "", userId: "" });
@@ -141,11 +144,11 @@ function PublicKeyList() {
 	};
 
 	const handleClickOpen = () => {
-		setOpen(true);
+		setOpenCreateWindow(true);
 	};
 
 	const handleCloseCreate = () => {
-		setOpen(false);
+		setOpenCreateWindow(false);
 		reset();
 	};
 
@@ -182,8 +185,13 @@ function PublicKeyList() {
 				<Button sx={{ mt: '2rem' }} variant='outlined'
 					onClick={handleClickOpen} type='button'>add key</Button>
 			</List>
-
-				<Dialog open={open}>
+			
+<PublicKeyCreate
+	openCreateWindow={openCreateWindow}
+	handleSubmitCreate={handleSubmitCreate}
+	handleCloseCreate={handleCloseCreate}
+/>
+				{/* <Dialog open={openCreateWindow}>
 					<form onSubmit={handleSubmitCreate}>
 						<DialogTitle>Add new public key</DialogTitle>
 						<DialogContent>
@@ -217,7 +225,7 @@ function PublicKeyList() {
 						</DialogActions>
 					</form>
 				</Dialog>
-		
+		 */}
 				<Dialog open={openUpdateWindow}>
 					<form onSubmit={handleSubmitUpdate}>
 						<DialogTitle>Edit public key</DialogTitle>
