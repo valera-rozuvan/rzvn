@@ -23,12 +23,19 @@ function PublicKeyList() {
 	const dispatch = useDispatch();
 	const friends = useSelector(state => state.friends);
 	const [open, setOpen] = useState(false);
-	const [loading, setLoading] = useState(true);
+	const [openUpdateWindow, setOpenUpdateWindow] = useState(false);
+	const [loading, setLoading] = useState(true)
 	const [friend, setFriend] = useState({ name: "", publicKey: "", userId: "" });
+	const [friendUpdate, setFriendUpdate] = useState({ name: "", publicKey: "", userId: "", id: "" });
+
 
 	const onInputChange = event => {
 		const { name, value } = event.target;
 		setFriend({ ...friend, [name]: value });
+	};
+	const onInputChangeUpdate = event => {
+		const { name, value } = event.target;
+		setFriendUpdate({ ...friendUpdate, [name]: value });
 	};
 
 	useEffect(() => {
@@ -37,7 +44,6 @@ function PublicKeyList() {
 		}
 
 		async function getAllFriends() {
-			console.log('getAllFriends');
 			try {
 				const api = new Api();
 				const result = await api.getFriends();
@@ -60,9 +66,7 @@ function PublicKeyList() {
 
 
 	async function deleteFriend(id) {
-
 		setLoading(true);
-
 		async function deleteFriendApi() {
 			try {
 				const api = new Api();
@@ -103,26 +107,62 @@ function PublicKeyList() {
 		setLoading(false);
 	};
 
-	function handleSubmit(event) {
+	async function updateFriend(id, updatedFriendData) {
 
+		setLoading(true);
+		async function updateFriendApi() {
+			try {
+				const api = new Api();
+				const result = await api.updateFriend(id, updatedFriendData);
+				const updatedFriend = result.data;
+
+				dispatch({ type: "UPDATE_FRIEND", data: updatedFriend });
+			} catch (err) {
+				console.log('Failed to update friend')
+			}
+			return true;
+		}
+
+		await updateFriendApi();
+		setLoading(false);
+	};
+
+	function handleSubmitCreate(event) {
 		event.preventDefault();
-		console.log('new key');
 		createFriend(friend);
-		handleClose();
+		handleCloseCreate();
+	};
+
+
+	function handleSubmitUpdate(event) {
+		event.preventDefault();
+		updateFriend(friendUpdate.id, friendUpdate);
+		handleCloseUpdate();
 	};
 
 	const handleClickOpen = () => {
 		setOpen(true);
 	};
 
-	const handleClose = () => {
+	const handleCloseCreate = () => {
 		setOpen(false);
+		reset();
+	};
+
+	const handleCloseUpdate = () => {
+		setOpenUpdateWindow(false);
 		reset();
 	};
 
 	const reset = () => {
 		setFriend({ name: "", publicKey: "", userId: "" })
 	};
+
+	function openUpdate(id) {
+		const currentFriend = friends.find(friend => friend.id === id);
+	 setFriendUpdate(currentFriend);
+		setOpenUpdateWindow(true);
+	}
 
 	return (
 		<ThemeProvider theme={theme}>
@@ -132,6 +172,7 @@ function PublicKeyList() {
 					friends.map(friend => {
 						return (
 							<PublicKey
+								openUpdate={openUpdate}
 								deleteFriend={deleteFriend}
 								friend={friend}
 								key={friend.id} />
@@ -140,9 +181,10 @@ function PublicKeyList() {
 				}
 				<Button sx={{ mt: '2rem' }} variant='outlined'
 					onClick={handleClickOpen} type='button'>add key</Button>
-			</List>{open === true && (
+			</List>
+
 				<Dialog open={open}>
-					<form onSubmit={handleSubmit}>
+					<form onSubmit={handleSubmitCreate}>
 						<DialogTitle>Add new public key</DialogTitle>
 						<DialogContent>
 							<DialogContentText>
@@ -170,12 +212,37 @@ function PublicKeyList() {
 							<FormHelperText id='my-helper-text'>Write name of your friend</FormHelperText>
 						</DialogContent>
 						<DialogActions>
-							<Button type='button' onClick={handleClose}>Cancel</Button>
+							<Button type='button' onClick={handleCloseCreate}>Cancel</Button>
 							<Button type='submit'>Add key</Button>
 						</DialogActions>
 					</form>
 				</Dialog>
-			)}
+		
+				<Dialog open={openUpdateWindow}>
+					<form onSubmit={handleSubmitUpdate}>
+						<DialogTitle>Edit public key</DialogTitle>
+						<DialogContent>
+							<DialogContentText>
+							</DialogContentText>
+							<Input
+								name="name"
+								onChange={onInputChangeUpdate}
+								autoComplete='off'
+								autoFocus
+								value={friendUpdate.name}
+								margin='dense'
+								id='name'
+								aria-describedby="friend's name"
+								type='text' />
+							<FormHelperText id='my-helper-text'>Write name of your friend</FormHelperText>
+						</DialogContent>
+						<DialogActions>
+							<Button type='button' onClick={handleCloseUpdate}>Cancel</Button>
+							<Button type='submit' >Update</Button>
+						</DialogActions>
+					</form>
+				</Dialog>
+			
 		</ThemeProvider>
 	);
 }
