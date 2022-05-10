@@ -9,18 +9,11 @@ import { IconButton } from '@mui/material';
 import ClearIcon from '@mui/icons-material/Clear';
 import EditIcon from '@mui/icons-material/Edit';
 
-function PublicKey({ friend, deleteFriend }) {
-
-  const onPublicKeyClick = (friend) => {
-    // props.showActivePublicKeyMessaging(publicKey);
-    console.log(friend);
-  };
-  // const { publicKey } = props;
+function PublicKey({ friend, deleteFriend, openUpdate}) {
   return (
     <div>
       <ListItem sx={{ display: { xs: 'flex', md: 'flex' } }}>
         <ListItemButton
-          onClick={() => onPublicKeyClick(friend)}
           key={friend.id}
           sx={{ maxHeight: '1.5rem' }}
         >
@@ -29,7 +22,9 @@ function PublicKey({ friend, deleteFriend }) {
           </ListItemText>
         </ListItemButton>
 
-        <IconButton>
+        <IconButton onClick={()=>{
+				openUpdate(friend.id)
+				}}>
           <EditIcon size='small' sx={{ cursor: 'pointer' }} />
         </IconButton>
 
@@ -44,14 +39,3 @@ function PublicKey({ friend, deleteFriend }) {
 }
 
 export { PublicKey };
-
-// <ListItem sx={{ display: { xs: 'flex', md: 'flex' } }} >
-// <ListItemButton
-// onClick={() => props.onPublicKeyClick(publicKey)} id={publicKey.key}
-// sx={{ maxHeight: '1.5rem' }}>
-// 	<ListItemText align="left">
-// 		<Typography variant="h9">{publicKey.userName}</Typography>
-// 	</ListItemText>
-// </ListItemButton>
-// <ClearIcon/>
-// </ListItem>
