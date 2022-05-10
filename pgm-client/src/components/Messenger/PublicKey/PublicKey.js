@@ -9,7 +9,7 @@ import { IconButton } from '@mui/material';
 import ClearIcon from '@mui/icons-material/Clear';
 import EditIcon from '@mui/icons-material/Edit';
 
-function PublicKey({ friend, deleteFriend, openUpdate}) {
+function PublicKey({ friend, deleteFriend, setFriendId,openUpdate}) {
   return (
     <div>
       <ListItem sx={{ display: { xs: 'flex', md: 'flex' } }}>
