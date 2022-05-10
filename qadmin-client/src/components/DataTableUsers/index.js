@@ -1,10 +1,6 @@
 import React from "react";
 
-// Styles
 import "./style.scss";
-
-// Images
-// import PlaceholderImg from "../../img/placeholder-user.jpg";
 import SortIcon from "../../img/sort-icon.png";
 
 const DataTableUsers = props => {
@@ -43,6 +39,26 @@ const DataTableUsers = props => {
                 <img src={SortIcon} alt="E-Mail" />
               </span>
             </th>
+            <th
+              onClick={() => {
+                props.onSortChange("createdAt");
+              }}
+            >
+							<span className="column-sort">
+								Created At
+								<img src={SortIcon} alt="Created At" />
+							</span>
+            </th>
+            <th
+              onClick={() => {
+                props.onSortChange("isActive");
+              }}
+            >
+							<span className="column-sort">
+								Is active
+								<img src={SortIcon} alt="Is active" />
+							</span>
+            </th>
             <th>Actions</th>
           </tr>
         </thead>
@@ -53,6 +69,8 @@ const DataTableUsers = props => {
                 <td>{user.firstName}</td>
                 <td>{user.lastName}</td>
                 <td>{user.email}</td>
+                <td>{user.createdAt}</td>
+                <td>{user.isActive ? 'true' : 'false'}</td>
                 <td className="field-actions">
                   <button
                     className="primary-btn"

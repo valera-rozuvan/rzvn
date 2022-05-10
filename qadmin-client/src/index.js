@@ -5,8 +5,7 @@ import { Provider } from "react-redux";
 import { BrowserRouter } from "react-router-dom";
 import { composeWithDevTools } from "redux-devtools-extension";
 import App from "./App";
-import * as serviceWorker from "./serviceWorker";
-import rootReducer from "./store/reducers/rootReducer";
+import { rootReducer } from "./store/reducers";
 
 // Sweet Alert 2
 import Swal from "sweetalert2";
@@ -25,5 +24,3 @@ ReactDOM.render(
   </Provider>,
   document.getElementById("root")
 );
-
-serviceWorker.unregister();

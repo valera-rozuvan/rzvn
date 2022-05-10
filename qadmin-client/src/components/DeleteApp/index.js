@@ -1,26 +1,23 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 
 const DeleteApp = props => {
-  const [app, setApp] = useState(props.currentApp);
+  const [appId] = useState(props.currentApp.id);
+  const [serviceName] = useState(props.currentApp.serviceName);
 
   const cancel = event => {
     event.preventDefault();
     props.setActiveModal({ active: false });
   };
 
-  useEffect(() => {
-    setApp(props.currentApp);
-  }, [props]);
+  const submit = event => {
+    event.preventDefault();
+    props.deleteApp(appId);
+  };
 
   return (
-    <form
-      onSubmit={event => {
-        event.preventDefault();
-        props.deleteApp(app.id);
-      }}
-    >
+    <form onSubmit={submit}>
       <div className="form-group">
-        Are you sure you want to delete {app.serviceName} ?
+        Are you sure you want to delete "{serviceName}"?
       </div>
       <div className="form-group form-group--actions">
         <button className="primary-btn">Delete</button>

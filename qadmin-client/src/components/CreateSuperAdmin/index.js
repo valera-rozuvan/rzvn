@@ -1,12 +1,19 @@
 import React, {useState} from "react";
 
 const CreateSuperAdmin = props => {
-  const [superAdmin, setSuperAdmin] = useState({email: "", password: "", authToken: ""});
+  const [superAdmin, setSuperAdmin] = useState({
+    email: "",
+    isActive: false,
+  });
 
   const onInputChange = event => {
     const {name, value} = event.target;
 
-    setSuperAdmin({...superAdmin, [name]: value});
+    if (name === "isActive") {
+      setSuperAdmin({ ...superAdmin, [name]: !superAdmin.isActive});
+    } else {
+      setSuperAdmin({...superAdmin, [name]: value});
+    }
   };
 
   const cancel = event => {
@@ -14,20 +21,28 @@ const CreateSuperAdmin = props => {
     props.setActiveModal({active: false});
   };
 
+  const submit = event => {
+    event.preventDefault();
+    props.createSuperAdmin(superAdmin);
+  };
+
   return (
-    <form
-      onSubmit={event => {
-        event.preventDefault();
-        if (!superAdmin.email) return;
-        props.createSuperAdmin(superAdmin);
-      }}
-    >
+    <form onSubmit={submit}>
       <div className="form-group">
         <label>Email</label>
         <input
           type="email"
           name="email"
           value={superAdmin.email}
+          onChange={onInputChange}
+        />
+      </div>
+      <div className="form-group">
+        <label>Is active</label>
+        <input
+          type="checkbox"
+          name="isActive"
+          defaultChecked={superAdmin.isActive}
           onChange={onInputChange}
         />
       </div>

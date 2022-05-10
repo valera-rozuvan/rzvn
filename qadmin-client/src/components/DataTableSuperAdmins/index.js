@@ -1,10 +1,6 @@
 import React from "react";
 
-// Styles
 import "./style.scss";
-
-// Images
-// import PlaceholderImg from "../../img/placeholder-user.jpg";
 import SortIcon from "../../img/sort-icon.png";
 
 const DataTableSuperAdmins = props => {
@@ -35,12 +31,22 @@ const DataTableSuperAdmins = props => {
 						</th>
 						<th
 							onClick={() => {
-								props.onSortChange("authToken");
+								props.onSortChange("createdAt");
 							}}
 						>
 							<span className="column-sort">
-								AuthToken
-								<img src={SortIcon} alt="AuthToken" />
+								Created At
+								<img src={SortIcon} alt="Created At" />
+							</span>
+						</th>
+						<th
+							onClick={() => {
+								props.onSortChange("isActive");
+							}}
+						>
+							<span className="column-sort">
+								Is active
+								<img src={SortIcon} alt="Is active" />
 							</span>
 						</th>
 						<th>Actions</th>
@@ -52,18 +58,30 @@ const DataTableSuperAdmins = props => {
 							<tr key={superAdmin.id}>
 								<td>{superAdmin.email}</td>
 								<td>{superAdmin.password}</td>
-								<td>{superAdmin.authToken}</td>
+								<td>{superAdmin.createdAt}</td>
+								<td>{superAdmin.isActive ? 'true' : 'false'}</td>
 								<td className="field-actions">
 									<button
 										className="primary-btn"
 										onClick={() => {
 											props.updatePassword(superAdmin.id);
 										}}
-									>New Password
+									>
+										New Password
+									</button>
+									<button
+										className="primary-btn"
+										onClick={() => {
+											props.updateRow(superAdmin);
+										}}
+									>
+										Update
 									</button>
 									<button
 										className="field-actions__delete"
-										onClick={() => props.deleteRow(superAdmin)}
+										onClick={() => {
+											props.deleteRow(superAdmin);
+										}}
 									>
 										Delete
 									</button>

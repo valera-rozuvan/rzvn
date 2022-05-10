@@ -4,7 +4,6 @@ import React from "react";
 import "./style.scss";
 
 // Images
-// import PlaceholderImg from "../../img/placeholder-user.jpg";
 import SortIcon from "../../img/sort-icon.png";
 
 const DataTableApps = props => {
@@ -63,7 +62,17 @@ const DataTableApps = props => {
 								<img src={SortIcon} alt="created" />
 							</span>
 						</th>
-						<th></th>
+						<th
+							onClick={() => {
+								props.onSortChange("isActive");
+							}}
+						>
+							<span className="column-sort">
+							Is active
+								<img src={SortIcon} alt="Is active" />
+							</span>
+						</th>
+						<th>Actions</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -75,6 +84,7 @@ const DataTableApps = props => {
 								<td>{app.privateKey}</td>
 								<td>{app.callbackUrl}</td>
 								<td>{app.createdAt}</td>
+								<td>{(app.isActive) ? 'true' : 'false'}</td>
 								<td className="field-actions">
 									<button
 										className="primary-btn"

@@ -9,14 +9,11 @@ const CreateApp = props => {
     isActive: false,
   });
 
-	const [toggle, setToggle] = useState(app.isActive);
-
 	const onInputChange = event => {
-
 		const { name, value } = event.target;
+
 		if (name === "isActive") {
-			setApp({ ...app, [name]: !toggle});
-			setToggle(!toggle)
+			setApp({ ...app, [name]: !app.isActive});
 		} else {
 			setApp({ ...app, [name]: value });
 		}
@@ -27,14 +24,13 @@ const CreateApp = props => {
     props.setActiveModal({ active: false });
   };
 
+  const submit = event => {
+    event.preventDefault();
+    props.createApp(app);
+  };
+
   return (
-    <form
-      onSubmit={event => {
-        event.preventDefault();
-        if (!app.serviceName || !app.publicKey || !app.privateKey) return;
-        props.createApp(app);
-      }}
-    >
+    <form onSubmit={submit}>
       <div className="form-group">
         <label>Service name</label>
         <input
@@ -76,7 +72,7 @@ const CreateApp = props => {
         <input
           type="checkbox"
           name="isActive"
-					defaultChecked={toggle}
+					defaultChecked={app.isActive}
           onChange={onInputChange}
         />
       </div>

@@ -2,7 +2,7 @@ import axios from "axios";
 
 const REACT_APP_REQUEST_API = process.env.REACT_APP_REQUEST_API;
 
-class Api {
+class AppsApi {
   baseUrl = "";
   authToken = "";
 
@@ -37,5 +37,5 @@ class Api {
 }
 
 export {
-  Api,
+  AppsApi,
 };
