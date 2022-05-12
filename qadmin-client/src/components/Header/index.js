@@ -24,9 +24,9 @@ const Header = () => {
         break;
       case AuthUserAuthStates.loggingOut:
         dispatch({type: AuthUserActionTypes.logout});
+        navigate('/login');
         break;
       case AuthUserAuthStates.loggedOut:
-        navigate('/login');
         break;
       case AuthUserAuthStates.unverified:
         async function callCheckAuthTokenApi() {

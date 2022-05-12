@@ -1,7 +1,6 @@
 // Library deps
 import React, {useEffect, useState, useMemo} from "react";
 import {useSelector, useDispatch} from "react-redux";
-import {useNavigate} from "react-router-dom";
 
 // API utilities
 import {UsersApi} from "../../api";
@@ -22,6 +21,7 @@ import MySwal from "../../index";
 
 // Constants
 import { UsersActionTypes } from '../../constants/actions/UsersActionTypes';
+import {AuthUserActionTypes} from "../../constants/actions/AuthUserActionTypes";
 
 const copyUserData = ({id, firstName, lastName, email, isActive, createdAt}) => ({
   id,
@@ -34,7 +34,6 @@ const copyUserData = ({id, firstName, lastName, email, isActive, createdAt}) => 
 
 function Users() {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
   const users = useSelector(state => state.users);
   const authUser = useSelector(state => state.authUser);
   const authToken = useMemo(() => authUser.authToken, [authUser]);
@@ -131,7 +130,7 @@ function Users() {
 
     callCreateUserApi().then((isAuthorized) => {
       if (!isAuthorized) {
-        navigate('/logout');
+        dispatch({type: AuthUserActionTypes.initLogout});
         return;
       }
 
@@ -182,7 +181,7 @@ function Users() {
 
     callUpdateUserApi().then((isAuthorized) => {
       if (!isAuthorized) {
-        navigate('/logout');
+        dispatch({type: AuthUserActionTypes.initLogout});
         return;
       }
 
@@ -229,7 +228,7 @@ function Users() {
 
     callDeleteUserApi().then((isAuthorized) => {
       if (!isAuthorized) {
-        navigate('/logout');
+        dispatch({type: AuthUserActionTypes.initLogout});
         return;
       }
 
@@ -239,6 +238,10 @@ function Users() {
 
   // Populates the User list.
   useEffect(() => {
+    if (typeof authToken !== 'string' || authToken.length === 0) {
+      return;
+    }
+
     async function callGetUsersApi() {
       try {
         const api = new UsersApi(authToken);
@@ -267,13 +270,13 @@ function Users() {
 
     callGetUsersApi().then((isAuthorized) => {
       if (!isAuthorized) {
-        navigate('/logout');
+        dispatch({type: AuthUserActionTypes.initLogout});
         return;
       }
 
       setLoading(false);
     });
-  }, [dispatch, navigate, authToken]);
+  }, [dispatch, authToken]);
 
   return (
     <main className="content">

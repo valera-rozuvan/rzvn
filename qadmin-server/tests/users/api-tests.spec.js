@@ -62,7 +62,7 @@ describe('Users API tests', () => {
           minLength: 1,
           maxLength: 64,
         },
-        jwtToken: {
+        authToken: {
           type: String,
           required: true,
           minLength: 1,
@@ -77,11 +77,11 @@ describe('Users API tests', () => {
 
       expect(validationResults.valid).to.equal(true);
 
-      const { jwtToken } = response.data;
+      const { authToken } = response.data;
 
       let token;
       try {
-        token = jwt.verify(jwtToken, envVariables.TEST_USER_AUTH_SECRET);
+        token = jwt.verify(authToken, envVariables.TEST_USER_AUTH_SECRET);
       } catch (error) {
         outputAxiosResponseError(error);
 
@@ -96,7 +96,7 @@ describe('Users API tests', () => {
   });
 
   describe('happy path', () => {
-    let jwtToken = null;
+    let authToken = null;
     let newUser = null;
 
     it('super admin login', async () => {
@@ -110,7 +110,7 @@ describe('Users API tests', () => {
         throw new Error('we should not have reached this place');
       }
 
-      jwtToken = response.data.jwtToken;
+      authToken = response.data.authToken;
     });
 
     it('create user', async () => {
@@ -127,7 +127,7 @@ describe('Users API tests', () => {
           },
           {
             headers: {
-              Authorization: `Bearer: ${jwtToken}`,
+              Authorization: `Bearer: ${authToken}`,
             },
           },
         );
@@ -195,7 +195,7 @@ describe('Users API tests', () => {
           `${BASE_API_URL}/user/${newUser.id}`,
           {
             headers: {
-              Authorization: `Bearer: ${jwtToken}`,
+              Authorization: `Bearer: ${authToken}`,
             },
           },
         );
@@ -222,7 +222,7 @@ describe('Users API tests', () => {
           },
           {
             headers: {
-              Authorization: `Bearer: ${jwtToken}`,
+              Authorization: `Bearer: ${authToken}`,
             },
           },
         );
@@ -251,7 +251,7 @@ describe('Users API tests', () => {
           },
           {
             headers: {
-              Authorization: `Bearer: ${jwtToken}`,
+              Authorization: `Bearer: ${authToken}`,
             },
           },
         );
@@ -280,7 +280,7 @@ describe('Users API tests', () => {
           },
           {
             headers: {
-              Authorization: `Bearer: ${jwtToken}`,
+              Authorization: `Bearer: ${authToken}`,
             },
           },
         );
@@ -307,7 +307,7 @@ describe('Users API tests', () => {
           },
           {
             headers: {
-              Authorization: `Bearer: ${jwtToken}`,
+              Authorization: `Bearer: ${authToken}`,
             },
           },
         );
@@ -331,7 +331,7 @@ describe('Users API tests', () => {
           `${BASE_API_URL}/user`,
           {
             headers: {
-              Authorization: `Bearer: ${jwtToken}`,
+              Authorization: `Bearer: ${authToken}`,
             },
           },
         );
@@ -358,7 +358,7 @@ describe('Users API tests', () => {
           `${BASE_API_URL}/user/${newUser.id}`,
           {
             headers: {
-              Authorization: `Bearer: ${jwtToken}`,
+              Authorization: `Bearer: ${authToken}`,
             },
           },
         );
@@ -380,7 +380,7 @@ describe('Users API tests', () => {
           `${BASE_API_URL}/user`,
           {
             headers: {
-              Authorization: `Bearer: ${jwtToken}`,
+              Authorization: `Bearer: ${authToken}`,
             },
           },
         );
