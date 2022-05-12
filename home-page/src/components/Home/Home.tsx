@@ -1,29 +1,26 @@
 import React from 'react';
 import { Routes, Route, Link } from 'react-router-dom';
 
-import PageA from '../PageA';
-import PageB from '../PageB';
+import Uptime from '../Uptime'
+import Pgm from '../Pgm';
+import Qadmin from '../Qadmin';
+import Qauth from '../Qauth';
 import NoMatch from '../NoMatch';
+
+import Projects from '../Projects';
 
 import './style.scss';
 
 function Home() {
   return (
     <div className="App">
-      <div className="Header">
-        <ul>
-          <li><Link to="/">Home</Link></li>
-          <li><Link to="/a">Page A</Link></li>
-          <li><Link to="/b">Page B</Link></li>
-        </ul>
+      <div className="Header">Home
       </div>
       <div className="Body">
-        <Routes>
-          <Route path="" element={<div />} />
-          <Route path="a" element={<PageA />} />
-          <Route path="b" element={<PageB />} />
-          <Route path="*" element={<NoMatch />} />
-        </Routes>
+			<ul>
+          <li><Link to="/projects">Projects</Link></li>
+					<li><Link to="/about">About</Link></li>
+        </ul>
       </div>
     </div>
   );
