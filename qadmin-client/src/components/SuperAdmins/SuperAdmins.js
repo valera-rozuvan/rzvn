@@ -1,7 +1,6 @@
 // Library deps
 import React, {useEffect, useState, useMemo} from "react";
 import {useSelector, useDispatch} from "react-redux";
-import {useNavigate} from "react-router-dom";
 
 // API utilities
 import {SuperAdminsApi} from "../../api";
@@ -22,6 +21,7 @@ import MySwal from "../../index";
 
 // Constants
 import { SuperAdminsActionTypes } from '../../constants/actions/SuperAdminsActionTypes';
+import {AuthUserActionTypes} from "../../constants/actions/AuthUserActionTypes";
 
 const copySuperAdminData = ({id, email, password, isActive, createdAt}) => ({
   id,
@@ -33,7 +33,6 @@ const copySuperAdminData = ({id, email, password, isActive, createdAt}) => ({
 
 function SuperAdmins() {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
   const superAdmins = useSelector(state => state.superAdmins);
   const authUser = useSelector(state => state.authUser);
   const authToken = useMemo(() => authUser.authToken, [authUser]);
@@ -124,7 +123,7 @@ function SuperAdmins() {
 
     callUpdateSuperAdminPasswordApi().then((isAuthorized) => {
       if (!isAuthorized) {
-        navigate('/logout');
+        dispatch({type: AuthUserActionTypes.initLogout});
         return;
       }
 
@@ -172,7 +171,7 @@ function SuperAdmins() {
 
     callCreateSuperAdminApi().then((isAuthorized) => {
       if (!isAuthorized) {
-        navigate('/logout');
+        dispatch({type: AuthUserActionTypes.initLogout});
         return;
       }
 
@@ -221,7 +220,7 @@ function SuperAdmins() {
 
     callUpdateSuperAdminApi().then((isAuthorized) => {
       if (!isAuthorized) {
-        navigate('/logout');
+        dispatch({type: AuthUserActionTypes.initLogout});
         return;
       }
 
@@ -268,7 +267,7 @@ function SuperAdmins() {
 
     callDeleteSuperAdminApi().then((isAuthorized) => {
       if (!isAuthorized) {
-        navigate('/logout');
+        dispatch({type: AuthUserActionTypes.initLogout});
         return;
       }
 
@@ -278,6 +277,10 @@ function SuperAdmins() {
 
   // Populates the SuperAdmin list.
   useEffect(() => {
+    if (typeof authToken !== 'string' || authToken.length === 0) {
+      return;
+    }
+
     async function callGetSuperAdminsApi() {
       try {
         const api = new SuperAdminsApi(authToken);
@@ -306,13 +309,13 @@ function SuperAdmins() {
 
     callGetSuperAdminsApi().then((isAuthorized) => {
       if (!isAuthorized) {
-        navigate('/logout');
+        dispatch({type: AuthUserActionTypes.initLogout});
         return;
       }
 
       setLoading(false);
     });
-  }, [dispatch, navigate, authToken]);
+  }, [dispatch, authToken]);
 
   return (
     <main className="content">

@@ -10,15 +10,15 @@ const findSuperAdmin = async (email) => {
   );
 };
 
-const isJwtTokenValid = async (jwtToken) => {
-  if (typeof jwtToken !== 'string' || jwtToken.length === 0) {
+const isAuthTokenValid = async (authToken) => {
+  if (typeof authToken !== 'string' || authToken.length === 0) {
     return false;
   }
 
   let token;
 
   try {
-    token = jwt.decode(jwtToken);
+    token = jwt.decode(authToken);
   } catch (err) {
     return false;
   }
@@ -55,7 +55,7 @@ const isJwtTokenValid = async (jwtToken) => {
   }
 
   try {
-    jwt.verify(jwtToken, superAdmin.authSecret);
+    jwt.verify(authToken, superAdmin.authSecret);
   } catch (err) {
     return false;
   }
@@ -73,8 +73,8 @@ async function authenticate(req, res, next) {
     return false;
   }
 
-  const jwtToken = req.headers.authorization.replace('Bearer: ', '');
-  const valid = await isJwtTokenValid(jwtToken);
+  const authToken = req.headers.authorization.replace('Bearer: ', '');
+  const valid = await isAuthTokenValid(authToken);
   if (!valid) {
     res.status(401).json({ message: 'Unauthorized' });
     return false;

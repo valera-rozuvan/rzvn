@@ -34,35 +34,19 @@ export default function Login() {
     }
 
     if (typeof authToken === 'string' && authToken.length > 0) {
-      console.log('login :: authToken is present -> redirect to "/"');
-
       navigate('/');
     }
   }, [navigate, authToken, loading]);
 
   const handleSubmit = async (event) => {
     async function getAuthToken(email, password) {
+      let authData;
+
       try {
         const api = new AuthApi("");
         const response = await api.getAuthToken({email, password});
-        const authData = response.data;
 
-        if (!authData) {
-          console.error('"authData" is not defined');
-          return;
-        }
-
-        if (typeof authData.jwtToken !== 'string') {
-          console.error('"authData.jwtToken" is not a string');
-          return;
-        }
-
-        if (authData.jwtToken.length === 0) {
-          console.error('"authData.jwtToken" is of length 0');
-          return;
-        }
-
-        dispatch({type: AuthUserActionTypes.login, data: { authToken: authData.jwtToken, email, password }});
+        authData = response.data;
       } catch (err) {
         logApiError(err);
 
@@ -70,19 +54,27 @@ export default function Login() {
           icon: "error",
           title: "Failed to login."
         });
+
+        authData = null;
       }
+
+      return authData;
     }
 
-    setLoading(true);
-
     event.preventDefault();
-    const data = new FormData(event.currentTarget);
 
+    const data = new FormData(event.currentTarget);
     const email = data.get('email');
     const password = data.get('password');
 
-    getAuthToken(email, password).then(() => {
-      console.log("login op end");
+    setLoading(true);
+
+    getAuthToken(email, password).then((authData) => {
+      const authToken = (authData) ? authData.authToken : "";
+
+      if (typeof authToken === 'string' && authToken.length > 0) {
+        dispatch({type: AuthUserActionTypes.login, data: { authToken, email, password }});
+      }
 
       setLoading(false);
     });
