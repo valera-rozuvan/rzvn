@@ -11,7 +11,13 @@ import DoubleArrowOutlinedIcon from '@mui/icons-material/DoubleArrowOutlined';
 
 import { useNavigate } from 'react-router-dom';
 
-const projects = [
+interface EnumProject {
+  key: string;
+  title: string;
+  link: string
+}
+
+const projects: EnumProject[] = [
   {
     key: '1',
     title: 'uptime',
@@ -37,7 +43,7 @@ const projects = [
 function Projects() {
   const navigate = useNavigate();
 
-  function handleClickProject(link: any): void {
+  function handleClickProject(link: string): void {
     navigate(link);
   }
   return (

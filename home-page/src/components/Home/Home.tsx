@@ -13,7 +13,13 @@ import HomeIcon from '@mui/icons-material/Home';
 
 import { useNavigate } from 'react-router-dom';
 
-const pages = [
+interface EnumPage {
+  key: string;
+  title: string;
+  link: string
+}
+
+const pages: EnumPage[] = [
   {
     key: '1',
     title: 'projects',
@@ -31,11 +37,11 @@ function Home() {
 
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
 
-  const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
+  const handleOpenMenu = (event: React.MouseEvent<HTMLElement>): void => {
     setAnchorElNav(event.currentTarget);
   };
 
-  function handleCloseNavMenu(link: any): void {
+  function handleCloseMenu(link: string): void {
     setAnchorElNav(null);
     navigate(link);
   }
@@ -69,7 +75,7 @@ function Home() {
               aria-label="account of current user"
               aria-controls="menu-appbar"
               aria-haspopup="true"
-              onClick={handleOpenNavMenu}
+              onClick={handleOpenMenu}
               color="inherit"
             >
               <MenuIcon />
@@ -87,13 +93,13 @@ function Home() {
                 horizontal: 'left',
               }}
               open={Boolean(anchorElNav)}
-              onClose={() => handleCloseNavMenu}
+              onClose={() => handleCloseMenu}
               sx={{
                 display: { xs: 'block', md: 'none' },
               }}
             >
               {pages.map((page) => (
-                <MenuItem key={page.key} onClick={() => handleCloseNavMenu(page.link)}>
+                <MenuItem key={page.key} onClick={() => handleCloseMenu(page.link)}>
                   <Typography textAlign="center">{page.title}</Typography>
                 </MenuItem>
               ))}
@@ -122,7 +128,7 @@ function Home() {
             {pages.map((page) => (
               <Button
                 key={page.key}
-                onClick={() => handleCloseNavMenu(page.link)}
+                onClick={() => handleCloseMenu(page.link)}
                 sx={{ my: 2, color: 'white', display: 'block' }}
               >
                 {page.title}
