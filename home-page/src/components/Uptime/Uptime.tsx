@@ -1,10 +1,14 @@
 import React from 'react';
+import Typography from '@mui/material/Typography';
 
 function Uptime() {
   return (
-    <div>
+    <Typography
+      variant="h5"
+      align="center"
+    >
       Uptime
-    </div>
+    </Typography>
   );
 }
 

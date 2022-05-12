@@ -1,10 +1,14 @@
 import React from 'react';
+import Typography from '@mui/material/Typography';
 
 function Pgm() {
   return (
-    <div>
+    <Typography
+      variant="h5"
+      align="center"
+    >
       Pgm
-    </div>
+    </Typography>
   );
 }
 

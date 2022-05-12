@@ -7,6 +7,7 @@ import { BrowserRouter } from 'react-router-dom';
 import rootReducer from './store/reducers/rootReducer';
 
 import App from './App';
+import Home from './components/Home';
 
 const store = createStore(rootReducer);
 
@@ -14,6 +15,7 @@ const root = document.getElementById('root');
 render(
   <Provider store={store}>
     <BrowserRouter>
+      <Home />
       <App />
     </BrowserRouter>
   </Provider>,

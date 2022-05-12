@@ -1,10 +1,14 @@
 import React from 'react';
+import Typography from '@mui/material/Typography';
 
 function About() {
   return (
-    <div>
+    <Typography
+      variant="h5"
+      align="center"
+    >
       About
-    </div>
+    </Typography>
   );
 }
 
