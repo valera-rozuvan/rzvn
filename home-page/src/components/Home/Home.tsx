@@ -1,6 +1,5 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { useState } from "react";
 
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
@@ -50,13 +49,13 @@ function Home() {
             component="a"
             href="/"
             sx={{
-						  mr: 2,
-						  display: { xs: 'none', md: 'flex' },
-						  fontFamily: 'monospace',
-						  fontWeight: 700,
-						  letterSpacing: '.3rem',
-						  color: 'inherit',
-						  textDecoration: 'none',
+              mr: 2,
+              display: { xs: 'none', md: 'flex' },
+              fontFamily: 'monospace',
+              fontWeight: 700,
+              letterSpacing: '.3rem',
+              color: 'inherit',
+              textDecoration: 'none',
             }}
           >
             HOME
@@ -77,18 +76,18 @@ function Home() {
               id="menu-appbar"
               anchorEl={anchorElNav}
               anchorOrigin={{
-							  vertical: 'bottom',
-							  horizontal: 'left',
+                vertical: 'bottom',
+                horizontal: 'left',
               }}
               keepMounted
               transformOrigin={{
-							  vertical: 'top',
-							  horizontal: 'left',
+                vertical: 'top',
+                horizontal: 'left',
               }}
               open={Boolean(anchorElNav)}
               onClose={handleCloseNavMenu}
               sx={{
-							  display: { xs: 'block', md: 'none' },
+                display: { xs: 'block', md: 'none' },
               }}
             >
               {pages.map((page) => (
@@ -105,14 +104,14 @@ function Home() {
             component="a"
             href=""
             sx={{
-						  mr: 2,
-						  display: { xs: 'flex', md: 'none' },
-						  flexGrow: 1,
-						  fontFamily: 'monospace',
-						  fontWeight: 700,
-						  letterSpacing: '.3rem',
-						  color: 'inherit',
-						  textDecoration: 'none',
+              mr: 2,
+              display: { xs: 'flex', md: 'none' },
+              flexGrow: 1,
+              fontFamily: 'monospace',
+              fontWeight: 700,
+              letterSpacing: '.3rem',
+              color: 'inherit',
+              textDecoration: 'none',
             }}
           >
             LOGO
@@ -140,22 +139,22 @@ function Home() {
               id="menu-appbar"
               anchorEl={anchorElUser}
               anchorOrigin={{
-							  vertical: 'top',
-							  horizontal: 'right',
+                vertical: 'top',
+                horizontal: 'right',
               }}
               keepMounted
               transformOrigin={{
-							  vertical: 'top',
-							  horizontal: 'right',
+                vertical: 'top',
+                horizontal: 'right',
               }}
               open={Boolean(anchorElUser)}
               onClose={handleCloseUserMenu}
             >
               {settings.map((setting) => (
                 <MenuItem key={setting} onClick={handleCloseUserMenu}>
-									<Link to="/{setting.link}">
-										<Typography textAlign="center">{setting.title}</Typography>
-										</Link>
+                  <Link to="/{setting.link}">
+                    <Typography textAlign="center">{setting.title}</Typography>
+                  </Link>
                 </MenuItem>
               ))}
             </Menu>
@@ -169,14 +168,14 @@ function Home() {
 
 export default Home;
 
-{ /* <div className="App">
+/* <div className="App">
 <div className="Header">
-	Home
+  Home
 </div>
 <div className="Body">
-	<ul>
-		<li><Link to="/projects">Projects</Link></li>
-		<li><Link to="/about">About</Link></li>
-	</ul>
+ <ul>
+  <li><Link to="/projects">Projects</Link></li>
+  <li><Link to="/about">About</Link></li>
+ </ul>
 </div>
-</div> */ }
+</div> */
