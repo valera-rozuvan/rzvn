@@ -1,10 +1,12 @@
 import React from 'react';
-
-import './style.scss';
+import Typography from '@mui/material/Typography';
+import Container from '@mui/material/Container';
 
 function NoMatch() {
   return (
-    <div className="ErrorBlock">Error! No match for this route.</div>
+    <Container sx={{ textAlign: 'center' }}>
+      <Typography variant="h4">Error! No match for this route</Typography>
+    </Container>
   );
 }
 

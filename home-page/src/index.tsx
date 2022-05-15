@@ -9,9 +9,12 @@ import { BrowserRouter } from 'react-router-dom';
 import rootReducer from './store/reducers/rootReducer';
 
 import App from './App';
-import Home from './components/Home';
+import Header from './components/Header';
+import Footer from './components/Footer';
 
 import theme from './components/theme';
+// import './index.css';
+import './style.scss';
 
 const store = createStore(rootReducer);
 
@@ -20,8 +23,9 @@ render(
   <ThemeProvider theme={theme}>
     <Provider store={store}>
       <BrowserRouter>
-        <Home />
+        <Header />
         <App />
+        <Footer />
       </BrowserRouter>
     </Provider>
   </ThemeProvider>,

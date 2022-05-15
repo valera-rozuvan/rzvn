@@ -1,14 +1,25 @@
 import React from 'react';
 import Typography from '@mui/material/Typography';
+import Container from '@mui/material/Container';
 
 function About() {
   return (
-    <Typography
-      variant="h5"
-      align="center"
-    >
-      About
-    </Typography>
+    <Container sx={{ align: 'center' }}>
+      <Typography
+        variant="h5"
+        align="center"
+      >
+        About
+      </Typography>
+      <Typography
+        variant="h6"
+      >
+        Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+        Deleniti unde consequuntur omnis incidunt rerum ducimus perferendis quibusdam.
+        Cumque quos, eveniet corrupti illo voluptate quis molestiae odio, voluptatem
+        eligendi doloremque delectus.
+      </Typography>
+    </Container>
   );
 }
 
