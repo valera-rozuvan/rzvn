@@ -9,7 +9,6 @@ function About() {
         variant="h5"
         align="center"
       >
-        <div>test</div>
         About
       </Typography>
       <Typography
