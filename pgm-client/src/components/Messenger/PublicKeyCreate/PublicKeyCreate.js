@@ -50,12 +50,17 @@ function PublicKeyCreate(props) {
 		setLoading(false);
 	};
 
-
 	function handleSubmitCreate(event) {
 		event.preventDefault();
 		createFriend(friend);
 		props.handleCloseCreate();
+		setFriend({ name: "", publicKey: "", userId: "" });
 	};
+
+	function handleCloseCancel(){
+		props.handleCloseCreate();
+		setFriend({ name: "", publicKey: "", userId: "" });
+	}
 
 	return (
 		<ThemeProvider theme={theme}>
@@ -88,7 +93,7 @@ function PublicKeyCreate(props) {
 							<FormHelperText id='my-helper-text'>Write name of your friend</FormHelperText>
 						</DialogContent>
 						<DialogActions>
-							<Button type='button' onClick={props.handleCloseCreate}>Cancel</Button>
+							<Button type='button' onClick={handleCloseCancel}>Cancel</Button>
 							<Button type='submit'>Add key</Button>
 						</DialogActions>
 					</form>
