@@ -5,7 +5,7 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 
-const FriendRoute = require('./src/routes/Friend');
+const FriendRouter = require('./src/routers/Friend');
 
 function initMongo() {
   console.log('Trying to connect to MongoDB...');
@@ -43,7 +43,7 @@ function initService() {
 
   app.use(artificialSleep);
 
-  app.use('/friend', FriendRoute);
+  app.use('/friend', FriendRouter);
 
 
   app.get('/', (req, res) => {
