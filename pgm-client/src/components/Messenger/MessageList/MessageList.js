@@ -13,16 +13,16 @@ import Container from '@mui/material/Container';
 // import Typography from '@mui/material/Typography';
 
 function MessageList(props) {
-  const [messages] = useState([]);
-  const messagesEndRef = useRef(null);
+  // const [messages] = useState([]);
+  // const messagesEndRef = useRef(null);
 
-  useEffect(() => {
-    scrollToBottom();
-  }, [messages]);
+  // useEffect(() => {
+  //   scrollToBottom();
+  // }, [messages]);
 
-  const scrollToBottom = () => {
-    return messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
-  };
+  // const scrollToBottom = () => {
+  //   return messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+  // };
 
   return (
     <ThemeProvider theme={theme}>
@@ -47,7 +47,7 @@ function MessageList(props) {
 							ref={messagesEndRef}>
 						</Box>
 					</List> */}
-          <Sender addNewMessage={props.addNewMessage} />
+          <Sender/>
         </Box>
       </Container>
     </ThemeProvider>
