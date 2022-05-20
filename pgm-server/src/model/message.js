@@ -3,15 +3,15 @@ var mongoose = require('mongoose');
 var schema = new mongoose.Schema({
   recieverPublicKey: {
     type: String,
-    required: true,
+    // required: true,
   },
   senderPublicKey: {
     type: String,
-    required: true,
+    // required: true,
   },
   name: {
     type: String,
-    required: true,
+    // required: true,
   },
   text: {
     type: String,

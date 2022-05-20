@@ -3,7 +3,7 @@ const MessageModel = require('../model/message')
 
 // Create and Save a new message
 exports.create = async (req, res) => {
-    console.log(req.body);
+    console.log(req.body.text, req.body);
     if (!req.body.text) {
         return res.status(400).json({ message: "Message can not be empty!" });
     }

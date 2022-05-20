@@ -15,8 +15,8 @@ function Message(props) {
   return (
     <ListItem sx={{ backgroundColor: color(), textAlign: textAlign() }}>
       <ListItemText>
-        <Typography className='key-in-message '>{props.sender}</Typography>
-        <Typography className='text-message'>{props.body}</Typography>
+        <Typography >{props.name}</Typography>
+        <Typography >{props.text}</Typography>
       </ListItemText>
     </ListItem>
   );
