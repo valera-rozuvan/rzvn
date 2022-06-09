@@ -1,4 +1,3 @@
-const friend = require('../model/friend');
 const FriendModel = require('../model/friend')
 
 // Create and Save a new friend
