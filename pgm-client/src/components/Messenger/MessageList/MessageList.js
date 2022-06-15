@@ -26,6 +26,13 @@ if (!loading) {
 			return;
 		}
 
+		function messagesWithOneFriend (){
+			const chosenFriend = sessionStorage.getItem(JSON.parse(publicKey));
+			messages.filter(message=>{
+				if(message.recieverPublicKey || message.senderPublicKey === chosenFriend ) return message;
+			})
+		}
+
 
     async function getAllMessages() {
 			try {
@@ -54,6 +61,7 @@ if (!loading) {
     return messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
   };
 
+
   return (
     <ThemeProvider theme={theme}>
 
@@ -65,13 +73,16 @@ if (!loading) {
 				</Box>
 				<Box sx={{ width: "100%", height: "400px", overflowY: "scroll" }}>
 					<List >
-						{
+					messagesWithOneFriend 
+						<Typography>No messages with yet</Typography>
+
+						{/* {
 							messages.map(({ text, id, name}) => {
 								return (<Message text={text} id={id} key={id} name={name} />
 								)
 							})
 
-						}
+						} */}
 						<Box
 							style={{backgroundColor:"#fcba03", float: "left", clear: "both", paddingTop: "1em", paddingBottom: "1em" }}
 							ref={messagesEndRef}>

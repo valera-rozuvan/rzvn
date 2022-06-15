@@ -66,6 +66,7 @@ async function generateMessages() {
     console.log(friendPublicKeySecond);
     console.log(friendPublicKeyThird);
 
+
     for (let j = 0; j < 10; j++) {
         const friendName = friends.find(friend => {
             if (friend.publicKey === friendPublicKeyFirst) {
