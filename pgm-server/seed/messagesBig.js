@@ -66,6 +66,7 @@ async function generateMessages() {
     console.log(friendPublicKeySecond);
     console.log(friendPublicKeyThird);
 
+
     for (let j = 0; j < 10; j++) {
         const friendName = friends.find(friend => {
             if (friend.publicKey === friendPublicKeyFirst) {
@@ -83,39 +84,39 @@ async function generateMessages() {
         await message.save().then(() => console.log('message created'))
     };
 
-    // for (let j = 0; j < 50; j++) {
-    //     const friendName = friends.find(friend => {
-    //         if (friend.publicKey === friendPublicKeySecond) {
-    //             return friend.name
-    //         }
-    //     });
+    for (let j = 0; j < 50; j++) {
+        const friendName = friends.find(friend => {
+            if (friend.publicKey === friendPublicKeySecond) {
+                return friend.name
+            }
+        });
 
-    //     const message = new MessageModel({
-    //         recieverPublicKey: '222',
-    //         senderPublicKey: friendPublicKeySecond,
-    //         name: friendName.name,
-    //         text: mixedMessages(),
-    //     });
+        const message = new MessageModel({
+            recieverPublicKey: '222',
+            senderPublicKey: friendPublicKeySecond,
+            name: friendName.name,
+            text: mixedMessages(),
+        });
 
-    //     await message.save().then(() => console.log('message created'))
-    // };
+        await message.save().then(() => console.log('message created'))
+    };
 
-    // for (let j = 0; j < 200; j++) {
-    //     const friendName = friends.find(friend => {
-    //         if (friend.publicKey === friendPublicKeyThird) {
-    //             return friend.name
-    //         }
-    //     });
+    for (let j = 0; j < 200; j++) {
+        const friendName = friends.find(friend => {
+            if (friend.publicKey === friendPublicKeyThird) {
+                return friend.name
+            }
+        });
 
-    //     const message = new MessageModel({
-    //         recieverPublicKey: '333',
-    //         senderPublicKey: friendPublicKeyThird,
-    //         name: friendName.name,
-    //         text: mixedMessages(),
-    //     });
+        const message = new MessageModel({
+            recieverPublicKey: '333',
+            senderPublicKey: friendPublicKeyThird,
+            name: friendName.name,
+            text: mixedMessages(),
+        });
 
-    //     await message.save().then(() => console.log('message created'))
-    // };
+        await message.save().then(() => console.log('message created'))
+    };
 
 };
 
