@@ -1,5 +1,6 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { useState } from "react";
 import { Link } from 'react-router-dom';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
@@ -14,8 +15,20 @@ import CheckCircleOutlinedIcon from '@mui/icons-material/CheckCircleOutlined';
 import { ThemeProvider } from '@mui/material/styles';
 import { theme } from '../../theme';
 
+import { useNavigate } from 'react-router-dom';
+
 const Login = () => {
+  const dispatch = useDispatch();
+  const [publicKey, setPublicKey] = useState("");
+  const [privateKey, setPrivateKey] = useState("");
+  const navigate = useNavigate();
   const keys = useSelector(state => state.keys);
+
+  function handleSubmit(event) {
+    event.preventDefault()
+    dispatch({type:"SET_USER_KEYS", data:{publicKey,privateKey}})
+    navigate('/msg');
+  }
 
   return (
 
@@ -28,30 +41,43 @@ const Login = () => {
           You should generate them
           using GPG (see instructions here)
         </Typography>
-
-        <Box display='block' sx={{ mt: '2rem' }}>
-          <FormControl>
-            <InputLabel htmlFor='my-input'>Public key</InputLabel>
-            <Input id='my-input' aria-describedby='my-helper-text' type='text' />
-            <FormHelperText id='my-helper-text'>Write your public key
-              {/* value={keys.public} */}
-            </FormHelperText>
-          </FormControl>
-        </Box>
-        <Box display='block' sx={{ mt: '2rem' }}>
-          <FormControl>
-            <InputLabel htmlFor='my-input'>Private key</InputLabel>
-            <Input id='my-input' aria-describedby='my-helper-text' type='text' />
-            <FormHelperText id='my-helper-text'>Write your private key
-              {/* value={keys.private} */}
-            </FormHelperText>
-          </FormControl>
-        </Box>
-        <Box display='block' sx={{ mt: '2rem' }}>
-          <Link className='check-key-link' to='/msg'>
-            <CheckCircleOutlinedIcon sx={{ fontSize: '4rem', color: '#ac9fbf' }}></CheckCircleOutlinedIcon>
-          </Link>
-        </Box>
+        <form onSubmit={handleSubmit}>
+          <Box display='block' sx={{ mt: '2rem' }}>
+            <FormControl>
+              <InputLabel htmlFor='my-input'>Public key</InputLabel>
+              <Input
+                id='public-key-input'
+                aria-describedby='my-helper-text'
+                name="publicKey"
+                value={publicKey}
+                onChange ={event => setPublicKey(event.currentTarget.value)}
+                type='text' />
+              <FormHelperText id='my-helper-text'>Write your public key
+                {/* value={keys.public} */}
+              </FormHelperText>
+            </FormControl>
+          </Box>
+          <Box display='block' sx={{ mt: '2rem' }}>
+            <FormControl>
+              <InputLabel htmlFor='my-input'>Private key</InputLabel>
+              <Input
+                id='private-key-input'
+                aria-describedby='my-helper-text'
+                type='text'
+                name="privateKey"
+                onChange ={event => setPrivateKey (event.currentTarget.value)}
+                value={privateKey} />
+              <FormHelperText id='my-helper-text'>Write your private key
+                {/* value={keys.private} */}
+              </FormHelperText>
+            </FormControl>
+          </Box>
+          <Box display='block' sx={{ mt: '2rem' }}>
+            <Button type="submit">
+              <CheckCircleOutlinedIcon sx={{ fontSize: '4rem', color: '#ac9fbf' }}></CheckCircleOutlinedIcon>
+            </Button>
+          </Box>
+        </form>
         <Link to='/keys/generate'>
           <Button variant='contained' sx={{ mt: '2rem' }}>or generate new</Button>
         </Link>

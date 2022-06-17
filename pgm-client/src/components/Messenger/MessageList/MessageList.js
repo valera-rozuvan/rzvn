@@ -26,12 +26,12 @@ if (!loading) {
 			return;
 		}
 
-		function messagesWithOneFriend (){
-			const chosenFriend = sessionStorage.getItem(JSON.parse(publicKey));
-			messages.filter(message=>{
-				if(message.recieverPublicKey || message.senderPublicKey === chosenFriend ) return message;
-			})
-		}
+		// function messagesWithOneFriend (){
+		// 	const chosenFriend = sessionStorage.getItem(JSON.parse(publicKey));
+		// 	messages.filter(message=>{
+		// 		if(message.recieverPublicKey || message.senderPublicKey === chosenFriend ) return message;
+		// 	})
+		// }
 
 
     async function getAllMessages() {
