@@ -70,8 +70,8 @@ async function generateMessages() {
         });
 
         const message = new MessageModel({
-            recieverPublicKey: '111',
-            senderPublicKey: friendPublicKeyFirst,
+            recieverPublicKey: friendPublicKeyFirst,
+            senderPublicKey: '111',
             name: friendName.name,
             text: mixedMessages(),
         });
