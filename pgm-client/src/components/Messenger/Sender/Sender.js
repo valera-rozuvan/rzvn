@@ -8,20 +8,20 @@ import Container from '@mui/material/Container';
 import { ThemeProvider } from '@mui/material/styles';
 import { theme } from '../../../theme';
 import { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { ApiMessages } from '../../../api/apiMessages';
 
-// import shortId from 'shortid'//probably, we dont need id generator here, we make it in Messenger
 
 function Sender(props) {
+  const currentFriend = useSelector(state => state.currentFriend.publicKey);
+	const userPublicKey = useSelector(state => state.userKeys.userPublicKey);
   const dispatch = useDispatch();
   const [enteredMessage, setEnteredMessage] = useState('');
-  // const [keyOfMessage,setKeyOfMessage] = useState(shortId.generate());
 
-  const handleSubmitCreateMessage = event => {
+  async function handleSubmitCreateMessage(event) {
     event.preventDefault();
-    createMessage(enteredMessage);
+    await createMessage({text:enteredMessage, recieverPublicKey:currentFriend, senderPublicKey: userPublicKey});
     setEnteredMessage('');
   };
 
@@ -34,6 +34,7 @@ function Sender(props) {
         console.log(result)
         const newMessage = result.data;
         console.log(newMessage)
+        // console.log(newMessage.text)
 
         dispatch({ type: "CREATE_MESSAGE", data: newMessage });
       } catch (err) {

@@ -17,7 +17,7 @@ class ApiMessages {
     }
 
     async createMessage(data) {
-        const response = await axios.post(`${this.baseUrl}/message`, {text:data}, { headers: this.authHeaders() });
+        const response = await axios.post(`${this.baseUrl}/message`, data, { headers: this.authHeaders() });
         return response;
     }
 
