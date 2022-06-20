@@ -26,6 +26,10 @@ const Login = () => {
 
   function handleSubmit(event) {
     event.preventDefault()
+if(!publicKey){
+  alert('enter your public key, please');
+  return
+}  
     dispatch({type:"SET_USER_KEYS", data:{publicKey,privateKey}})
     navigate('/msg');
   }
