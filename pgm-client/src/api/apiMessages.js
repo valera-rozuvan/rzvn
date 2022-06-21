@@ -12,6 +12,7 @@ class ApiMessages {
     }
 
     async getMessages() {
+        // debugger;
         const response = await axios.get(`${this.baseUrl}/message`, { headers: this.authHeaders() });
         return response;
     }

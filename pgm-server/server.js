@@ -35,7 +35,7 @@ function initService() {
   app.use(bodyParser.json());
 
   const artificialSleep = function (req, res, next) {
-    const SLEEP_TIMEOUT_SECONDS = 1.5;
+    const SLEEP_TIMEOUT_SECONDS = 0.1;
 
     setTimeout(() => {
       next();

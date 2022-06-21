@@ -14,14 +14,15 @@ import { ApiMessages } from '../../../api/apiMessages';
 
 
 function Sender(props) {
-  const currentFriend = useSelector(state => state.currentFriend.publicKey);
+  const currentFriendPublicKey = useSelector(state => state.currentFriend.publicKey);
+  const currentFriendName = useSelector(state => state.currentFriend.name);
 	const userPublicKey = useSelector(state => state.userKeys.userPublicKey);
   const dispatch = useDispatch();
   const [enteredMessage, setEnteredMessage] = useState('');
 
   async function handleSubmitCreateMessage(event) {
     event.preventDefault();
-    await createMessage({text:enteredMessage, recieverPublicKey:currentFriend, senderPublicKey: userPublicKey});
+    await createMessage({text:enteredMessage,name:currentFriendName, recieverPublicKey:currentFriendPublicKey, senderPublicKey: userPublicKey});
     setEnteredMessage('');
   };
 

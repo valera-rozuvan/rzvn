@@ -6,7 +6,7 @@ const copyMessageItem = (item) => ({
     text: item.text,
   });
   
-  export const messagesReducer = (state = [], action) => {
+  const messagesReducer = (state = [], action) => {
     let newState = state;
   
     switch (action.type) {
@@ -84,4 +84,4 @@ const copyMessageItem = (item) => ({
     return newState;
   };
   
-  
+  export {messagesReducer};
