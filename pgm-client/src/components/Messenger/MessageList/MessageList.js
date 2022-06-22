@@ -11,6 +11,7 @@ import Typography from '@mui/material/Typography';
 import List from '@mui/material/List';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
+import LinearProgress from '@mui/material/LinearProgress';
 
 import { ApiMessages } from '../../../api/apiMessages';
 
@@ -46,7 +47,7 @@ function MessageList(props) {
 					const messageList = await result.data;
 					const messagesWithCurrentFriend = await messageList.filter(message => {
 						return ((message.recieverPublicKey === currentFriendPublicKey) || (message.senderPublicKey === currentFriendPublicKey)) &&
-						((message.recieverPublicKey === userPublicKey) || (message.senderPublicKey === userPublicKey))
+							((message.recieverPublicKey === userPublicKey) || (message.senderPublicKey === userPublicKey))
 					})
 					console.log(messagesWithCurrentFriend);
 
@@ -81,16 +82,20 @@ function MessageList(props) {
 				</Box>
 				<Box sx={{ width: "100%", height: "400px", overflowY: "scroll" }}>
 					<List >
-						{messages &&
+						{loading === true ?
+							<Box sx={{ width: '100%' }}>
+								<LinearProgress />
+							</Box> :
+						messages &&
 							messages.map(({ text, id, name, senderPublicKey, recieverPublicKey }) => {
-								return (<Message 
-									text={text} 
-									id={id} 
-									key={id} 
+								return (<Message
+									text={text}
+									id={id}
+									key={id}
 									name={name}
 									senderPublicKey={senderPublicKey}
 									recieverPublicKey={recieverPublicKey}
-									 />
+								/>
 								)
 							})
 						}
