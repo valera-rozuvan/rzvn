@@ -19,11 +19,12 @@ import { useSelector, useDispatch } from 'react-redux';
 function PublicKeyList() {
 	const dispatch = useDispatch();
 	const friends = useSelector(state => state.friends);
+	// debugger;
 	const [openCreateWindow, setOpenCreateWindow] = useState(false);
 	const [openUpdateWindow, setOpenUpdateWindow] = useState(false);
 	const [loading, setLoading] = useState(true)
-	const [friend, setFriend] = useState({ name: "", publicKey: "", userId: "" });
-	const [friendUpdate, setFriendUpdate] = useState({ name: "", publicKey: "", userId: "", id: "" });
+	const [friend, setFriend] = useState({ name: "", publicKey: "",authorPublicKey: "", userId: "" });
+	const [friendUpdate, setFriendUpdate] = useState({ name: "", publicKey: "",authorPublicKey: "", userId: "", id: "" });
 
 	const onInputChangeUpdate = event => {
 		const { name, value } = event.target;
@@ -37,6 +38,7 @@ function PublicKeyList() {
 
 		async function getAllFriends() {
 			try {
+				// debugger;
 				const api = new Api();
 				const result = await api.getFriends();
 				const friendList = await result.data;
@@ -91,7 +93,7 @@ function PublicKeyList() {
 	};
 
 	const reset = () => {
-		setFriend({ name: "", publicKey: "", userId: "" })
+		setFriend({ name: "", publicKey: "",authorPublicKey: "", userId: "" })
 	};
 
 	function openUpdate(id) {
@@ -106,6 +108,7 @@ function PublicKeyList() {
 				<Typography variant='h6'>friends</Typography>
 				{
 					friends.map(friend => {
+						// debugger;
 						return (
 							<PublicKey
 								openUpdate={ openUpdate}

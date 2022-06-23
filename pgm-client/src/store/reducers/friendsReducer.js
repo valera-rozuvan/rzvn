@@ -1,11 +1,12 @@
 const copyFriendItem = (item) => ({
   id: item.id,
   publicKey: item.publicKey,
+  authorPublicKey: item.authorPublicKey,
   name: item.name,
   userId: item.userId,
 });
 
-export const friendsReducer = (state = [], action) => {
+ const friendsReducer = (state = [], action) => {
   let newState = state;
 
   switch (action.type) {
@@ -83,3 +84,5 @@ export const friendsReducer = (state = [], action) => {
   return newState;
 };
 
+
+export {friendsReducer};

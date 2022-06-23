@@ -6,9 +6,14 @@ var schema = new mongoose.Schema({
     required: true,
     unique: true
   },
+  authorPublicKey: {
+    type: String,
+    // required: true,
+    // required: true
+  },
   userId: {
     type: String,
-    required: true
+    // required: true
     // unique: true
   },
   name: {

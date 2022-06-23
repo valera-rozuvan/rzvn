@@ -35,7 +35,6 @@ function Sender(props) {
         console.log(result)
         const newMessage = result.data;
         console.log(newMessage)
-        // console.log(newMessage.text)
 
         dispatch({ type: "CREATE_MESSAGE", data: newMessage });
       } catch (err) {

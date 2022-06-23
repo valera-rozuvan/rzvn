@@ -14,13 +14,15 @@ import DialogTitle from '@mui/material/DialogTitle';
 import { Api } from '../../../api/apiFriends';
 
 import { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 function PublicKeyCreate(props) {
 	const dispatch = useDispatch();
 
 	const [loading, setLoading] = useState(true)
-	const [friend, setFriend] = useState({ name: "", publicKey: "", userId: "" });
+	const userPublicKey= useSelector(state=> state.userKeys.userPublicKey);
+	const [friend, setFriend] = useState({ name: "", publicKey: "",authorPublicKey: userPublicKey, userId: "" });
+
 
 
 	const onInputChange = event => {
@@ -54,12 +56,12 @@ function PublicKeyCreate(props) {
 		event.preventDefault();
 		createFriend(friend);
 		props.handleCloseCreate();
-		setFriend({ name: "", publicKey: "", userId: "" });
+		setFriend({ name: "", publicKey: "",authorPublicKey: "", userId: "" });
 	};
 
 	function handleCloseCancel(){
 		props.handleCloseCreate();
-		setFriend({ name: "", publicKey: "", userId: "" });
+		setFriend({ name: "", publicKey: "", authorPublicKey: "", userId: "" });
 	}
 
 	return (
@@ -91,6 +93,16 @@ function PublicKeyCreate(props) {
 								aria-describedby="friend's name"
 								type='text' />
 							<FormHelperText id='my-helper-text'>Write name of your friend</FormHelperText>
+							{/* <Input
+								name="userPublicKey"
+								onChange={onInputChange}
+								autoComplete='off'
+								value={userPublicKey}
+								margin='dense'
+								id='userPublicKey'
+								aria-describedby="author public key"
+								type='text' />
+							<FormHelperText id='my-helper-text'>your publicKey</FormHelperText> */}
 						</DialogContent>
 						<DialogActions>
 							<Button type='button' onClick={handleCloseCancel}>Cancel</Button>
