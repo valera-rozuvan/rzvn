@@ -26,11 +26,11 @@ const Login = () => {
 
   function handleSubmit(event) {
     event.preventDefault()
-if(!publicKey){
-  alert('enter your public key, please');
-  return
-}  
-    dispatch({type:"SET_USER_KEYS", data:{publicKey,privateKey}})
+    if (!publicKey) {
+      alert('Enter your public key, please');
+      return
+    }
+    dispatch({ type: "SET_USER_KEYS", data: { userPublicKey:publicKey, userPrivateKey: privateKey} })
     navigate('/msg');
   }
 
@@ -54,7 +54,7 @@ if(!publicKey){
                 aria-describedby='my-helper-text'
                 name="publicKey"
                 value={publicKey}
-                onChange ={event => setPublicKey(event.currentTarget.value)}
+                onChange={event => setPublicKey(event.currentTarget.value)}
                 type='text' />
               <FormHelperText id='my-helper-text'>Write your public key
                 {/* value={keys.public} */}
@@ -69,7 +69,7 @@ if(!publicKey){
                 aria-describedby='my-helper-text'
                 type='text'
                 name="privateKey"
-                onChange ={event => setPrivateKey (event.currentTarget.value)}
+                onChange={event => setPrivateKey(event.currentTarget.value)}
                 value={privateKey} />
               <FormHelperText id='my-helper-text'>Write your private key
                 {/* value={keys.private} */}

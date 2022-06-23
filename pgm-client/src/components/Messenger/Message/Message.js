@@ -14,11 +14,9 @@ function Message({text, senderPublicKey}) {
   }
   function textAlign() {
     return senderPublicKey  === currentUserPublicKey  ? 'right' : 'left';
-    console.log()
   }
   function getName() {
     return senderPublicKey === currentUserPublicKey  ? 'me' : `${currentFriend.name}`;
-    console.log()
   }
 
   return (

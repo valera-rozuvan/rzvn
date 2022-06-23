@@ -22,9 +22,9 @@ function PublicKey({ friend, deleteFriend, setFriendId, openUpdate }) {
     <div>
       <ListItem sx={{ display: { xs: 'flex', md: 'flex'}, border: currentFriend.publicKey === friend.publicKey? 1:0}}>
         <ListItemButton onClick={() => {
-          const {name, publicKey} = friend;
-          dispatch({ type: "CURRENT_FRIEND", data: { name, publicKey } });
-          console.log(friend.name, friend.publicKey)
+          const {name, publicKey, authorPublicKey} = friend;
+          dispatch({ type: "CURRENT_FRIEND", data: { name, publicKey, authorPublicKey} });
+          console.log(friend.name, friend.publicKey, friend.authorPublicKey)
         }}
           key={friend.id}
           sx={{ maxHeight: '1.5rem' }}

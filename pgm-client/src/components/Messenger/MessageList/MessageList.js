@@ -77,10 +77,10 @@ function MessageList(props) {
 			<Container>
 				<Box>
 					<Typography
-						variant="h6">messages from
+						variant="h6">user public key: {userPublicKey}
 					</Typography>
 				</Box>
-				<Box sx={{ width: "100%", height: "400px", overflowY: "scroll" }}>
+				<Box sx={{ width: "100%", height: "360px", overflowY: "scroll" }}>
 					<List >
 						{loading === true ?
 							<Box sx={{ width: '100%' }}>

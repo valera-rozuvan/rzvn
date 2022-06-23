@@ -23,7 +23,7 @@ function generate() {
     return Date.now() + (Math.floor(Math.random() * 100))
 }
 function generateName() {
-    const names = ["Rosa", "Mike", "Anna", "Nina", "Peter", "Emma", "Astrid", "Polly"];
+    const names = ["Rosa", "Mike", "Anna", "Nina", "Peter", "Emma", "Astrid", "Polly", "Evan", "Misha", "Elsa", "Liana"];
     const randName = names[Math.floor(Math.random() * names.length)];
     return randName;
 }

@@ -8,13 +8,15 @@ exports.create = async (req, res) => {
   }
   const friend = new FriendModel({
     publicKey: req.body.publicKey,
-    userId: '1111',
+    authorPublicKey: req.body.authorPublicKey,
+    // userId: '1111',
     name: req.body.name,
   });
 
   await friend.save().then(data => {
     res.json({
       publicKey: data.publicKey,
+      authorPublicKey: data.authorPublicKey,
       name: data.name,
       createdAt: data.createdAt,
       id: data._id.toString()
@@ -33,6 +35,7 @@ exports.findAll = async (req, res) => {
     const newFriends = friends.map(friend => {
       return {
         publicKey: friend.publicKey,
+        authorPublicKey: friend.authorPublicKey,
         name: friend.name,
         createdAt: friend.createdAt,
         id: friend._id.toString()
@@ -51,6 +54,7 @@ exports.findOne = async (req, res) => {
     const friend = await FriendModel.findById(id);
     const newFriend = {
       publicKey: friend.publicKey,
+      authorPublicKey: friend.authorPublicKey,
       name: friend.name,
       createdAt: friend.createdAt,
       id: friend._id.toString()
@@ -83,6 +87,7 @@ exports.update = async (req, res) => {
     } else {
       res.json({
         publicKey: data.publicKey,
+        authorPublicKey: data.authorPublicKey,
         name: data.name,
         createdAt: data.createdAt,
         id: data.id.toString()

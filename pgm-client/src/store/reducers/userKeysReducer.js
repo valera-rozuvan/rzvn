@@ -1,12 +1,12 @@
 
-const copyUserKeys = ({ publicKey, privateKey}) => ({
-    publicKey,
-    // privateKey,
+const copyUserKeys = ({ userPublicKey, userPrivateKey}) => ({
+  userPublicKey,
+  // userPrivateKey,
   });
 
 const defaultUserKeys = {
-    publicKey: "",
-    // privateKey: "",
+  userPublicKey: "",
+  // userPrivateKey: "",
   };
 
   if (localStorage && localStorage.getItem) {
@@ -19,6 +19,7 @@ const defaultUserKeys = {
     });
   }
 const userKeysReducer = (state = defaultUserKeys, action) => {
+
     let newState = state;
   
     switch (action.type) {
@@ -34,13 +35,13 @@ const userKeysReducer = (state = defaultUserKeys, action) => {
           break;
         }
         newState = {
-            userPublicKey: (typeof action.data.publicKey === 'string') ? action.data.publicKey : '',
-            // privateKey: (typeof action.data.privateKey === 'string') ? action.data.privateKey : '',
+          userPublicKey: (typeof action.data.userPublicKey === 'string') ? action.data.userPublicKey : '',
+            // userPrivateKey: (typeof action.data.userPrivateKey === 'string') ? action.data.userPrivateKey : '',
           };
 
           if (localStorage && localStorage.setItem) {
             localStorage.setItem('userPublicKey', newState.userPublicKey);
-            // localStorage.setItem('publicKey', newState.userPrivateKey);
+            // localStorage.setItem('userPrivateKey', newState.userPrivateKey);
           }
     
           break;
