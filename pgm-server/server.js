@@ -7,6 +7,7 @@ const cors = require('cors');
 
 const FriendRouter = require('./src/routers/Friend');
 const MessageRouter = require('./src/routers/Message');
+const UserRouter = require('./src/routers/User');
 
 function initMongo() {
   console.log('Trying to connect to MongoDB...');
@@ -46,6 +47,7 @@ function initService() {
 
   app.use('/friend', FriendRouter);
   app.use('/message', MessageRouter);
+  app.use('/user', UserRouter);
 
 
   app.get('/', (req, res) => {

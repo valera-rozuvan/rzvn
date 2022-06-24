@@ -11,11 +11,11 @@ var schema = new mongoose.Schema({
     // required: true,
     // required: true
   },
-  userId: {
-    type: String,
-    // required: true
-    // unique: true
-  },
+  // userId: {
+  //   type: String,
+  //   // required: true
+  //   // unique: true
+  // },
   name: {
     type: String,
     default: ''
