@@ -9,6 +9,8 @@ import { PublicKeyUpdate } from '../PublicKeyUpdate/PublicKeyUpdate'
 import List from '@mui/material/List';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
+import CircularProgress from '@mui/material/CircularProgress';
+
 
 import { Api } from '../../../api/apiFriends';
 
@@ -19,12 +21,12 @@ import { useSelector, useDispatch } from 'react-redux';
 function PublicKeyList() {
 	const dispatch = useDispatch();
 	const friends = useSelector(state => state.friends);
-	// debugger;
 	const [openCreateWindow, setOpenCreateWindow] = useState(false);
 	const [openUpdateWindow, setOpenUpdateWindow] = useState(false);
 	const [loading, setLoading] = useState(true)
-	const [friend, setFriend] = useState({ name: "", publicKey: "",authorPublicKey: "", userId: "" });
-	const [friendUpdate, setFriendUpdate] = useState({ name: "", publicKey: "",authorPublicKey: "", userId: "", id: "" });
+	const [friend, setFriend] = useState({ name: "", publicKey: "", authorPublicKey: "", userId: "" });
+	const [friendUpdate, setFriendUpdate] = useState({ name: "", publicKey: "", authorPublicKey: "", userId: "", id: "" });
+	const userPublicKey = useSelector(state => state.userKeys.userPublicKey);
 
 	const onInputChangeUpdate = event => {
 		const { name, value } = event.target;
@@ -32,31 +34,35 @@ function PublicKeyList() {
 	};
 
 	useEffect(() => {
-		if (!loading) {
-			return;
-		}
-
-		async function getAllFriends() {
-			try {
-				// debugger;
-				const api = new Api();
-				const result = await api.getFriends();
-				const friendList = await result.data;
-
-				dispatch({ type: 'SET_FRIENDS', data: friendList });
-
-				setLoading(false);
-			} catch (err) {
-				console.log('Failed to fetch friends.');
+		dispatch({ type: "CURRENT_FRIEND", data: { name:'', publicKey:'', authorPublicKey:''} });
+		fetchData();
+		async function fetchData(){
+			if (!loading) {
+				return;
 			}
-			return true;
+			async function getFriends(authorPublicKey) {
+				try {
+					const api = new Api();
+					const result = await api.getFriendsOfCurrentUserPublicKey(authorPublicKey);
+					const friendList = await result.data;
+	
+					dispatch({ type: 'SET_FRIENDS', data: friendList });
+	
+					setLoading(false);
+				} catch (err) {
+					console.log(err);
+					console.log('Failed to fetch friends.');
+				}
+				return true;
+			}
+	
+			setLoading(true);
+			await getFriends(userPublicKey);
+			setLoading(false);
 		}
 
-		setLoading(true);
-		getAllFriends();
-		setLoading(false);
 
-	}, [loading, dispatch, friends]);
+	}, [loading, dispatch, friends, userPublicKey]);
 
 
 	async function deleteFriend(id) {
@@ -93,7 +99,7 @@ function PublicKeyList() {
 	};
 
 	const reset = () => {
-		setFriend({ name: "", publicKey: "",authorPublicKey: "", userId: "" })
+		setFriend({ name: "", publicKey: "", authorPublicKey: "", userId: "" })
 	};
 
 	function openUpdate(id) {
@@ -106,12 +112,12 @@ function PublicKeyList() {
 		<ThemeProvider theme={theme}>
 			<List align='center'>
 				<Typography variant='h6'>friends</Typography>
-				{
+				{ loading === true?
+				<CircularProgress />:
 					friends.map(friend => {
-						// debugger;
 						return (
 							<PublicKey
-								openUpdate={ openUpdate}
+								openUpdate={openUpdate}
 								deleteFriend={deleteFriend}
 								friend={friend}
 								key={friend.id} />
@@ -127,8 +133,8 @@ function PublicKeyList() {
 				handleCloseCreate={handleCloseCreate}
 			/>
 			<PublicKeyUpdate
-			  onInputChangeUpdate={onInputChangeUpdate}
-			  friendUpdate={friendUpdate}
+				onInputChangeUpdate={onInputChangeUpdate}
+				friendUpdate={friendUpdate}
 				setOpenUpdateWindow={setOpenUpdateWindow}
 				openUpdateWindow={openUpdateWindow}
 				handleCloseUpdate={handleCloseUpdate}

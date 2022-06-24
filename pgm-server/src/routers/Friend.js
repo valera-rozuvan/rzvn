@@ -4,6 +4,7 @@ const FriendRouter = express.Router();
 // const { authenticate } = require('../middlewares')
 
 FriendRouter.get('/', FriendController.findAll);
+FriendRouter.get('/:authorPublicKey', FriendController.findFriendsOfCurrentUserPublicKey );
 FriendRouter.get('/:id', FriendController.findOne);
 FriendRouter.post('/', FriendController.create);
 FriendRouter.put('/:id', FriendController.update);

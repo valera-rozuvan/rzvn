@@ -4,7 +4,7 @@ const FriendModel = require('../model/friend')
 exports.create = async (req, res) => {
   console.log(req.body);
   if (!req.body.publicKey && !req.body.name) {
-    return res.status(400).json({message: "Content can not be empty!"});
+    return res.status(400).json({ message: "Content can not be empty!" });
   }
   const friend = new FriendModel({
     publicKey: req.body.publicKey,
@@ -43,7 +43,19 @@ exports.findAll = async (req, res) => {
     })
     res.status(200).json(newFriends);
   } catch (error) {
-    res.status(404).json({message: error.message});
+    res.status(404).json({ message: error.message });
+  }
+};
+// Find all friends of user pk by authorPublicKey value
+exports.findFriendsOfCurrentUserPublicKey = async (req, res) => {
+  const currentAuthorPublicKey = req.params.authorPublicKey;
+  try {
+    const friends = await FriendModel.find();
+    const newFriends = friends.filter(friend => friend.authorPublicKey === currentAuthorPublicKey);
+
+    res.status(200).json(newFriends);
+  } catch (error) {
+    res.status(404).json({ message: error.message });
   }
 };
 
@@ -61,7 +73,7 @@ exports.findOne = async (req, res) => {
     }
     res.status(200).json(newFriend);
   } catch (error) {
-    res.status(404).json({message: error.message});
+    res.status(404).json({ message: error.message });
   }
 };
 
@@ -79,7 +91,7 @@ exports.update = async (req, res) => {
     });
   }
   const id = req.params.id;
-  await FriendModel.findByIdAndUpdate(id, {name: req.body.name}, {useFindAndModify: false, new: true}).then(data => {
+  await FriendModel.findByIdAndUpdate(id, { name: req.body.name }, { useFindAndModify: false, new: true }).then(data => {
     if (!data) {
       res.status(404).json({
         message: `Friend not found.`
@@ -109,7 +121,7 @@ exports.destroy = async (req, res) => {
         message: `Friend not found.`
       });
     } else {
-      res.json({status: 'ok'});
+      res.json({ status: 'ok' });
     }
   }).catch(err => {
     res.status(500).json({
