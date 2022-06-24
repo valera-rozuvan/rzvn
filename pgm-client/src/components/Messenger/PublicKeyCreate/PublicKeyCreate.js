@@ -93,16 +93,6 @@ function PublicKeyCreate(props) {
 								aria-describedby="friend's name"
 								type='text' />
 							<FormHelperText id='my-helper-text'>Write name of your friend</FormHelperText>
-							{/* <Input
-								name="userPublicKey"
-								onChange={onInputChange}
-								autoComplete='off'
-								value={userPublicKey}
-								margin='dense'
-								id='userPublicKey'
-								aria-describedby="author public key"
-								type='text' />
-							<FormHelperText id='my-helper-text'>your publicKey</FormHelperText> */}
 						</DialogContent>
 						<DialogActions>
 							<Button type='button' onClick={handleCloseCancel}>Cancel</Button>

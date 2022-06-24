@@ -67,7 +67,7 @@ function MessageList(props) {
 		fetchData();
 
 
-	}, [messages, loading, currentFriendPublicKey, userPublicKey, dispatch]);
+	}, [messages, loading, currentFriendPublicKey,oldCurrentFriendPublicKey, userPublicKey, dispatch]);
 
 
 
@@ -83,7 +83,7 @@ function MessageList(props) {
 				<Box sx={{ width: "100%", height: "360px", overflowY: "scroll" }}>
 					<List >
 						{loading === true ?
-							<Box sx={{ width: '100%' }}>
+							<Box sx={{ width: '100%' }}> 
 								<LinearProgress />
 							</Box> :
 						messages &&
@@ -114,26 +114,3 @@ function MessageList(props) {
 export { MessageList };
 
 
-
-// async function getAllMessages() {
-// 	try {
-// 		const api = new ApiMessages();
-// 		const result = await api.getMessages();
-// 		const messageList = await result.data;
-
-// 		dispatch({ type: 'SET_MESSAGES', data: messageList });
-
-// 		setLoading(false);
-
-// 	} catch (err) {
-// 		console.log('Failed to fetch messages.');
-// 	}
-// 	return true;
-// }
-
-// setLoading(true);
-// getAllMessages();
-// setLoading(false);
-
-
-// }, [messages, loading]);

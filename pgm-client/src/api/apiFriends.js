@@ -15,6 +15,10 @@ class Api {
     const response = await axios.get(`${this.baseUrl}/friend`, { headers: this.authHeaders() });
     return response;
   }
+  async getFriendsOfCurrentUserPublicKey(authorPublicKey) {
+    const response = await axios.get(`${this.baseUrl}/friend/${authorPublicKey}`, { headers: this.authHeaders() });
+    return response;
+  }
 
   async createFriend(data) {
     const response = await axios.post(`${this.baseUrl}/friend`, data, { headers: this.authHeaders() });
