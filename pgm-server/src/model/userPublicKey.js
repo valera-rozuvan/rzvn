@@ -9,6 +9,10 @@ var schema = new mongoose.Schema({
         type: String,
         default: ''
     },
+    userName:{
+        type: String,
+        default: ''   
+    }
 
 }, { versionKey: false, timestamps: true });
 

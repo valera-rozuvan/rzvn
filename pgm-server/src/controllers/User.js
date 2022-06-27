@@ -1,4 +1,3 @@
-// const user = require('../model/user');
 const UserModel = require('../model/user')
 
 // Create and Save a new user
