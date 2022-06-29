@@ -63,8 +63,9 @@ import { Messenger } from './components/Messenger/Messenger';
 import { About } from './components/about/about';
 import { License } from './components/license/license';
 import { Contact } from './components/contact_us/contact';
-import { Login } from './components/login/login';
+import { LoginByKeys } from './components/loginByKeys/loginByKeys';
 import { SignUp } from './components/signUp/signUp';
+import { UserLogin } from './components/userLogin/userLogin';
 
 // import {ThemeProvider} from 'material-ui-core';
 // import { ThemeProvider, createTheme } from '@material-ui/core';
@@ -79,8 +80,9 @@ function App() {
         <Route path='/about' element={<About />}></Route>
         <Route path='/license' element={<License />}></Route>
         <Route path='/contact' element={<Contact />}></Route>
-        <Route path='/login' element={<Login />}></Route>
+        <Route path='/loginByKeys' element={<LoginByKeys />}></Route>
         <Route path='/keys/signup' element={<SignUp />}></Route>
+        <Route path='/userLogin' element={<UserLogin />}></Route>
       </Routes>
     </main>
   );

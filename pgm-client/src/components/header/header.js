@@ -16,9 +16,18 @@ import MenuItem from '@mui/material/MenuItem';
 import { theme } from '../../theme';
 import { ThemeProvider } from '@mui/material/styles';
 
+import { useNavigate } from 'react-router-dom';
+// import { useSelector} from 'react-redux';
+
 function Header() {
+  const navigate = useNavigate();
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
+  // const userName = useSelector(state => state.userLogin.name);
+
+  function getUserName(){
+    return localStorage.getItem('userName');
+  }
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -33,6 +42,8 @@ function Header() {
 
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
+    localStorage.clear();
+    navigate('/');
   };
 
   return (
@@ -134,6 +145,9 @@ function Header() {
                   </Button>
                 </Link>
               </Box>
+              <Box>
+                <Typography>{getUserName()}</Typography>
+              </Box>
               <Box sx={{ flexGrow: 0 }}>
                 <Tooltip title='Open settings'>
                   <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
@@ -159,7 +173,7 @@ function Header() {
                   <MenuItem onClick={handleCloseUserMenu}>
                     <Typography textAlign='center'>sign up</Typography>
                   </MenuItem>
-                  <Link to='/login'>
+                  <Link to='/userLogin'>
                     <MenuItem onClick={handleCloseUserMenu}>
                       <Typography textAlign='center'>login</Typography>
                     </MenuItem>
