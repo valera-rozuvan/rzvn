@@ -18,7 +18,7 @@ function Landing() {
   return (
     <ThemeProvider theme={theme}>
       <Container align='center' maxWidth='sm' sx={{ mt: '4rem' }}>
-        <Button variant='contained'><Link to='/login'>new message</Link></Button>
+        <Button variant='contained'><Link to='/userLogin'>new message</Link></Button>
         <section>
           <List size='sm' sx={{ mt: '2rem' }}>
             <ListItem>

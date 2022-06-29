@@ -3,6 +3,12 @@ var mongoose = require('mongoose');
 var schema = new mongoose.Schema({
     name: {
         type: String,
+        required: true,
+        // default: ''
+    },
+    password: {
+        type: String,
+        required: true,
         // default: ''
     },
 

@@ -12,8 +12,10 @@ import List from '@mui/material/List';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import LinearProgress from '@mui/material/LinearProgress';
+import MenuItem from '@mui/material/MenuItem';
 
 import { ApiMessages } from '../../../api/apiMessages';
+import { TextField } from '@mui/material';
 
 function MessageList(props) {
 	const dispatch = useDispatch();
@@ -23,6 +25,7 @@ function MessageList(props) {
 	const userPublicKey = useSelector(state => state.userKeys.userPublicKey);
 	const messagesEndRef = useRef(null);
 	const [loading, setLoading] = useState(true)
+	const [currentUserPublicKey, setCurrentUserPublicKey] = useState('');
 
 	useEffect(() => {
 		if (oldCurrentFriendPublicKey !== currentFriendPublicKey) {
@@ -69,16 +72,30 @@ function MessageList(props) {
 
 	}, [messages, loading, currentFriendPublicKey,oldCurrentFriendPublicKey, userPublicKey, dispatch]);
 
+	function handleChangeUserPublicKey(event){
+		setCurrentUserPublicKey(event.target.value);
+	}
 
 
 	return (
 		<ThemeProvider theme={theme}>
 
 			<Container>
-				<Box>
-					<Typography
+				<Box width='200px'>
+					<TextField
+					label="Select public key"
+					select
+					value={currentUserPublicKey}
+					onChange={handleChangeUserPublicKey}
+					fullWidth
+					>
+						<MenuItem value='745'>test 745</MenuItem>
+						<MenuItem value='888'>test 888</MenuItem>
+						<MenuItem value='666'>test 666</MenuItem>
+					</TextField>
+					{/* <Typography
 						variant="h6">user public key: {userPublicKey}
-					</Typography>
+					</Typography> */}
 				</Box>
 				<Box sx={{ width: "100%", height: "360px", overflowY: "scroll" }}>
 					<List >

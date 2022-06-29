@@ -17,12 +17,13 @@ import { theme } from '../../theme';
 
 import { useNavigate } from 'react-router-dom';
 
-const Login = () => {
+const LoginByKeys = () => {
   const dispatch = useDispatch();
   const [publicKey, setPublicKey] = useState("");
   const [privateKey, setPrivateKey] = useState("");
   const navigate = useNavigate();
   const keys = useSelector(state => state.keys);
+  
 
   function handleSubmit(event) {
     event.preventDefault()
@@ -89,4 +90,4 @@ const Login = () => {
     </ThemeProvider>
   );
 };
-export { Login };
+export { LoginByKeys };
