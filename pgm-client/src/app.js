@@ -63,9 +63,10 @@ import { Messenger } from './components/Messenger/Messenger';
 import { About } from './components/about/about';
 import { License } from './components/license/license';
 import { Contact } from './components/contact_us/contact';
-import { LoginByKeys } from './components/loginByKeys/loginByKeys';
-import { SignUp } from './components/signUp/signUp';
+import { LoginByKey } from './components/loginByKey/loginByKey';
+// import { SignUp } from './components/signUp/signUp';
 import { UserLogin } from './components/userLogin/userLogin';
+import { UserSignUp } from './components/userSignUp/userSignUp';
 
 // import {ThemeProvider} from 'material-ui-core';
 // import { ThemeProvider, createTheme } from '@material-ui/core';
@@ -80,9 +81,10 @@ function App() {
         <Route path='/about' element={<About />}></Route>
         <Route path='/license' element={<License />}></Route>
         <Route path='/contact' element={<Contact />}></Route>
-        <Route path='/loginByKeys' element={<LoginByKeys />}></Route>
-        <Route path='/keys/signup' element={<SignUp />}></Route>
+        <Route path='/loginByKey' element={<LoginByKey />}></Route>
+        {/* <Route path='/keys/signup' element={<SignUp />}></Route> */}
         <Route path='/userLogin' element={<UserLogin />}></Route>
+        <Route path='/userSignUp' element={<UserSignUp />}></Route>
       </Routes>
     </main>
   );

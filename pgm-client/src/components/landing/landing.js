@@ -13,12 +13,23 @@ import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
+import { useSelector } from 'react-redux';
 
 function Landing() {
+  // const currentUser = useSelector(state=> state.user);
+  const userName = localStorage.getItem('name');
+
+  function checkUser(){
+
+    return userName ? 'msg': 'loginByKey';
+      }
+
   return (
     <ThemeProvider theme={theme}>
       <Container align='center' maxWidth='sm' sx={{ mt: '4rem' }}>
-        <Button variant='contained'><Link to='/userLogin'>new message</Link></Button>
+        <Button variant='contained'>
+       <Link to={checkUser()}>new message</Link> 
+        </Button>
         <section>
           <List size='sm' sx={{ mt: '2rem' }}>
             <ListItem>

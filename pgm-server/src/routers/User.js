@@ -7,5 +7,5 @@ UserRouter.get('/:id', UserController.findOne);
 UserRouter.post('/', UserController.create);
 UserRouter.put('/:id', UserController.update);
 UserRouter.delete('/:id', UserController.destroy);
-
+UserRouter.delete('/', UserController.destroyAll);
 module.exports = UserRouter;

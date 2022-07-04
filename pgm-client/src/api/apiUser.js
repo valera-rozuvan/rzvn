@@ -24,11 +24,11 @@ class Api {
         return response;
     }
     async updateUser(id, data) {
-        const response = await axios.put(`${this.baseUrl}/friend/${id}`, data, { headers: this.authHeaders() });
+        const response = await axios.put(`${this.baseUrl}/user/${id}`, data, { headers: this.authHeaders() });
         return response;
     }
     async deleteUser(id) {
-        const response = await axios.delete(`${this.baseUrl}/friend/${id}`, { headers: this.authHeaders() });
+        const response = await axios.delete(`${this.baseUrl}/user/${id}`, { headers: this.authHeaders() });
         return response;
     }
     authHeaders() {
