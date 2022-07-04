@@ -17,17 +17,18 @@ import { theme } from '../../theme';
 import { ThemeProvider } from '@mui/material/styles';
 
 import { useNavigate } from 'react-router-dom';
-// import { useSelector} from 'react-redux';
+import { useDispatch, useSelector} from 'react-redux';
 
 function Header() {
   const navigate = useNavigate();
+  const dispatch= useDispatch();
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
-  // const userName = useSelector(state => state.userLogin.name);
+  const userName = useSelector(state => state.user.name);
 
-  function getUserName(){
-    return localStorage.getItem('userName');
-  }
+  // function getUserName(){
+  //   return localStorage.getItem('userName');
+  // }
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -42,10 +43,13 @@ function Header() {
 
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
-    localStorage.clear();
-    navigate('/');
   };
 
+  const handleLogout = () => {
+    handleCloseUserMenu();
+    dispatch({ type: "CLEAR_USER"});
+    navigate('/');
+  };
   return (
     <ThemeProvider theme={theme}>
       <header>
@@ -146,7 +150,7 @@ function Header() {
                 </Link>
               </Box>
               <Box>
-                <Typography>{getUserName()}</Typography>
+                <Typography>{userName}</Typography>
               </Box>
               <Box sx={{ flexGrow: 0 }}>
                 <Tooltip title='Open settings'>
@@ -170,15 +174,17 @@ function Header() {
                   open={Boolean(anchorElUser)}
                   onClose={handleCloseUserMenu}
                 >
+                  <Link to='/userSignUp'>
                   <MenuItem onClick={handleCloseUserMenu}>
                     <Typography textAlign='center'>sign up</Typography>
                   </MenuItem>
+                  </Link>
                   <Link to='/userLogin'>
                     <MenuItem onClick={handleCloseUserMenu}>
                       <Typography textAlign='center'>login</Typography>
                     </MenuItem>
                   </Link>
-                  <MenuItem onClick={handleCloseUserMenu}>
+                  <MenuItem onClick={handleLogout}>
                     <Typography textAlign='center'>logout</Typography>
                   </MenuItem>
                 </Menu>

@@ -26,7 +26,7 @@ exports.create = async (req, res) => {
         });
     });
 };
-// Retrieve all user from the database.
+// Retrieve all public keys from the database.
 exports.findAll = async (req, res) => {
     try {
         const publicKeys = await UserPublicKeyModel.find();
@@ -88,7 +88,7 @@ exports.findOneByPublicKey = async (req, res) => {
     }
 };
 
-// Delete a user with the specified id in the request
+// Delete a pk with the specified id in the request
 exports.destroy = async (req, res) => {
     const id = req.params.id;
     await UserPublicKeyModel.findByIdAndRemove(id).then(data => {

@@ -9,6 +9,7 @@ const FriendRouter = require('./src/routers/Friend');
 const MessageRouter = require('./src/routers/Message');
 const UserRouter = require('./src/routers/User');
 const UserPublicKeyRouter = require('./src/routers/UserPublicKey');
+const LoginRouter = require('./src/routers/Login');
 
 function initMongo() {
   console.log('Trying to connect to MongoDB...');
@@ -50,6 +51,7 @@ function initService() {
   app.use('/message', MessageRouter);
   app.use('/user', UserRouter);
   app.use('/userPublicKey', UserPublicKeyRouter);
+  app.use('/login', LoginRouter);
 
 
   app.get('/', (req, res) => {

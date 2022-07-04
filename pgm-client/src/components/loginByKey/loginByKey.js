@@ -15,25 +15,54 @@ import CheckCircleOutlinedIcon from '@mui/icons-material/CheckCircleOutlined';
 import { ThemeProvider } from '@mui/material/styles';
 import { theme } from '../../theme';
 
+import { Api } from '../../api/apiUserPublicKey';
+
 import { useNavigate } from 'react-router-dom';
 
-const LoginByKeys = () => {
-  const dispatch = useDispatch();
-  const [publicKey, setPublicKey] = useState("");
-  const [privateKey, setPrivateKey] = useState("");
-  const navigate = useNavigate();
-  const keys = useSelector(state => state.keys);
-  
 
-  function handleSubmit(event) {
-    event.preventDefault()
-    if (!publicKey) {
-      alert('Enter your public key, please');
-      return
+const LoginByKey = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const userName = useSelector(state => state.user.name);
+  const userId = useSelector(state => state.user.id);
+  const [key, setKey] = useState({ userPublicKey: "", userName: userName, userId: userId });
+
+  const onInputChange = event => {
+    const { name, value } = event.target;
+    setKey({ ...key, [name]: value });
+  };
+
+  async function createKey(newKeyData) {
+
+    async function createKeyApi() {
+      try {
+  
+        const api = new Api();
+        const result = await api.createUserPublicKey(newKeyData);
+        const newKey = result.data;
+
+        dispatch({ type: "CREATE_USER_KEY", data: newKey });
+        navigate('/msg');
+      } catch (err) {
+        console.log('Failed to create user key');
+
+      }
+
+      return true;
     }
-    dispatch({ type: "SET_USER_KEYS", data: { userPublicKey:publicKey, userPrivateKey: privateKey} })
-    navigate('/msg');
-  }
+
+    await createKeyApi();
+
+  };
+
+  function handleSubmitCreate(event) {
+    console.log(userName, userId);
+    event.preventDefault();
+    createKey(key);
+    setKey({ userPublicKey: "", userName: "", userId: "" });
+  };
+
+
 
   return (
 
@@ -46,16 +75,16 @@ const LoginByKeys = () => {
           You should generate them
           using GPG (see instructions here)
         </Typography>
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmitCreate}>
           <Box display='block' sx={{ mt: '2rem' }}>
             <FormControl>
               <InputLabel htmlFor='my-input'>Public key</InputLabel>
               <Input
                 id='public-key-input'
                 aria-describedby='my-helper-text'
-                name="publicKey"
-                value={publicKey}
-                onChange={event => setPublicKey(event.currentTarget.value)}
+                name="userPublicKey"
+                value={key.userPublicKey}
+                onChange={onInputChange}
                 type='text' />
               <FormHelperText id='my-helper-text'>Write your public key
                 {/* value={keys.public} */}
@@ -70,15 +99,18 @@ const LoginByKeys = () => {
                 aria-describedby='my-helper-text'
                 type='text'
                 name="privateKey"
-                onChange={event => setPrivateKey(event.currentTarget.value)}
-                value={privateKey} />
+                onChange={onInputChange}
+                value={key.userPrivateKey} />
               <FormHelperText id='my-helper-text'>Write your private key
                 {/* value={keys.private} */}
               </FormHelperText>
             </FormControl>
           </Box>
           <Box display='block' sx={{ mt: '2rem' }}>
-            <Button type="submit">
+            <Button
+              type="submit"
+              disabled={!key.userPublicKey}
+            >
               <CheckCircleOutlinedIcon sx={{ fontSize: '4rem', color: '#ac9fbf' }}></CheckCircleOutlinedIcon>
             </Button>
           </Box>
@@ -90,4 +122,4 @@ const LoginByKeys = () => {
     </ThemeProvider>
   );
 };
-export { LoginByKeys };
+export { LoginByKey };

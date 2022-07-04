@@ -32,6 +32,7 @@ exports.findAll = async (req, res) => {
     const newUsers = users.map(user => {
       return {
         name: user.name,
+        password: user.password,
         id: user._id.toString(),
         createdAt: user.createdAt,
       }
@@ -49,6 +50,7 @@ exports.findOne = async (req, res) => {
     const user = await UserModel.findById(id);
     const newUser = {
       name: user.name,
+      password: user.password,
       createdAt: user.createdAt,
       id: user._id.toString()
     }
@@ -80,6 +82,7 @@ exports.update = async (req, res) => {
     } else {
       res.json({
         name: data.name,
+        password: data.password,
         createdAt: data.createdAt,
         id: data.id.toString()
       })
@@ -108,3 +111,22 @@ exports.destroy = async (req, res) => {
     });
   });
 };
+
+
+// Delete all users
+exports.destroyAll = async (req, res) => {
+    await UserModel.remove().then(data => {
+        console.log(UserModel);
+        if (!data) {
+            res.status(404).json({
+                message: `Users not found.`
+            });
+        } else {
+            res.json({ status: 'ok' });
+        }
+    }).catch(err => {
+        res.status(500).json({
+            message: err.message
+        });
+    });
+  };
