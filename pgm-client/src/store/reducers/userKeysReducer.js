@@ -1,10 +1,11 @@
 
 const copyUserItem = (item) => ({
-  userPublicKey:item.userPublicKey,
+  userPublicKey: item.userPublicKey,
   // userPrivateKey,
-  userName:item.userName,
-  userId:item.userId,
-  });
+  userName: item.userName,
+  userId: item.userId,
+  id: item.id,
+});
 
 // const defaultUserKeys = {
 //   userPublicKey: "",
@@ -24,52 +25,65 @@ const copyUserItem = (item) => ({
 //   }
 const userKeysReducer = (state = [], action) => {
 
-    let newState = state;
-  
-    switch (action.type) {
-      case 'CREATE_USER_KEY':
-        if (!action.data) {
-          break;
-        }
-  
-        newState = state.map((item) => copyUserItem(item));
-        newState.push(copyUserItem(action.data));
-        console.log(newState);
-  
+  let newState = state;
+
+  switch (action.type) {
+    case 'CREATE_USER_KEY':
+      if (!action.data) {
         break;
-  
-      // case 'CREATE_KEY':
-      //   if (!action.data) {
-      //       break;
-      //     }
+      }
 
-      //   if (action.data.length === 0) {
-      //     newState = [];
-  
-      //     break;
-      //   }
-      //   newState = {
-      //     userPublicKey: (typeof action.data.userPublicKey === 'string') ? action.data.userPublicKey : '',
-      //     userName: (typeof action.data.userName === 'string') ? action.data.userName : '',
-      //     userId: (typeof action.data.userId === 'string') ? action.data.userId : '',
-      //       // userPrivateKey: (typeof action.data.userPrivateKey === 'string') ? action.data.userPrivateKey : '',
-      //     };
+      newState = state.map((item) => copyUserItem(item));
+      newState.push(copyUserItem(action.data));
+      console.log(newState);
+      break;
 
-      //     if (localStorage && localStorage.setItem) {
-      //       localStorage.setItem('userPublicKey', newState.userPublicKey);
-      //       localStorage.setItem('userName', newState.userName);
-      //       localStorage.setItem('userId', newState.userId);
-      //       // localStorage.setItem('userPrivateKey', newState.userPrivateKey);
-      //     }
-    
-      //     break;
-     
-      default:
+    case 'SET_USER_KEYS':
+      if (!Array.isArray(action.data)) {
         break;
-    }
+      }
 
-    return newState;
-  };
-  export {userKeysReducer}
-  
-  
+      if (action.data.length === 0) {
+        newState = [];
+
+        break;
+      }
+
+      newState = action.data.map((item) => copyUserItem(item));
+
+      break;
+
+    // case 'CREATE_KEY':
+    //   if (!action.data) {
+    //       break;
+    //     }
+
+    //   if (action.data.length === 0) {
+    //     newState = [];
+
+    //     break;
+    //   }
+    //   newState = {
+    //     userPublicKey: (typeof action.data.userPublicKey === 'string') ? action.data.userPublicKey : '',
+    //     userName: (typeof action.data.userName === 'string') ? action.data.userName : '',
+    //     userId: (typeof action.data.userId === 'string') ? action.data.userId : '',
+    //       // userPrivateKey: (typeof action.data.userPrivateKey === 'string') ? action.data.userPrivateKey : '',
+    //     };
+
+    //     if (localStorage && localStorage.setItem) {
+    //       localStorage.setItem('userPublicKey', newState.userPublicKey);
+    //       localStorage.setItem('userName', newState.userName);
+    //       localStorage.setItem('userId', newState.userId);
+    //       // localStorage.setItem('userPrivateKey', newState.userPrivateKey);
+    //     }
+
+    //     break;
+
+    default:
+      break;
+  }
+
+  return newState;
+};
+export { userKeysReducer }
+

@@ -34,9 +34,9 @@ function PublicKeyList() {
 	};
 
 	useEffect(() => {
-		dispatch({ type: "CURRENT_FRIEND", data: { name:'', publicKey:'', authorPublicKey:''} });
+		dispatch({ type: "CURRENT_FRIEND", data: { name: '', publicKey: '', authorPublicKey: '' } });
 		fetchData();
-		async function fetchData(){
+		async function fetchData() {
 			if (!loading) {
 				return;
 			}
@@ -45,9 +45,9 @@ function PublicKeyList() {
 					const api = new Api();
 					const result = await api.getFriendsOfCurrentUserPublicKey(authorPublicKey);
 					const friendList = await result.data;
-	
+
 					dispatch({ type: 'SET_FRIENDS', data: friendList });
-	
+
 					setLoading(false);
 				} catch (err) {
 					console.log(err);
@@ -55,7 +55,7 @@ function PublicKeyList() {
 				}
 				return true;
 			}
-	
+
 			setLoading(true);
 			await getFriends(userPublicKey);
 			setLoading(false);
@@ -112,8 +112,8 @@ function PublicKeyList() {
 		<ThemeProvider theme={theme}>
 			<List align='center'>
 				<Typography variant='h6'>friends</Typography>
-				{ loading === true?
-				<CircularProgress />:
+				{loading === true ?
+					<CircularProgress /> :
 					friends.map(friend => {
 						return (
 							<PublicKey

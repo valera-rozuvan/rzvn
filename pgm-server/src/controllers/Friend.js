@@ -2,7 +2,7 @@ const FriendModel = require('../model/friend')
 
 // Create and Save a new friend
 exports.create = async (req, res) => {
-  console.log(req.body);
+  // console.log(req.body);
   if (!req.body.publicKey && !req.body.name) {
     return res.status(400).json({ message: "Content can not be empty!" });
   }

@@ -2,15 +2,15 @@ const UserModel = require('../model/user')
 
 // Find a single user 
 exports.findUserToLogin = async (req, res) => {
-    const name = req.body.name;
-    const password = req.body.password;
+    const userName = req.body.userName;
+    const userPassword = req.body.userPassword;
     try {
         const userData = await UserModel.find();
-        const user = userData.find((user) => (user.name === name) && (user.password === password));
+        const user = userData.find((user) => (user.userName === userName) && (user.userPassword === userPassword));
 
         const newUser = {
-            name: user.name,
-            password: user.password,
+            userName: user.userName,
+            userPassword: user.userPassword,
             createdAt: user.createdAt,
             id: user.id.toString()
         }

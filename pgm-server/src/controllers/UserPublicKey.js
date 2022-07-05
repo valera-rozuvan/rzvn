@@ -2,7 +2,7 @@ const UserPublicKeyModel = require('../model/userPublicKey')
 
 // Create and Save a new user public key
 exports.create = async (req, res) => {
-    console.log(req.body);
+    // console.log(req.body);
     if (!req.body.userPublicKey || !req.body.userId) {
         return res.status(400).json({ message: "Content can not be empty!" });
     }
@@ -13,6 +13,8 @@ exports.create = async (req, res) => {
     });
 
     await userPublicKey.save().then(data => {
+        console.log("create upk")
+        console.log(data);
         res.json({
             userPublicKey: data.userPublicKey,
             userId: data.userId,
@@ -21,6 +23,7 @@ exports.create = async (req, res) => {
             createdAt: data.createdAt,
         });
     }).catch(err => {
+        console.log(err);
         res.status(500).json({
             message: err.message || "Some error occurred while creating user"
         });
@@ -45,24 +48,29 @@ exports.findAll = async (req, res) => {
     }
 };
 
-// Retrieve all user public keys from the database.
+// Retrieve all user public keys by user id from the database.
 exports.findUserPublicKeys = async (req, res) => {
     const idOfUser = req.params.userId;
+    console.log(idOfUser);
+    console.log('------');
     try {
         const userPublicKeys = await UserPublicKeyModel.find();
+        console.log(userPublicKeys);
         const newUserPublicKeys = userPublicKeys.filter(itemUserPublicKey => {
+            console.log(itemUserPublicKey);
+            console.log('+++');
             if (itemUserPublicKey.userId === idOfUser)
                 return true;
         }).map(itemUserPublicKey =>
-            ({
-                userPublicKey: itemUserPublicKey.userPublicKey,
-                userId: itemUserPublicKey.userId,
-                userName: itemUserPublicKey.userName,
-                id: itemUserPublicKey._id.toString(),
-                createdAt: itemUserPublicKey.createdAt,
-            })
+        ({
+            userPublicKey: itemUserPublicKey.userPublicKey,
+            userId: itemUserPublicKey.userId,
+            userName: itemUserPublicKey.userName,
+            id: itemUserPublicKey._id.toString(),
+            createdAt: itemUserPublicKey.createdAt,
+        })
         )
-        
+
         res.status(200).json(newUserPublicKeys);
     } catch (error) {
         res.status(404).json({ message: error.message });
@@ -76,7 +84,7 @@ exports.findOneByPublicKey = async (req, res) => {
     try {
         const userPublicKey = await UserPublicKeyModel.findOne({ userPublicKey: publicKey });
         const newUserPublicKey = {
-            userPublicKey:userPublicKey.userPublicKey,
+            userPublicKey: userPublicKey.userPublicKey,
             userName: userPublicKey.userName,
             userId: userPublicKey.userId,
             createdAt: userPublicKey.createdAt,
@@ -92,7 +100,7 @@ exports.findOneByPublicKey = async (req, res) => {
 exports.destroy = async (req, res) => {
     const id = req.params.id;
     await UserPublicKeyModel.findByIdAndRemove(id).then(data => {
-        console.log(UserPublicKeyModel);
+        // console.log(UserPublicKeyModel);
         if (!data) {
             res.status(404).json({
                 message: `User Public Key not found.`
@@ -109,7 +117,7 @@ exports.destroy = async (req, res) => {
 // Delete all public keys
 exports.destroyAll = async (req, res) => {
     await UserPublicKeyModel.remove().then(data => {
-        console.log(UserPublicKeyModel);
+        // console.log(UserPublicKeyModel);
         if (!data) {
             res.status(404).json({
                 message: `User Public Keys not found.`
