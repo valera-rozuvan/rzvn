@@ -135,8 +135,7 @@ function MessageList(props) {
 							>{userPublicKey}
 								<Button>
 									<DeleteForeverIcon
-										onClick={deleteUserPublicKey(id)}
-										// onClick={()=> console.log('delete')}
+										onClick={()=>deleteUserPublicKey(id)}
 										color='secondary'></DeleteForeverIcon>
 								</Button>
 							</MenuItem>)
