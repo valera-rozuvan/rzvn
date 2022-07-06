@@ -3,18 +3,22 @@ var mongoose = require('mongoose');
 var schema = new mongoose.Schema({
     userPublicKey: {
         type: String,
-        default: ''
+        required: true,
+        unique:true,
+        // default: ''
     },
     userId: {
         type: String,
-        default: ''
+        required: true,
+        // default: ''
     },
     userName:{
         type: String,
-        default: ''   
+        required: true,
+        // default: ''   
     }
 
-}, { versionKey: false, timestamps: true });
+}, { versionKey: false, timestamps: true, collection: 'UserPublicKey'});
 
 var userPublicKey = new mongoose.model('UserPublicKey', schema);
 

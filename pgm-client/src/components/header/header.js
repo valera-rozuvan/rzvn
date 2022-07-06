@@ -24,11 +24,7 @@ function Header() {
   const dispatch= useDispatch();
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
-  const userName = useSelector(state => state.user.name);
-
-  // function getUserName(){
-  //   return localStorage.getItem('userName');
-  // }
+  const userName = useSelector(state => state.user.userName);
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -47,7 +43,7 @@ function Header() {
 
   const handleLogout = () => {
     handleCloseUserMenu();
-    dispatch({ type: "CLEAR_USER"});
+    dispatch({ type: 'CLEAR_USER'});
     navigate('/');
   };
   return (

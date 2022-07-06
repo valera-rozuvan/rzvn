@@ -15,7 +15,7 @@ import CheckCircleOutlinedIcon from '@mui/icons-material/CheckCircleOutlined';
 import { ThemeProvider } from '@mui/material/styles';
 import { theme } from '../../theme';
 
-import { Api } from '../../api/apiUserPublicKey';
+import { ApiUserPublicKey } from '../../api/apiUserPublicKey';
 
 import { useNavigate } from 'react-router-dom';
 
@@ -23,7 +23,7 @@ import { useNavigate } from 'react-router-dom';
 const LoginByKey = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const userName = useSelector(state => state.user.name);
+  const userName = useSelector(state => state.user.userName);
   const userId = useSelector(state => state.user.id);
   const [key, setKey] = useState({ userPublicKey: "", userName: userName, userId: userId });
 
@@ -36,8 +36,8 @@ const LoginByKey = () => {
 
     async function createKeyApi() {
       try {
-  
-        const api = new Api();
+  debugger;
+        const api = new ApiUserPublicKey();
         const result = await api.createUserPublicKey(newKeyData);
         const newKey = result.data;
 

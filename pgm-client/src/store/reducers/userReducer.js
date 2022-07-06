@@ -1,18 +1,18 @@
 
-const copyUserInfo = ({ name, password, id }) => ({
-  name,
-  password,
+const copyUserInfo = ({ userName, userPassword, id }) => ({
+  userName,
+  userPassword,
   id,
 });
 
 const defaultUserInfo = {
-  name: "",
-  password: "",
+  userName: "",
+  userPassword: "",
   id: "",
 };
 
 if (localStorage && localStorage.getItem) {
-  const cachedUserInfo = ['name', 'password', 'id'];
+  const cachedUserInfo = ['userName', 'userPassword', 'id'];
   cachedUserInfo.forEach((userInfoData) => {
     const value = localStorage.getItem(userInfoData);
     if (typeof value === 'string' && value.length !== 0) {
@@ -31,18 +31,18 @@ const userReducer = (state = defaultUserInfo, action) => {
         break;
       }
 
-      if ((!action.data.name) && (!action.data.password)) {
+      if ((!action.data.userName) && (!action.data.userPassword)) {
         break;
       }
       newState = {
-        name: (typeof action.data.name === 'string') ? action.data.name : '',
-        password: (typeof action.data.password === 'string') ? action.data.password : '',
+        userName: (typeof action.data.userName === 'string') ? action.data.userName : '',
+        userPassword: (typeof action.data.userPassword === 'string') ? action.data.userPassword : '',
         id: (typeof action.data.id === 'string') ? action.data.id : '',
       };
 
       if (localStorage && localStorage.setItem) {
-        localStorage.setItem('name', newState.name);
-        localStorage.setItem('password', newState.password);
+        localStorage.setItem('userName', newState.userName);
+        localStorage.setItem('userPassword', newState.userPassword);
         localStorage.setItem('id', newState.id);
       }
 
@@ -53,31 +53,31 @@ const userReducer = (state = defaultUserInfo, action) => {
         break;
       }
 
-      if ((!action.data.name) && (!action.data.password)) {
+      if ((!action.data.userName) && (!action.data.userPassword)) {
         break;
       }
       newState = {
-        name: (typeof action.data.name === 'string') ? action.data.name : '',
-        password: (typeof action.data.password === 'string') ? action.data.password : '',
+        userName: (typeof action.data.userName === 'string') ? action.data.userName : '',
+        userPassword: (typeof action.data.userPassword === 'string') ? action.data.userPassword : '',
         id: (typeof action.data.id === 'string') ? action.data.id : '',
       };
 
       if (localStorage && localStorage.setItem) {
-        localStorage.setItem('name', newState.name);
-        localStorage.setItem('password', newState.password);
+        localStorage.setItem('userName', newState.userName);
+        localStorage.setItem('userPassword', newState.userPassword);
         localStorage.setItem('id', newState.id);
       }
 
       break;
     case 'CLEAR_USER':
       if (localStorage && localStorage.setItem) {
-        localStorage.setItem('name', '');
-        localStorage.setItem('password', '');
+        localStorage.setItem('userName', '');
+        localStorage.setItem('userPassword', '');
         localStorage.setItem('id', '');
       }
       newState = copyUserInfo({
-        name: "",
-        password: "",
+        userName: "",
+        userPassword: "",
         id: "",
       });
 

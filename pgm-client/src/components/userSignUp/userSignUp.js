@@ -101,7 +101,7 @@ import { Api } from '../../api/apiUser';
 
 const UserSignUp = () => {
     const dispatch = useDispatch();
-    const [user, setUser] = useState({ name: "", password: "", id: "" });
+    const [user, setUser] = useState({ userName: "", userPassword: "", id: "" });
     const navigate = useNavigate();
 
     const onInputChange = event => {
@@ -133,7 +133,7 @@ const UserSignUp = () => {
     function handleSubmitCreate(event) {
         event.preventDefault();
         createUser(user);
-        setUser({ name: "", password: "", id: "" });
+        setUser({ userName: "", userPassword: "", id: "" });
 
     };
 
@@ -151,8 +151,8 @@ const UserSignUp = () => {
                             <Input
                                 id='user-name-input'
                                 aria-describedby='my-helper-text'
-                                name="name"
-                                value={user.name}
+                                name="userName"
+                                value={user.userName}
                                 onChange={onInputChange}
                                 type='text' />
                             <FormHelperText id='my-helper-text'>Write your user name
@@ -166,8 +166,8 @@ const UserSignUp = () => {
                                 id='user-password-input'
                                 aria-describedby='my-helper-text'
                                 type='text'
-                                name="password"
-                                value={user.password}
+                                name="userPassword"
+                                value={user.userPassword}
                                 onChange={onInputChange} />
                             <FormHelperText id='my-helper-text'>Write your password
                             </FormHelperText>
@@ -176,7 +176,7 @@ const UserSignUp = () => {
                     <Box display='block' sx={{ mt: '2rem' }}>
                         <Button
                             type="submit"
-                            disabled={!user.name || !user.password}
+                            disabled={!user.userName || !user.userPassword}
                             variant='contained'
                             sx={{ mt: '2rem' }}>sign up</Button>
                     </Box>

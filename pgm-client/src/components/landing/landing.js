@@ -17,7 +17,7 @@ import { useSelector } from 'react-redux';
 
 function Landing() {
   // const currentUser = useSelector(state=> state.user);
-  const userName = localStorage.getItem('name');
+  const userName = useSelector(state=> state.user.name);
 
   function checkUser(){
 

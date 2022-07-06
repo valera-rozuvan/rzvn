@@ -2,19 +2,19 @@ const UserModel = require('../model/user')
 
 // Create and Save a new user
 exports.create = async (req, res) => {
-  console.log(req.body);
-  if (!req.body.name || !req.body.password ) {
+//   console.log(req.body);
+  if (!req.body.userName || !req.body.userPassword ) {
     return res.status(400).json({message: "Content can not be empty!"});
   }
   const user = new UserModel({
-    name: req.body.name,
-    password: req.body.password,
+    userName: req.body.userName,
+    userPassword: req.body.userPassword,
   });
 
   await user.save().then(data => {
     res.json({
-      name: data.name,
-      password: data.password,
+      userName: data.userName,
+      userPassword: data.userPassword,
       id: data._id.toString(),
       createdAt: data.createdAt,
     });
@@ -31,8 +31,8 @@ exports.findAll = async (req, res) => {
     const users = await UserModel.find();
     const newUsers = users.map(user => {
       return {
-        name: user.name,
-        password: user.password,
+        userName: user.userName,
+        userPassword: user.userPassword,
         id: user._id.toString(),
         createdAt: user.createdAt,
       }
@@ -49,8 +49,8 @@ exports.findOne = async (req, res) => {
   try {
     const user = await UserModel.findById(id);
     const newUser = {
-      name: user.name,
-      password: user.password,
+      userName: user.userName,
+      userPassword: user.userPassword,
       createdAt: user.createdAt,
       id: user._id.toString()
     }
@@ -68,21 +68,21 @@ exports.update = async (req, res) => {
       message: "Data to update can not be empty!"
     });
   }
-  if (!req.body.name) {
+  if (!req.body.userName) {
     return res.status(400).json({
       message: "Name is required!"
     });
   }
   const id = req.params.id;
-  await UserModel.findByIdAndUpdate(id, {name: req.body.name}, {useFindAndModify: false, new: true}).then(data => {
+  await UserModel.findByIdAndUpdate(id, {userName: req.body.userName}, {useFindAndModify: false, new: true}).then(data => {
     if (!data) {
       res.status(404).json({
         message: `Friend not found.`
       });
     } else {
       res.json({
-        name: data.name,
-        password: data.password,
+        userName: data.userName,
+        userPassword: data.userPassword,
         createdAt: data.createdAt,
         id: data.id.toString()
       })
@@ -116,7 +116,7 @@ exports.destroy = async (req, res) => {
 // Delete all users
 exports.destroyAll = async (req, res) => {
     await UserModel.remove().then(data => {
-        console.log(UserModel);
+        // console.log(UserModel);
         if (!data) {
             res.status(404).json({
                 message: `Users not found.`
