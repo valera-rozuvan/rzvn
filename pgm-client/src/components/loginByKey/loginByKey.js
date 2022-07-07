@@ -36,7 +36,6 @@ const LoginByKey = () => {
 
     async function createKeyApi() {
       try {
-  debugger;
         const api = new ApiUserPublicKey();
         const result = await api.createUserPublicKey(newKeyData);
         const newKey = result.data;
