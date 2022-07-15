@@ -1,56 +1,72 @@
 {
-  "name": "qa",
-  "version": "0.1.0",
+  "name": "react-webpack-starter",
+  "version": "0.0.3",
   "private": true,
-  "dependencies": {
-    "@emotion/react": "^11.9.0",
-    "@emotion/styled": "^11.8.1",
-    "@mui/icons-material": "^5.5.1",
-    "@mui/material": "^5.6.2",
-    "@reduxjs/toolkit": "^1.8.1",
-    "@testing-library/jest-dom": "^5.16.2",
-    "@testing-library/react": "^12.1.4",
-    "@testing-library/user-event": "^13.5.0",
-    "axios": "^0.26.1",
-    "modern-normalize": "^1.1.0",
-    "node-sass": "^7.0.1",
-    "openpgp": "^5.2.1",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2",
-    "react-redux": "^7.2.8",
-    "react-router-dom": "^6.2.2",
-    "react-scripts": "5.0.0",
-    "redux": "^4.1.2",
-    "redux-devtools-extension": "^2.13.9",
-    "shortid": "^2.2.16",
-    "web-vitals": "^2.1.4"
+  "main": "src/index.tsx",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/valera-rozuvan/react-webpack-starter.git"
   },
+  "engines": {
+    "node": ">=12.0.0"
+  },
+  "author": "Valera Rozuvan",
+  "license": "MIT",
+  "browserslist": [
+    "IE 6",
+    "Chrome 9",
+    "Firefox 14"
+  ],
   "scripts": {
-    "start": "set PORT=2000 && react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "api-server": "json-server --delay 300 --port 5555 --watch db.json"
-  },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
+    "build": "webpack --env BUILD_ENV=production",
+    "build:local": "webpack --env BUILD_ENV=development",
+    "start": "webpack-dev-server --env BUILD_ENV=development",
+    "lint": "eslint ./",
+    "lint:fix": "eslint --fix ./"
   },
   "devDependencies": {
-    "json-server": "^0.17.0"
+    "@babel/core": "7.18.6",
+    "@babel/preset-env": "7.18.6",
+    "@babel/preset-react": "7.18.6",
+    "@types/react": "17.0.47",
+    "@types/react-dom": "17.0.17",
+    "@types/react-redux": "7.1.24",
+    "@types/react-router-dom": "5.3.3",
+    "@types/webpack": "5.28.0",
+    "@typescript-eslint/eslint-plugin": "5.30.5",
+    "@typescript-eslint/parser": "5.30.5",
+    "autoprefixer": "10.4.7",
+    "babel-loader": "8.2.5",
+    "copy-webpack-plugin": "11.0.0",
+    "css-loader": "6.7.1",
+    "dotenv": "16.0.1",
+    "eslint": "8.19.0",
+    "eslint-config-airbnb": "19.0.4",
+    "eslint-plugin-import": "2.26.0",
+    "eslint-plugin-jsx-a11y": "6.6.0",
+    "eslint-plugin-react": "7.30.1",
+    "eslint-plugin-react-hooks": "4.6.0",
+    "html-webpack-plugin": "5.5.0",
+    "mini-css-extract-plugin": "2.6.1",
+    "postcss": "8.4.14",
+    "postcss-import": "14.1.0",
+    "postcss-loader": "7.0.1",
+    "sass": "1.53.0",
+    "sass-loader": "13.0.2",
+    "style-loader": "3.3.1",
+    "ts-loader": "9.3.1",
+    "typescript": "4.7.4",
+    "typescript-plugin-css-modules": "3.4.0",
+    "webpack": "5.73.0",
+    "webpack-cli": "4.10.0",
+    "webpack-dev-server": "4.9.3"
+  },
+  "dependencies": {
+    "@redux-devtools/extension": "3.2.2",
+    "react": "17.0.2",
+    "react-dom": "17.0.2",
+    "react-redux": "8.0.2",
+    "react-router-dom": "6.3.0",
+    "redux": "4.2.0"
   }
 }
