@@ -1,12 +1,12 @@
 import React from 'react';
-import { Link } from "react-router-dom"
+import { Link } from 'react-router-dom';
 import FooterUser from '../FooterUser';
 
 function Friends() {
   return (
     <>
       <p>search pubkey, name, notes</p>
-      <input></input>
+      <input />
       <Link to="/friendAdd">add friend</Link>
       <section>
         <p>currently chatting with friend:</p>
