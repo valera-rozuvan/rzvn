@@ -1,11 +1,7 @@
 import React from 'react';
-import { Link } from "react-router-dom"
 
-import Header from '../Header';
-import Footer from '../Footer';
 import Support from '../Support';
 import FooterUser from '../FooterUser';
-
 
 function Profile() {
   return (
@@ -14,11 +10,11 @@ function Profile() {
       <p>public key</p>
       <p>0x894tr789utyt8ut8t2...</p>
       <p>nickname</p>
-      <input placeholder='user name'></input>
+      <input placeholder="user name" />
       <button type="submit">update</button>
       <button type="submit">delete all data</button>
-      <Support/>
-      <FooterUser/>
+      <Support />
+      <FooterUser />
     </>
   );
 }

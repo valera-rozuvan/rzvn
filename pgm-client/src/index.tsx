@@ -13,8 +13,6 @@ import rootReducer from './store/reducers/rootReducer';
 
 import App from './App';
 
-
-
 console.log(`process.env.REACT_APP_BASE_URL = '${process.env.REACT_APP_BASE_URL}'`); // eslint-disable-line no-console
 console.log(`process.env.REACT_APP_API_URL = '${process.env.REACT_APP_API_URL}'`); // eslint-disable-line no-console
 console.log(`process.env.NODE_ENV = '${process.env.NODE_ENV}'`); // eslint-disable-line no-console
@@ -46,7 +44,7 @@ const root = document.getElementById('root');
 render(
   <Provider store={store}>
     <BrowserRouter>
-      <App/>
+      <App />
     </BrowserRouter>
   </Provider>,
   root,

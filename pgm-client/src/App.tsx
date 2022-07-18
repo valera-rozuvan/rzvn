@@ -17,7 +17,7 @@ function App() {
       <Route path="/profile" element={<Profile />} />
       <Route path="/friends" element={<Friends />} />
       <Route path="/friendAdd" element={<FriendAdd />} />
-      <Route path="/friendEdit" element={<FriendEdit/>} />
+      <Route path="/friendEdit" element={<FriendEdit />} />
       <Route path="*" element={<NoMatch />} />
     </Routes>
   );
