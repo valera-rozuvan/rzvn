@@ -48,6 +48,7 @@ function Login() {
           <div>
             <p className={s.text}>dont have a key pair?</p>
             <button onClick={generateNewKeyPair} className={s.generateBtn} type="button">generate keypair</button>
+
           </div>
           <button className={s.loginBtn} onClick={onSubmit} type="submit">login</button>
         </div>
