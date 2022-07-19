@@ -2,6 +2,7 @@ const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const autoprefixer = require('autoprefixer');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const TerserPlugin = require('terser-webpack-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
 const path = require('path');
 
@@ -107,6 +108,15 @@ function generateWebpackConfig(buildSettings) {
     output: {
       path: path.join(__dirname, BUILD_FOLDER),
       filename: '[name].js',
+      clean: true,
+    },
+    optimization: {
+      minimize: (buildSettings.webpackMode === 'production'),
+      minimizer: [new TerserPlugin({
+        exclude: [
+          /openpgp.min.mjs/,
+        ],
+      })],
     },
     module: {
       rules: [
