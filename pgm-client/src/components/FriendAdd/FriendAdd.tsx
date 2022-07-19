@@ -1,21 +1,23 @@
 import React from 'react';
-
 import FooterUser from '../FooterUser';
+import s from './friendAdd.module.scss';
 
-function Friends() {
+function FriendAdd() {
   return (
     <>
-      <section>
-        <h2>add friend</h2>
-        <p>public key</p>
-        <input />
-        <p>notes</p>
-        <input />
-        <button type="submit">add</button>
+      <section className={s.friendAdd}>
+        <div className={s.innerContainer}>
+          <h2 className={s.title}>add friend</h2>
+          <p>public key</p>
+          <input />
+          <p>notes</p>
+          <input />
+          <button type="submit">add</button>
+        </div>
       </section>
       <FooterUser />
     </>
   );
 }
 
-export default Friends;
+export default FriendAdd;
