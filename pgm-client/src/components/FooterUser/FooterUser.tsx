@@ -6,11 +6,11 @@ function FooterUser() {
   return (
     <footer className={s.footer}>
       <ul>
-        <li><Link to="/msg">msg</Link></li>
+        <li><Link to="/messaging">msg</Link></li>
         <li><Link to="/friends">friends</Link></li>
         <li><Link to="/groups">groups</Link></li>
         <li><Link to="/profile">profile</Link></li>
-        <li><button type="submit">logout</button></li>
+        <li><Link to="/">logout</Link></li>
       </ul>
     </footer>
   );
