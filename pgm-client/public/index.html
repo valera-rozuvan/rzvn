@@ -6,6 +6,18 @@
   <title>react webpack starter</title>
   <link rel="stylesheet" href="reset.css" />
   <link rel="stylesheet" href="fonts.css" />
+
+  <!-- original at https://unpkg.com/browse/openpgp@5.3.1/dist/openpgp.min.mjs -->
+  <script
+    src="./openpgp.min.mjs"
+    type="module"
+    integrity="sha384-uW4+KiwUIZIKzlHHEMR3GtZjPa2j/4WqCj7P0clXVzRQzeOHFYkndCsGM/VGp6mU"
+    crossorigin="anonymous"
+  ></script>
+  <script type="module">
+    import * as openpgp from './openpgp.min.mjs';
+    window.openpgp = openpgp;
+  </script>
 </head>
 <body>
 <div id="root"></div>
