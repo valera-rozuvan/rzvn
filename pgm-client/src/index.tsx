@@ -14,10 +14,6 @@ import rootReducer from './store/reducers/rootReducer';
 import App from './App';
 import './global-styles.css';
 
-console.log(`process.env.REACT_APP_BASE_URL = '${process.env.REACT_APP_BASE_URL}'`); // eslint-disable-line no-console
-console.log(`process.env.REACT_APP_API_URL = '${process.env.REACT_APP_API_URL}'`); // eslint-disable-line no-console
-console.log(`process.env.NODE_ENV = '${process.env.NODE_ENV}'`); // eslint-disable-line no-console
-
 let store;
 if (process.env.NODE_ENV === 'development') {
   const composeEnhancers = composeWithDevTools({

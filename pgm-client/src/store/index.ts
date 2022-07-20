@@ -1,8 +1,8 @@
-import { ICounterState } from './reducers/counterReducer';
+import { IUserState } from './reducers/userReducer';
 import { ITextFieldState } from './reducers/textFieldReducer';
 
 interface IStore {
-  counter: ICounterState,
+  user: IUserState,
   textField: ITextFieldState,
 }
 
