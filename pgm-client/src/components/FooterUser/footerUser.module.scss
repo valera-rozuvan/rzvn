@@ -1,15 +1,24 @@
+@import '../../variables.scss';
 .footer {
+
+    @media screen and (min-width: $mobile) {
+        font-size: 10px;
+    }
+    @media screen and (min-width: $tablet) {
+        font-size: 14px;
+    }
+
     width: 100%;
     background-color: rgb(255, 255, 255);
     border-top: 1px solid black;
     position: fixed;
     bottom: 0;
-    height: 2rem;
+    height: 2em;
 
     ul {
         margin-left: auto;
         margin-right: auto;
-        padding: 0.5rem;
+        padding: 0.5em;
         width: 50%;
         display: flex;
         justify-content: space-between;

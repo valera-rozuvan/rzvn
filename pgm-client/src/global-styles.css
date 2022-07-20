@@ -17,10 +17,13 @@ time, mark, audio, video {
 a {
   text-decoration: none;
 }
-
+html body{
+  font-size: 16px;
+}
 body section {
   background-color: rgb(190, 190, 190);
   width: 80%;
   margin-right: auto;
   margin-left: auto;
 }
+
