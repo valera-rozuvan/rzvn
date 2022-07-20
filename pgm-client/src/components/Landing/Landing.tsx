@@ -12,10 +12,14 @@ function Landing() {
       <section className={s.landing}>
         <p>
           Minimalistic, p2p encrypted, messaging system.
+          <br />
           Browser client, CLI client, open API available.
+          <br />
           Anonymous.
         </p>
-        <Link to="/login">start messaging</Link>
+        <div className={s.linkBox}>
+          <Link to="/login">start messaging</Link>
+        </div>
       </section>
       <Footer />
     </>

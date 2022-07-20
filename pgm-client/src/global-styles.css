@@ -17,10 +17,27 @@ time, mark, audio, video {
 a {
   text-decoration: none;
 }
-
+html body{
+  font-size: 16px;
+  background-color: #BFD8DF;
+}
 body section {
-  background-color: rgb(190, 190, 190);
   width: 80%;
+  max-width: 800px;
   margin-right: auto;
   margin-left: auto;
+}
+
+input{
+/* font-size: 1em; */
+background: #ececec;
+border-radius: 0.2em;
+border:none;
+width: 100%;
+max-width: 400px;
+}
+input:focus{
+outline:none;
+background: #ffffff;
+
 }

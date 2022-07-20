@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import FooterUser from '../FooterUser';
+// import s from './friends.module.scss';
 
 function Friends() {
   const friendList = [
@@ -33,9 +34,8 @@ function Friends() {
     <>
       <section>
         <p>search pubkey, name, notes</p>
-        <input />
+        <input type="text" placeholder="enter name of friend" />
         <Link to="/friends/add">add friend</Link>
-
         <p>currently chatting with friend:</p>
         {
           (currentFriend)
