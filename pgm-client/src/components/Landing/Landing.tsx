@@ -18,7 +18,7 @@ function Landing() {
           Anonymous.
         </p>
         <div className={s.linkBox}>
-        <Link to="/login">start messaging</Link>
+          <Link to="/login">start messaging</Link>
         </div>
       </section>
       <Footer />

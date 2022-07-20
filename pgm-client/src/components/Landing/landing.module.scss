@@ -29,7 +29,7 @@
         display: inline-block;
         background-color: #A2A5EE;
         border-radius: 0.2em;
-        transition: 300ms linear;
+        transition: $animation;
 
         &:hover {
             background-color: #9ae982;
