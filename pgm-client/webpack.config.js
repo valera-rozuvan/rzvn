@@ -115,6 +115,7 @@ function generateWebpackConfig(buildSettings) {
       minimizer: [new TerserPlugin({
         exclude: [
           /openpgp.min.mjs/,
+          /base64.mjs/,
         ],
       })],
     },

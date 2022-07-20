@@ -17,3 +17,4 @@ node_modules/**/*.jsx
 node_modules/**/*.tsx
 
 src/openpgp.d.ts
+src/base64.d.ts

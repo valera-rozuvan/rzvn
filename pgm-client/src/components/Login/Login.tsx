@@ -1,9 +1,15 @@
 import React, { useState, useEffect } from 'react';
+import { Dispatch } from 'redux';
+import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+
 import * as OpenpgpTypeDefs from '../../openpgp.d';
+
+import { IUserReducerActionSetKeyData, IUserReducerActionType, IUserKeyData } from '../../store/reducers/userReducer';
 
 import Header from '../Header';
 import Footer from '../Footer';
+
 import styles from './login.module.scss';
 
 type TOpenpgp = typeof OpenpgpTypeDefs;
@@ -35,24 +41,22 @@ const extractStr = function extractStr(source: string, prefix: string, suffix: s
 };
 
 function Login(): React.ReactElement {
-  const [keyPairTextAreaStr, setKeyPairTextAreaStr] = useState('');
+  const [keyPairTextAreaStr, setKeyPairTextAreaStr] = useState<string>('');
 
-  const [publicKeyFingerprint, setPublicKeyFingerprint] = useState('');
-  const [publicKeyArmored, setPublicKeyArmored] = useState('');
-  const [privateKeyArmored, setPrivateKeyArmored] = useState('');
+  const [tempUserKeyData, setTempUserKeyData] = useState<IUserKeyData>({
+    publicKeyFingerprint: '',
+    publicKeyArmored: '',
+    privateKeyArmored: '',
+  });
 
-  const [canLogin, setCanLogin] = useState(false);
+  const [canLogin, setCanLogin] = useState<boolean>(false);
+
+  const dispatchSetKeyData = useDispatch<Dispatch<IUserReducerActionSetKeyData>>();
 
   const navigate = useNavigate();
 
-  function tryToLogin(event: React.MouseEvent<HTMLButtonElement>): void {
-    event.preventDefault();
-
-    navigate('/messaging');
-  }
-
   useEffect((): void => {
-    if (!publicKeyFingerprint || !publicKeyArmored || !privateKeyArmored) {
+    if (!tempUserKeyData.publicKeyFingerprint || !tempUserKeyData.privateKeyArmored || !tempUserKeyData.publicKeyArmored) {
       if (canLogin) {
         setCanLogin(false);
       }
@@ -63,9 +67,19 @@ function Login(): React.ReactElement {
     if (!canLogin) {
       setCanLogin(true);
     }
-  }, [canLogin, setCanLogin, publicKeyFingerprint, publicKeyArmored, privateKeyArmored]);
+  }, [canLogin, setCanLogin, tempUserKeyData]);
 
-  async function generateNewKeyPair(event: React.MouseEvent<HTMLButtonElement>): Promise<void> {
+  useEffect((): void => {
+    dispatchSetKeyData({ type: IUserReducerActionType.SET_KEY_DATA, data: tempUserKeyData });
+  }, [dispatchSetKeyData, tempUserKeyData]);
+
+  function tryToLoginOnClick(event: React.MouseEvent<HTMLButtonElement>): void {
+    event.preventDefault();
+
+    navigate('/login/challenge');
+  }
+
+  async function generateNewKeyPairOnClick(event: React.MouseEvent<HTMLButtonElement>): Promise<void> {
     event.preventDefault();
 
     const { privateKey, publicKey } = await openpgp.generateKey({
@@ -82,18 +96,22 @@ function Login(): React.ReactElement {
 
     setKeyPairTextAreaStr(`${privateKey}${publicKey}`);
 
-    setPublicKeyFingerprint(publicKeyFingerprintStr);
-    setPublicKeyArmored(publicKey);
-    setPrivateKeyArmored(privateKey);
+    setTempUserKeyData({
+      publicKeyFingerprint: publicKeyFingerprintStr,
+      privateKeyArmored: privateKey,
+      publicKeyArmored: publicKey,
+    });
   }
 
   async function keyPairTextAreaOnChange(event: React.ChangeEvent<HTMLTextAreaElement>): Promise<void> {
     event.preventDefault();
 
     function bailout() {
-      setPublicKeyFingerprint('');
-      setPublicKeyArmored('');
-      setPrivateKeyArmored('');
+      setTempUserKeyData({
+        publicKeyFingerprint: '',
+        privateKeyArmored: '',
+        publicKeyArmored: '',
+      });
     }
 
     setKeyPairTextAreaStr(event.target.value);
@@ -138,9 +156,11 @@ function Login(): React.ReactElement {
       return;
     }
 
-    setPublicKeyFingerprint(publicKeyFingerprintStr);
-    setPublicKeyArmored(publicKeyArmoredStr);
-    setPrivateKeyArmored(privateKeyArmoredStr);
+    setTempUserKeyData({
+      publicKeyFingerprint: publicKeyFingerprintStr,
+      privateKeyArmored: privateKeyArmoredStr,
+      publicKeyArmored: publicKeyArmoredStr,
+    });
   }
 
   return (
@@ -155,18 +175,25 @@ function Login(): React.ReactElement {
 
           <div>
             <p className={styles.text}>dont have a key pair?</p>
-            <button onClick={generateNewKeyPair} className={styles.generateBtn} type="button">generate keypair</button>
+            <button
+              type="button"
+              name="generateNewKeyPair"
+              className={styles.generateBtn}
+              onClick={generateNewKeyPairOnClick}
+            >
+              generate keypair
+            </button>
           </div>
 
           {
-            publicKeyFingerprint
+            tempUserKeyData.publicKeyFingerprint
               ? (
                 <>
                   <br />
                   <br />
                   <p>
                     Public key fingerprint:&nbsp;
-                    {publicKeyFingerprint}
+                    {tempUserKeyData.publicKeyFingerprint}
                   </p>
                 </>
               )
@@ -175,7 +202,16 @@ function Login(): React.ReactElement {
 
           {
             canLogin
-              ? <button onClick={tryToLogin} className={styles.loginBtn} type="button">login</button>
+              ? (
+                <button
+                  type="button"
+                  name="tryToLogin"
+                  className={styles.loginBtn}
+                  onClick={tryToLoginOnClick}
+                >
+                  login
+                </button>
+              )
               : <>&nbsp;</>
           }
         </div>
