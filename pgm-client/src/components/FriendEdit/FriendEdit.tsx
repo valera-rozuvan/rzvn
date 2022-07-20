@@ -13,7 +13,7 @@ function Friends() {
           <p className={s.pk}>0x894tr789utyt8ut8t2...</p>
           <p>Joey</p>
           <p>notes</p>
-          <input />
+          <input type="text" />
           <div className={s.btnBlock}>
             <button className={s.update} type="submit">update</button>
             <button className={s.delete} type="submit">delete</button>
