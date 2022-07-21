@@ -11,7 +11,7 @@ function Friends() {
           <h2 className={s.title}>edit friend</h2>
           <p className={s.pkTitle}>public key</p>
           <p className={s.pk}>0x894tr789utyt8ut8t2...</p>
-          <p>Joey</p>
+          <p className={s.userName}>Joey</p>
           <p>notes</p>
           <input type="text" />
           <div className={s.btnBlock}>
