@@ -5,13 +5,15 @@
     @media screen and (min-width: $mobile) {
         font-size: 10px;
     }
+
     @media screen and (min-width: $tablet) {
         font-size: 16px;
     }
+
     background-color: #BFD8DF;
     font-weight: 500;
     width: 100%;
-    border-top: 1px solid black;
+    // border-top: 1px solid black;
     position: fixed;
     bottom: 0;
     height: 2em;
@@ -22,14 +24,25 @@
         padding: 0.5em;
         width: 50%;
         display: flex;
-        justify-content: space-between;
+        justify-content: space-evenly;
         text-align: center;
     }
 
     a {
         color: inherit;
+        padding: 0.2em 0.5em;
+        text-align: center;
+        background: #CDCFED;
+        box-shadow: 0px 0.5em 0.5em rgba(0, 0, 0, 0.25);
+        border-radius: 0.2em;
+        transition: $animationQuick;
+
+        &:hover{
+            background: #888fe6;  
+        }
+        &:active{
+            background: rgb(255, 255, 255);
+        }
     }
 
 }
-
-

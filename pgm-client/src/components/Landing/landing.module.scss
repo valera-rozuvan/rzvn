@@ -12,8 +12,6 @@
     @media screen and (min-width: $desktop) {
         font-size: 24px;
     }
-
-    // text-align: center;
     margin-top: 4em;
 
     p {
@@ -29,7 +27,7 @@
         display: inline-block;
         background-color: #A2A5EE;
         border-radius: 0.2em;
-        transition: $animation;
+        transition: $animationSlow;
 
         &:hover {
             background-color: #9ae982;

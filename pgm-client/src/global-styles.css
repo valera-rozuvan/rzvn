@@ -20,6 +20,7 @@ a {
 html body{
   font-size: 16px;
   background-color: #BFD8DF;
+  scroll-behavior: smooth;
 }
 body section {
   width: 80%;
@@ -29,7 +30,8 @@ body section {
 }
 
 input{
-/* font-size: 1em; */
+font-size: 1em;
+height: 2em;
 background: #ececec;
 border-radius: 0.2em;
 border:none;
