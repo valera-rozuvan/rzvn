@@ -74,7 +74,10 @@ function LoginChallenge() {
       { publicKey: encodedPublicKey, publicKeyFingerprint: user.publicKeyFingerprint },
     )
       .then((response) => {
-        setPublicKeyChallenge(response.data);
+        const { challengeId } = response.data;
+        const encryptedText = Base64.decode(response.data.encryptedText);
+
+        setPublicKeyChallenge({ challengeId, encryptedText });
         setFlowStep(EFlowSteps.CHALLENGE_RECEIVED);
       })
       .catch(() => {
@@ -88,16 +91,11 @@ function LoginChallenge() {
     }
 
     async function decryptSecretText(): Promise<OpenpgpTypeDefs.MaybeStream<OpenpgpTypeDefs.Data> & string | null> {
-      const encrypted = Base64.encode(publicKeyChallenge.encryptedText);
       const message = await openpgp.readMessage({
-        armoredMessage: encrypted, // parse armored message
+        armoredMessage: publicKeyChallenge.encryptedText, // parse armored message
       });
-      const passphrase = '';
       const publicKey = await openpgp.readKey({ armoredKey: user.publicKeyArmored });
-      const privateKey = await openpgp.decryptKey({
-        privateKey: await openpgp.readPrivateKey({ armoredKey: user.privateKeyArmored }),
-        passphrase,
-      });
+      const privateKey = await openpgp.readPrivateKey({ armoredKey: user.privateKeyArmored });
       const { data: decrypted, signatures } = await openpgp.decrypt({
         message,
         verificationKeys: publicKey, // optional
