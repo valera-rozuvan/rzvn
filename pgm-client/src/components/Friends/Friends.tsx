@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import FooterUser from '../FooterUser';
-// import s from './friends.module.scss';
+import s from './friends.module.scss';
 
 function Friends() {
   const friendList = [
@@ -32,39 +32,47 @@ function Friends() {
 
   return (
     <>
-      <section>
-        <p>search pubkey, name, notes</p>
-        <input type="text" placeholder="enter name of friend" />
-        <Link to="/friends/add">add friend</Link>
-        <p>currently chatting with friend:</p>
-        {
-          (currentFriend)
-            ? (
-              <section>
-                <p>{currentFriend.name}</p>
-                <p>{currentFriend.key}</p>
-                <Link to={`/friends/edit/${currentFriend.id}`}>edit</Link>
-                <p>
-                  notes:
-                  {currentFriend.notes}
-                </p>
-              </section>
-            )
-            : <>nobody</>
-        }
+      <section className={s.friends}>
+        <div className={s.innerContainer}>
+          <p className={s.searchText}>search pubkey, name, notes</p>
+          <div className={s.addBox}>
+            <input type="text" placeholder="enter name of friend" />
+            <Link className={s.btnAddFriend} to="/friends/add">add friend</Link>
+          </div>
+          <p className={s.curretFriendText}>currently chatting with friend:</p>
+          {
+            (currentFriend)
+              ? (
+                <section>
+                  <div className={s.friendBox}>
+                    <p className={s.friendName}>{currentFriend.name}</p>
+                    <p className={s.friendKey}>{currentFriend.key}</p>
+                    <Link className={s.friendEdit} to={`/friends/edit/${currentFriend.id}`}>edit</Link>
+                  </div>
+                  <p className={s.friendNotes}>
+                    notes:
+                    {currentFriend.notes}
+                  </p>
+                </section>
+              )
+              : <>nobody</>
+          }
 
-        <p>all friends:</p>
-        {friendList.map((friend) => (
-          <section key={friend.id}>
-            <p>{friend.name}</p>
-            <p>{friend.key}</p>
-            <Link to={`/friends/edit/${friend.id}`}>edit</Link>
-            <p>
-              notes:
-              {friend.notes}
-            </p>
-          </section>
-        ))}
+          <p className={s.allFriendsText}>all friends:</p>
+          {friendList.map((friend) => (
+            <section key={friend.id}>
+              <div className={s.friendBox}>
+                <p className={s.friendName}>{friend.name}</p>
+                <p className={s.friendKey}>{friend.key}</p>
+                <Link className={s.friendEdit} to={`/friends/edit/${friend.id}`}>edit</Link>
+              </div>
+              <p className={s.friendNotes}>
+                notes:
+                {friend.notes}
+              </p>
+            </section>
+          ))}
+        </div>
       </section>
       <FooterUser />
     </>

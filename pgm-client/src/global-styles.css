@@ -1,26 +1,97 @@
-html, body, div, span, applet, object, iframe,
-h1, h2, h3, h4, h5, h6, p, blockquote, pre,
-a, abbr, acronym, address, big, cite, code,
-del, dfn, em, img, ins, kbd, q, s, samp,
-small, strike, strong, sub, sup, tt, var,
-b, u, i, center,
-dl, dt, dd, ol, ul, li,
-fieldset, form, label, legend,
-table, caption, tbody, tfoot, thead, tr, th, td,
-article, aside, canvas, details, embed,
-figure, figcaption, footer, header, hgroup,
-menu, nav, output, ruby, section, summary,
-time, mark, audio, video {
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
   font-family: 'Roboto', sans-serif;
 }
 
 a {
   text-decoration: none;
 }
-html body{
+
+html body {
   font-size: 16px;
   background-color: #BFD8DF;
+  scroll-behavior: smooth;
 }
+
 body section {
   width: 80%;
   max-width: 800px;
@@ -28,16 +99,17 @@ body section {
   margin-left: auto;
 }
 
-input{
-/* font-size: 1em; */
-background: #ececec;
-border-radius: 0.2em;
-border:none;
-width: 100%;
-max-width: 400px;
+input {
+  font-size: 1em;
+  height: 1.5em;
+  background: #ececec;
+  border-radius: 0.2em;
+  border: none;
+  max-width: 400px;
 }
-input:focus{
-outline:none;
-background: #ffffff;
+
+input:focus {
+  outline: none;
+  background: #ffffff;
 
 }

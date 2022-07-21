@@ -1,0 +1,27 @@
+@import '../../variables.scss';
+
+.support {
+    margin-top: 3em;
+    text-align: center;
+
+    p {
+        font-weight: $font500;
+    }
+
+    a {
+        font-size: 0.8em;
+        background: #3CF92C;
+        border-radius: 0.4em;
+        color:inherit;
+        padding:0.4em 0.6em;
+    }
+
+    .linksBox {
+        margin-top: 1em;
+        display: flex;
+        justify-content: space-between;
+        margin-left: auto;
+        margin-right: auto;
+        width: 60%;
+    }
+}
