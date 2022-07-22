@@ -1,6 +1,6 @@
 @import '../../variables.scss';
 
-.friends {
+.groups {
     section {
         width: 100%;
     }
@@ -8,7 +8,6 @@
     @media screen and (min-width: $mobile) {
         font-size: 12px;
     }
-
     @media screen and (min-width: $tablet) {
         font-size: 16px;
     }
@@ -25,8 +24,19 @@
         margin-left: auto;
         margin-right: auto;
     }
+    .btnBox {
+        display:flex;
+        justify-content: space-between;
 
-    .btnAddFriend {
+        @media screen and (max-width: $mobileMAX){
+            flex-direction: column;
+            height: 3em;
+        }
+        @media screen and (min-width: $tablet) {
+           width: 160px;
+        }
+    }
+    .btnCreateGroup {
         font-weight: $font500;
         padding: 0.2em 0.5em;
         color: inherit;
@@ -40,7 +50,7 @@
         }
     }
 
-    .addBox {
+    .createBox {
         margin-top: 0.5em;
         display: flex;
         justify-content: space-around;
@@ -51,13 +61,13 @@
         font-weight: $font500;
     }
 
-    .curretFriendTitle {
+    .curretGroupText {
         font-size: 1.5em;
         font-weight: $font700;
         margin-top: 1.5em;
     }
 
-    .friendBox {
+    .groupBox {
         margin-top: 1em;
         display: flex;
         flex-direction: row;
@@ -65,33 +75,54 @@
         align-items: center;
     }
 
-    .friendName {
+    .groupKey {
         background: #767070;
         box-shadow: 0px 0.2em 0.2emrgba(0, 0, 0, 0.25);
         border-radius: 0.2em;
-        padding: 0.4em 2em;
+        padding: 0.4em 1em;
         color: white;
     }
 
-    .friendNotes {
-        margin-top:1em;
+    .groupTopic {
+        margin-top: 1em;
         font-weight: $font400;
         margin-top: 0.5em;
     }
 
-    .friendEdit {
+
+
+    .groupMembers {
         background: #ECCA51;
         box-shadow: 0px 0.2em 0.2em rgba(0, 0, 0, 0.25);
         border-radius: 0.2em;
         padding: 0.2em 1em;
         color: inherit;
         font-weight: $font500;
+        text-align: center;
+        font-size: 0.8em;
 
         &:active {
             background: white;
         }
     }
-    .allFriendsTitle{
+
+    .groupLeave {
+        background: #FE5B5B;
+        box-shadow: 0px 0.2em 0.2em rgba(0, 0, 0, 0.25);
+        border-radius: 0.2em;
+        padding: 0.2em 1em;
+        color: white;
+        font-weight: $font500;
+        text-align: center;
+        font-size: 0.8em;
+
+        &:active {
+            background: white;
+            color:black
+        }
+    }
+
+    .allFriendsText {
         font-size: 1.5em;
         margin-top: 1em;
         font-weight: $font700;
