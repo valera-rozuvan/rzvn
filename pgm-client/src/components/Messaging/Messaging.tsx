@@ -1,5 +1,6 @@
 import React from 'react';
 import FooterUser from '../FooterUser';
+import Sender from '../Sender';
 import s from './messaging.module.scss';
 
 function Messaging() {
@@ -67,10 +68,11 @@ function Messaging() {
                 {/* <p className={s.friendName}>{msg.name}</p> */}
                 <p className={s.date}>{msg.date}</p>
               </div>
-              <p className={`${s.myMsg} ${s.box}`}>{msg.msg}</p>
+              <p className={`${s.userMsg} ${s.box}`}>{msg.msg}</p>
             </div>
           )))}
         </div>
+        <Sender />
       </section>
       <FooterUser />
     </>
