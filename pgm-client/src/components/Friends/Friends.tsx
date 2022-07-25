@@ -39,7 +39,7 @@ function Friends() {
             <input type="text" placeholder="enter name of friend" />
             <Link className={s.btnAddFriend} to="/friends/add">add friend</Link>
           </div>
-          <p className={s.curretFriendText}>currently chatting with friend:</p>
+          <p className={s.curretFriendTitle}>currently chatting with friend:</p>
           {
             (currentFriend)
               ? (
@@ -58,7 +58,7 @@ function Friends() {
               : <>nobody</>
           }
 
-          <p className={s.allFriendsText}>all friends:</p>
+          <p className={s.allFriendsTitle}>all friends:</p>
           {friendList.map((friend) => (
             <section key={friend.id}>
               <div className={s.friendBox}>
