@@ -47,6 +47,18 @@ function Messaging() {
     {
       name: 'Alex', id: '120poi0y4t2345t43ti40t3i', msg: ')))))))', date: '13:47, 24.07.2022',
     },
+    {
+      name: 'Alex', id: '120poi0y45y56u4ti40t3i', msg: ')))))))', date: '13:47, 24.07.2022',
+    },
+    {
+      name: 'Kate', id: '38poi0y4ti4234tr43t0t3i', msg: '))) i have no idea what to write...', date: '13:47, 24.07.2022',
+    },
+    {
+      name: 'Alex', id: '120poi0y4t23r3r3ti40t3i', msg: 'so am i blahblah', date: '13:47, 24.07.2022',
+    },
+    {
+      name: 'Alex', id: '120poi0y4t2345t43ti40t3i', msg: ')))))))', date: '13:47, 24.07.2022',
+    },
   ];
   return (
     <>
