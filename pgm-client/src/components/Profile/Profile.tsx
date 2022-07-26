@@ -12,7 +12,7 @@ function Profile() {
         <p className={s.pkTitle}>public key</p>
         <div className={s.keyBox}>
           <p className={s.pk}>0x894tr789utyt8ut8t2...</p>
-          <Link to="/" className={s.generateBtn}>generate new key</Link>
+          <Link to="/generator" className={s.generateBtn}>generate new key</Link>
         </div>
         <p className={s.nickname}>nickname</p>
         <input placeholder="user name" />
