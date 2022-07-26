@@ -1,0 +1,62 @@
+@import '../../variables.scss';
+
+.sender {
+    @media screen and (min-width: $mobile) {
+        font-size: 12px;
+    }
+
+    @media screen and (min-width: $tablet) {
+        font-size: 20px;
+    }
+
+    @media screen and (min-width: $desktop) {
+        font-size: 24px;
+    }
+    position: fixed;
+    left:0;
+    right: 0;
+    bottom: 2em;
+    height: 1.8em;
+    margin-right: auto;
+    margin-left: auto;
+
+    .innerContainer {
+        align-items: center;
+        display: flex;
+        justify-content: center;
+        width: 100%;
+    }
+    input {
+        background: #FFFFFF;
+        box-shadow: 0px 0.2em 0.2em rgba(0, 0, 0, 0.25);
+        border-radius: 0.2em;
+        width: 60%;
+        max-width: 600px;
+        padding-left: 0.5em;
+        font-size: 0.8em;
+        height: 2em;
+    }
+
+    .btn {
+        box-shadow: 0px 0.2em 0.2em rgba(0, 0, 0, 0.25);
+        border-radius: 0.2em;
+        padding: 0.2em 0.5em;
+        font-weight: $font600;
+        color: inherit;
+
+        &:active {
+            background: white;
+        }
+    }
+
+    .send {
+        margin-left: 0.5em;
+        background: #A2A5EE;
+    }
+
+    .menu {
+        background: #CDCFED;
+        margin-left: 0.4em;
+    }
+
+}

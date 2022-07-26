@@ -1,0 +1,94 @@
+@import '../../variables.scss';
+
+.msg {
+    section {
+        width: 100%;
+    }
+
+    @media screen and (min-width: $mobile) {
+        font-size: 12px;
+    }
+
+    @media screen and (min-width: $tablet) {
+        font-size: 16px;
+    }
+
+    @media screen and (min-width: $desktop) {
+        font-size: 18px;
+    }
+
+    padding-bottom: 6em;
+    margin-top: 2em;
+
+    .innerContainer {
+        width: 100%;
+        margin-left: auto;
+        margin-right: auto;
+
+    }
+
+    .box {
+        border-radius: 0.2em;
+        box-shadow: 0px 0.2em 0.2em rgba(0, 0, 0, 0.25);
+        max-width: 600px;
+        overflow-wrap: break-word;
+        padding: 0.5em;
+        margin-bottom: 1em;
+    }
+
+    .friendMsg {
+        background: #EB91FA;
+        width: 60%;
+
+    }
+
+    .userMsg {
+        margin-left: auto;
+        background: #3FE0D0;
+        width: 100%;
+        margin-top: 0.5em;
+
+    }
+
+    .friendName {
+        background: #767070;
+        box-shadow: 0px 0.2em 0.2em rgba(0, 0, 0, 0.25);
+        border-radius: 0.2em;
+        text-align: center;
+        color: white;
+        font-weight: $font500;
+        font-size: 0.8em;
+        display: inline-block;
+        padding: 0.2em 0.5em;
+        margin-bottom: 0.5em;
+    }
+
+    .date {
+        color: #424242;
+        font-size: 0.6em;
+        font-weight: $font400;
+        margin-left: auto;
+    }
+
+    .nameDateBox {
+        width: 60%;
+        // max-width: 600px;
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+    }
+
+    .nameDateBoxUser {
+        width:100%;
+        max-width: 600px;
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+        // margin-left: auto;
+    }
+    .msgBoxUser{
+        width:60%;
+        max-width: 600px;
+        margin-left: auto;
+    }
+}
