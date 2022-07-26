@@ -10,7 +10,7 @@ import { IUserReducerActionSetKeyData, IUserReducerActionType, IUserKeyData } fr
 import Header from '../Header';
 import Footer from '../Footer';
 
-import styles from './login.module.scss';
+import styles from './generator.module.scss';
 
 type TOpenpgp = typeof OpenpgpTypeDefs;
 declare global {
@@ -40,7 +40,7 @@ const extractStr = function extractStr(source: string, prefix: string, suffix: s
   return s;
 };
 
-function Login(): React.ReactElement {
+function Generator(): React.ReactElement {
   const [keyPairTextAreaStr, setKeyPairTextAreaStr] = useState<string>('');
 
   const [tempUserKeyData, setTempUserKeyData] = useState<IUserKeyData>({
@@ -221,4 +221,4 @@ function Login(): React.ReactElement {
   );
 }
 
-export default Login;
+export default Generator;

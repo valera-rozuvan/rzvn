@@ -7,9 +7,9 @@ function Footer() {
   return (
     <footer className={s.footer}>
       <ul>
-        <li><Link to="/">about</Link></li>
-        <li><Link to="/">policy</Link></li>
-        <li><Link to="/">contact</Link></li>
+        <li><Link to="/about">about</Link></li>
+        <li><Link to="/policy">policy</Link></li>
+        <li><Link to="/contact">contact</Link></li>
       </ul>
     </footer>
   );
