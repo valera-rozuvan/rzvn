@@ -1,0 +1,24 @@
+@import '../../variables.scss';
+
+.about {
+
+    @media screen and (min-width: $mobile) {
+        font-size: 14px;
+    }
+
+    @media screen and (min-width: $tablet) {
+        font-size: 18px;
+    }
+    @media screen and (min-width: $desktop) {
+        font-size: 24px;
+    }
+    width: 100%;
+
+    margin-top: 2em;
+h2{
+    font-size: 2em;
+    font-weight: $font600;
+    margin-bottom: 3em;
+}
+
+}
