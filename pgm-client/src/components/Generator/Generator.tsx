@@ -3,7 +3,7 @@ import { Dispatch } from 'redux';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
-import * as OpenpgpTypeDefs from '../../openpgp';
+import * as OpenpgpTypeDefs from '../../openpgp.d';
 
 import { IUserReducerActionSetKeyData, IUserReducerActionType, IUserKeyData } from '../../store/reducers/userReducer';
 
