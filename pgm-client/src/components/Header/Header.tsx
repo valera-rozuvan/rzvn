@@ -6,7 +6,8 @@ import './Header.scss';
 function Header() {
   const navigate = useNavigate();
   return (
-    <header onClick={() => navigate('/')}>
+    <header>
+      <button type="button" onClick={() => navigate('/')}>on main</button>
       <h1 className="header">
         PG Messenger
         <br />

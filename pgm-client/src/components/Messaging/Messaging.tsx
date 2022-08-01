@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import Sender from '../Sender';
 import s from './messaging.module.scss';
 
@@ -59,9 +59,6 @@ function Messaging() {
       name: 'Alex', id: '120poi0y4t2345t43ti40t3iu', msg: ')))))))', date: '13:47, 24.07.2022',
     },
   ];
-  // useEffect(() => {
-  //   location.reload();
-  // },[]);
   return (
     <section className={s.msg}>
       <div className={s.innerContainer}>
