@@ -87,9 +87,15 @@ a {
 }
 
 html body {
+
   font-size: 16px;
   background-color: #BFD8DF;
   scroll-behavior: smooth;
+}
+html { 
+  overflow-y: scroll;
+  overflow-x: hidden; 
+  margin-right: calc(-1 * (100vw - 100%)); 
 }
 
 body section {
@@ -98,6 +104,9 @@ body section {
   margin-right: auto;
   margin-left: auto;
 }
+
+
+
 
 input {
   font-size: 1em;
