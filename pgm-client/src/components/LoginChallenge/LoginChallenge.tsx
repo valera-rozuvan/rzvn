@@ -7,9 +7,6 @@ import axios from 'axios';
 import * as OpenpgpTypeDefs from '../../openpgp.d';
 import * as Base64TypeDefs from '../../base64.d';
 
-import Header from '../Header';
-import Footer from '../Footer';
-
 import { IUserReducerActionSetSessionToken, IUserReducerActionType, IUserState } from '../../store/reducers/userReducer';
 import IStore from '../../store';
 
@@ -151,13 +148,9 @@ function LoginChallenge() {
   }, [flowStep, navigate]);
 
   return (
-    <>
-      <Header />
-      <section>
-        &nbsp;
-      </section>
-      <Footer />
-    </>
+    <section>
+      &nbsp;
+    </section>
   );
 }
 

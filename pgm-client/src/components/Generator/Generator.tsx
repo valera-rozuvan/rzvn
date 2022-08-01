@@ -7,9 +7,6 @@ import * as OpenpgpTypeDefs from '../../openpgp.d';
 
 import { IUserReducerActionSetKeyData, IUserReducerActionType, IUserKeyData } from '../../store/reducers/userReducer';
 
-import Header from '../Header';
-import Footer from '../Footer';
-
 import styles from './generator.module.scss';
 
 type TOpenpgp = typeof OpenpgpTypeDefs;
@@ -164,60 +161,56 @@ function Generator(): React.ReactElement {
   }
 
   return (
-    <>
-      <Header />
-      <section>
-        <div className={styles.innerContainer}>
-          <p>key pair</p>
-          <textarea name="keyPairTextArea" rows={10} value={keyPairTextAreaStr} onChange={keyPairTextAreaOnChange} />
+    <section>
+      <div className={styles.innerContainer}>
+        <p>key pair</p>
+        <textarea name="keyPairTextArea" rows={10} value={keyPairTextAreaStr} onChange={keyPairTextAreaOnChange} />
 
-          <p className={styles.text}>Make sure to keep your keypair in a safe place!</p>
+        <p className={styles.text}>Make sure to keep your keypair in a safe place!</p>
 
-          <div>
-            <p className={styles.text}>dont have a key pair?</p>
-            <button
-              type="button"
-              name="generateNewKeyPair"
-              className={styles.generateBtn}
-              onClick={generateNewKeyPairOnClick}
-            >
-              generate keypair
-            </button>
-          </div>
-
-          {
-            tempUserKeyData.publicKeyFingerprint
-              ? (
-                <>
-                  <br />
-                  <br />
-                  <p className={styles.pkFingerprint}>
-                    Public key fingerprint:&nbsp;
-                    {tempUserKeyData.publicKeyFingerprint}
-                  </p>
-                </>
-              )
-              : <>&nbsp;</>
-          }
-
-          {
-            canLogin
-              ? (
-                <button
-                  type="button"
-                  name="tryToLogin"
-                  className={styles.loginBtn}
-                  onClick={tryToLoginOnClick}
-                >
-                  login
-                </button>
-              )
-              : <>&nbsp;</>
-          }
+        <div>
+          <p className={styles.text}>dont have a key pair?</p>
+          <button
+            type="button"
+            name="generateNewKeyPair"
+            className={styles.generateBtn}
+            onClick={generateNewKeyPairOnClick}
+          >
+            generate keypair
+          </button>
         </div>
-      </section>
-      <Footer />
-    </>
+
+        {
+          tempUserKeyData.publicKeyFingerprint
+            ? (
+              <>
+                <br />
+                <br />
+                <p className={styles.pkFingerprint}>
+                  Public key fingerprint:&nbsp;
+                  {tempUserKeyData.publicKeyFingerprint}
+                </p>
+              </>
+            )
+            : <>&nbsp;</>
+        }
+
+        {
+          canLogin
+            ? (
+              <button
+                type="button"
+                name="tryToLogin"
+                className={styles.loginBtn}
+                onClick={tryToLoginOnClick}
+              >
+                login
+              </button>
+            )
+            : <>&nbsp;</>
+        }
+      </div>
+    </section>
   );
 }
 

@@ -15,24 +15,27 @@ import About from './components/About';
 import Policy from './components/Policy';
 import Contact from './components/Contact';
 import NoMatch from './components/NoMatch';
+import Layout from './components/Layout';
 
 function App() {
   return (
     <Routes>
-      <Route path="/" element={<Landing />} />
-      <Route path="/login" element={<Login />} />
-      <Route path="/login/challenge" element={<LoginChallenge />} />
-      <Route path="/generator" element={<Generator />} />
-      <Route path="/about" element={<About />} />
-      <Route path="/policy" element={<Policy />} />
-      <Route path="/contact" element={<Contact />} />
-      <Route path="/messaging" element={<Messaging />} />
-      <Route path="/profile" element={<Profile />} />
-      <Route path="/friends" element={<Friends />} />
-      <Route path="/groups" element={<Groups />} />
-      <Route path="/friends/add" element={<FriendAdd />} />
-      <Route path="/friends/edit/:id" element={<FriendEdit />} />
-      <Route path="*" element={<NoMatch />} />
+      <Route path="/" element={<Layout />}>
+        <Route index element={<Landing />} />
+        <Route path="login" element={<Login />} />
+        <Route path="login/challenge" element={<LoginChallenge />} />
+        <Route path="generator" element={<Generator />} />
+        <Route path="about" element={<About />} />
+        <Route path="policy" element={<Policy />} />
+        <Route path="contact" element={<Contact />} />
+        <Route path="messaging" element={<Messaging />} />
+        <Route path="profile" element={<Profile />} />
+        <Route path="friends" element={<Friends />} />
+        <Route path="groups" element={<Groups />} />
+        <Route path="friends/add" element={<FriendAdd />} />
+        <Route path="friends/edit/:id" element={<FriendEdit />} />
+        <Route path="*" element={<NoMatch />} />
+      </Route>
     </Routes>
   );
 }
