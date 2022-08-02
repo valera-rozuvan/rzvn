@@ -5,6 +5,8 @@ import Header from '../Header';
 import Footer from '../Footer';
 import FooterUser from '../FooterUser';
 
+// import s from './layout.module.scss';
+
 function Landing() {
   const [footerMain, setFooterMain] = useState(false);
   const [footerUser, setFooterUser] = useState(false);
