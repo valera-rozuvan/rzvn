@@ -7,29 +7,80 @@ import FooterUser from '../FooterUser';
 
 function Landing() {
   const [footerMain, setFooterMain] = useState(false);
+  const [footerUser, setFooterUser] = useState(false);
   const locationUrl = useLocation();
   const [pathName, setPathName] = useState(locationUrl.pathname);
-
-  useEffect(() => {
-    // debugger;
-    if ((pathName === '/') || (pathName === '/login')) {
-      setFooterMain(true);
-    } else {
-      setFooterMain(false);
-    }
-  }, [pathName]);
+  const linksFooter = [
+    {
+      url: '/',
+    },
+    {
+      url: '/login',
+    },
+    {
+      url: '/login/challenge',
+    },
+    {
+      url: '/about',
+    },
+    {
+      url: '/policy',
+    },
+    {
+      url: '/contact',
+    },
+  ];
+  const linksFooterUser = [
+    {
+      url: '/generator',
+    },
+    {
+      url: '/profile',
+    },
+    {
+      url: '/friends',
+    },
+    {
+      url: '/groups',
+    },
+    {
+      url: '/friends/add',
+    },
+    {
+      url: '/friends/edit/',
+    },
+  ];
   useEffect(() => {
     setPathName(locationUrl.pathname);
   }, [locationUrl]);
+
+  useEffect(() => {
+    const footerFirst = linksFooter.some((link) => pathName === link.url);
+    const footerSecond = linksFooterUser.some((link) => pathName === link.url);
+    const checkMessagingPage = pathName === '/messaging';
+
+    if (footerFirst) {
+      setFooterUser(false);
+      setFooterMain(true);
+    } if (footerSecond) {
+      setFooterMain(false);
+      setFooterUser(true);
+    } if (checkMessagingPage) {
+      setFooterMain(false);
+      setFooterUser(false);
+    }
+  }, [pathName]);
 
   return (
     <>
       <Header />
       <Outlet />
-      {footerMain === true
-        ? <Footer />
-        : <FooterUser />}
-
+      {footerMain && (
+        <Footer />
+      )}
+      {footerUser && (
+        <FooterUser />
+      )}
     </>
   );
 }
