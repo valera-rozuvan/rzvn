@@ -32,7 +32,7 @@ function Groups() {
         <p className={s.searchText}>search pubkey, topics</p>
         <div className={s.createBox}>
           <input type="text" placeholder="enter name of group" />
-          <Link className={s.btnCreateGroup} to="/friends/add">create group</Link>
+          <Link className={s.btnCreateGroup} to="/groups/add">create group</Link>
         </div>
         <p className={s.curretGroupText}>currently chatting in group:</p>
         <section>

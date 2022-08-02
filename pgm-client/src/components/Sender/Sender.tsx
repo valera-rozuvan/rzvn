@@ -9,7 +9,7 @@ function Sender() {
         <input />
         <div>
           <Link to="/" className={`${s.btn} ${s.send}`}>send</Link>
-          <Link to="/" className={`${s.btn} ${s.menu}`}>menu</Link>
+          <Link to="/friends" className={`${s.btn} ${s.menu}`}>menu</Link>
         </div>
       </div>
     </div>

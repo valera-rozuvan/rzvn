@@ -14,9 +14,9 @@ function Profile() {
       </div>
       <p className={s.nickname}>nickname</p>
       <input placeholder="user name" />
-      <div className={s.btnBox}>
-        <button className={s.btnUpdate} type="submit">update</button>
-        <button className={s.btnDelete} type="submit">delete all data</button>
+      <div className={s.linksBox}>
+        <Link to="/" className={s.update}>update</Link>
+        <Link to="/" className={s.delete}>delete all data</Link>
       </div>
     </section>
   );
