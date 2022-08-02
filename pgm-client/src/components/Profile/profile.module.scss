@@ -33,22 +33,25 @@
         font-weight: $font700;
     }
 
-    .btnBox {
+    .linksBox {
         margin-top: 2em;
         display: flex;
         justify-content: space-around;
+
     }
 
-    button {
+    .linksBox>a {
         box-shadow: 0px 0.2em 0.2em rgba(0, 0, 0, 0.25);
-        border-radius: 0.5em;
+        border-radius: 0.2em;
         outline: none;
-        font-size: 0.8em;
+        font-size: 1em;
         font-weight: $font600;
         padding: 0.2em 0.5em;
-
     }
-
+    .linksBox>a:active {
+        background-color: white;
+        color: black;
+    }
     .generateBtn {
         background: #3CF92C;
         box-shadow: 0px 0.2em 0.2em rgba(0, 0, 0, 0.25);
@@ -61,15 +64,19 @@
             background: white;
         }
     }
-
-    .btnUpdate {
-        background: #A2A5EE;
-
+    .update {
+        background-color: #A2A5EE;
+        color: black;
+        
+        :hover{
+            background-color: white;
+            color: black;
+        }
     }
-
-    .btnDelete {
+    .delete {
         background: #FE5B5B;
         color: white;
+
     }
 
     .pkTitle {
