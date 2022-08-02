@@ -43,13 +43,16 @@ function Landing() {
       url: '/friends',
     },
     {
-      url: '/groups',
-    },
-    {
       url: '/friends/add',
     },
     {
       url: '/friends/edit/',
+    },
+    {
+      url: '/groups',
+    },
+    {
+      url: '/groups/add/',
     },
   ];
   useEffect(() => {

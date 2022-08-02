@@ -9,6 +9,7 @@ import Generator from './components/Generator';
 import Profile from './components/Profile';
 import Friends from './components/Friends';
 import Groups from './components/Groups';
+import GroupAdd from './components/GroupAdd ';
 import FriendAdd from './components/FriendAdd';
 import FriendEdit from './components/FriendEdit';
 import About from './components/About';
@@ -32,6 +33,7 @@ function App() {
         <Route path="profile" element={<Profile />} />
         <Route path="friends" element={<Friends />} />
         <Route path="groups" element={<Groups />} />
+        <Route path="groups/add" element={<GroupAdd />} />
         <Route path="friends/add" element={<FriendAdd />} />
         <Route path="friends/edit/:id" element={<FriendEdit />} />
         <Route path="*" element={<NoMatch />} />
