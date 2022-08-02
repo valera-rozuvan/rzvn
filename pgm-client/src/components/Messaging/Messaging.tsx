@@ -82,6 +82,7 @@ function Messaging() {
           </div>
         )))}
       </div>
+      <div className={s.bottomBox}> </div>
       <Sender />
     </section>
   );
