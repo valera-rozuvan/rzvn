@@ -8,12 +8,26 @@
         font-size: 14px;
     }
     font-weight: 500;
-    background-color: #BFD8DF;
+    // background-color: #BFD8DF;
     width: 100%;
-    // border-top: 1px solid black;
     position: fixed;
     bottom: 0;
-    height: 2.5em;
+    height: 2em;
+
+    background: linear-gradient(
+        237.97deg,
+        rgba(255, 255, 255, 0.2) 1.16%,
+        rgba(255, 255, 255, 0) 99.16%
+      );
+    
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border: linear-gradient(
+        251.43deg,
+        rgba(255, 255, 255, 0.6) -20%,
+        rgba(255, 255, 255, 0.3) 79.79%
+      );
+
+      backdrop-filter: blur(0.3em);
 
     ul {
         margin-left: auto;
