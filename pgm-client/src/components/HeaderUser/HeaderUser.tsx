@@ -1,9 +1,9 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import s from './header.module.scss';
+import s from './headerUser.module.scss';
 
-function Header() {
+function HeaderUser() {
   const navigate = useNavigate();
   return (
     <header className={s.header}>
@@ -12,11 +12,11 @@ function Header() {
         <h1>
           PG Messenger
           <br />
-          LOGO
+          LOGO 22222
         </h1>
       </div>
     </header>
   );
 }
 
-export default Header;
+export default HeaderUser;
