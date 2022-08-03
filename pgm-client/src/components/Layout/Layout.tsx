@@ -104,6 +104,7 @@ function Landing() {
   useEffect(() => {
     const headerFirst = linksHeader.some((link) => pathName.match(link.url));
     const headerSecond = linksHeaderUser.some((link) => pathName.match(link.url));
+    const checkMessagingPageforHeader = pathName === '/messaging';
 
     if (headerFirst) {
       setHeaderUser(false);
@@ -111,11 +112,14 @@ function Landing() {
     } if (headerSecond) {
       setHeaderMain(false);
       setHeaderUser(true);
+    } if (checkMessagingPageforHeader) {
+      setHeaderMain(false);
+      setHeaderUser(false);
     }
 
     const footerFirst = linksFooter.some((link) => pathName.match(link.url));
     const footerSecond = linksFooterUser.some((link) => pathName.match(link.url));
-    const checkMessagingPage = pathName === '/messaging';
+    const checkMessagingPageforFooter = pathName === '/messaging';
 
     if (footerFirst) {
       setFooterUser(false);
@@ -123,7 +127,7 @@ function Landing() {
     } if (footerSecond) {
       setFooterMain(false);
       setFooterUser(true);
-    } if (checkMessagingPage) {
+    } if (checkMessagingPageforFooter) {
       setFooterMain(false);
       setFooterUser(false);
     }

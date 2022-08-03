@@ -7,15 +7,17 @@
     }
 
     @media screen and (min-width: $tablet) {
-        font-size: 16px;
+        font-size: 14px;
     }
-
+    @media screen and (min-width: $desktop) {
+        font-size: 18px;
+    }
     // background-color: #BFD8DF;
     font-weight: 500;
     width: 100%;
     position: fixed;
     bottom: 0;
-    height: 2em;
+    height: 4em;
 
 
     background: linear-gradient(
@@ -36,7 +38,7 @@
     ul {
         margin-left: auto;
         margin-right: auto;
-        padding: 0.5em;
+        padding: 1.5em;
         width: 80%;
         display: flex;
         justify-content: space-evenly;

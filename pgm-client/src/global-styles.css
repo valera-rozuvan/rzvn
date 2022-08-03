@@ -98,7 +98,7 @@ html {
   margin-right: calc(-1 * (100vw - 100%)); 
 }
 body{
-  margin-top: 6em;
+  margin-top: 5em;
 }
 body section {
   width: 80%;
@@ -106,8 +106,6 @@ body section {
   margin-right: auto;
   margin-left: auto;
 }
-
-
 
 
 input {
