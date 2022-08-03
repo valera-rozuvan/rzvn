@@ -12,7 +12,7 @@ function HeaderUser() {
         <h1>
           PG Messenger
           <br />
-          LOGO 22222
+          LOGO UserPage
         </h1>
       </div>
     </header>
