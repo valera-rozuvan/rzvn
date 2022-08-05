@@ -5,7 +5,7 @@ import s from './friend.module.scss';
 function Friend() {
   const friendList = [
     {
-      name: 'Peter', id: '067uoi0y4ti40t3i', key: '0x6wr61rw16wrw11', notes: 'girlfriend',
+      name: 'Anna', id: '067uoi0y4ti40t3i', key: '0x6wr61rw16wrw11', notes: 'girlfriend',
     },
     {
       name: 'Max', id: '753y2r830uy38tu', key: '0x8357y92ruu9r2', notes: 'friend from work',
