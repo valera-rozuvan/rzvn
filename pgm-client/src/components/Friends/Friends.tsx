@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import s from './friends.module.scss';
+import Friend from '../Friend/Friend';
 
 function Friends() {
   const friendList = [
@@ -57,19 +58,7 @@ function Friends() {
         }
 
         <p className={s.allFriendsTitle}>all friends:</p>
-        {friendList.map((friend) => (
-          <section key={friend.id}>
-            <div className={s.friendBox}>
-              <p className={s.friendName}>{friend.name}</p>
-              <p className={s.friendKey}>{friend.key}</p>
-              <Link className={s.friendEdit} to={`/friends/edit/${friend.id}`}>edit</Link>
-            </div>
-            <p className={s.friendNotes}>
-              notes:
-              {friend.notes}
-            </p>
-          </section>
-        ))}
+        <Friend />
       </div>
     </section>
   );
