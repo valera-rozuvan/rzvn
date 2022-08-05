@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import s from './groupAdd.module.scss';
 
-function GroupAdd() {
+function Groups() {
   const groupsList = [
     {
       id: '067uoi0y4ti58uy54yt40t3i', key: '0x6wr61rw16wrw11', topic: 'girlfriends b-day',
@@ -27,33 +27,35 @@ function GroupAdd() {
     },
   ];
   return (
-    <section className={s.groupAdd}>
+    <section className={s.groups}>
       <div className={s.innerContainer}>
-        <p className={s.searchText}>topic</p>
+        <p className={s.searchText}>search pubkey, topics</p>
         <div className={s.createBox}>
           <input type="text" placeholder="enter name of group" />
-          <Link className={s.btnCreateGroup} to="/groups/add">create</Link>
+          <Link className={s.btnCreateGroup} to="/groups/add">create group</Link>
         </div>
-        <p className={s.title}>member list</p>
-        <p className={s.subtitle}>added</p>
-        {groupsList.map((group) => (
-          <section key={group.id}>
-            <div className={s.groupBox}>
-              <p className={s.groupKey}>{group.key}</p>
-              <Link to="/" className={s.friendDelete}>delete</Link>
+        <p className={s.curretGroupText}>currently chatting in group</p>
+        <section>
+          <div className={s.groupBox}>
+            <p className={s.groupKey}>[0x894tr789utyt8ut8t2]</p>
+            <div className={s.btnBox}>
+              <Link to="/" className={s.groupMembers}>members</Link>
+              <Link to="/" className={s.groupLeave}>leave</Link>
             </div>
-            <p className={s.groupTopic}>
-              topic:
-              {group.topic}
-            </p>
-          </section>
-        ))}
-        <p className={s.subtitle}>friend list</p>
+          </div>
+          <p className={s.groupTopic}>
+            topic: what to do this weekend
+          </p>
+        </section>
+        <p className={s.curretGroupText}>all groups</p>
         {groupsList.map((group) => (
           <section key={group.id}>
             <div className={s.groupBox}>
               <p className={s.groupKey}>{group.key}</p>
-              <Link to="/" className={s.friendAdd}>add</Link>
+              <div className={s.btnBox}>
+                <Link to="/" className={s.groupMembers}>members</Link>
+                <Link to="/" className={s.groupLeave}>leave</Link>
+              </div>
             </div>
             <p className={s.groupTopic}>
               topic:
@@ -63,18 +65,7 @@ function GroupAdd() {
         ))}
       </div>
     </section>
-    // <section className={s.groupAdd}>
-    //   <div className={s.innerContainer}>
-    //     <h2 className={s.title}>add group</h2>
-    //     <p>topic</p>
-    //     <input />
-    //     <p>members</p>
-    //     <input />
-    //     <button type="submit">add</button>
-    //   </div>
-    // </section>
-
   );
 }
 
-export default GroupAdd;
+export default Groups;

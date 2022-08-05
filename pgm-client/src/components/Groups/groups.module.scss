@@ -37,6 +37,7 @@
         }
     }
     .btnCreateGroup {
+        margin-left: 2em;
         font-weight: $font500;
         padding: 0.2em 0.5em;
         color: inherit;
@@ -53,7 +54,7 @@
     .createBox {
         margin-top: 0.5em;
         display: flex;
-        justify-content: space-around;
+        // justify-content: space-between;
         align-items: center;
     }
 
