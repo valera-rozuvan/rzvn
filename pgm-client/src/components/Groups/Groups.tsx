@@ -34,7 +34,7 @@ function Groups() {
           <input type="text" placeholder="enter name of group" />
           <Link className={s.btnCreateGroup} to="/groups/add">create group</Link>
         </div>
-        <p className={s.curretGroupText}>currently chatting in group:</p>
+        <p className={s.curretGroupText}>currently chatting in group</p>
         <section>
           <div className={s.groupBox}>
             <p className={s.groupKey}>[0x894tr789utyt8ut8t2]</p>
@@ -47,7 +47,7 @@ function Groups() {
             topic: what to do this weekend
           </p>
         </section>
-        <p className={s.curretGroupText}>all groups:</p>
+        <p className={s.curretGroupText}>all groups</p>
         {groupsList.map((group) => (
           <section key={group.id}>
             <div className={s.groupBox}>
