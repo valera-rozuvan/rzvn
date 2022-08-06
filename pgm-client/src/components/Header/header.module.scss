@@ -1,31 +1,49 @@
 @import '../../variables.scss';
+
 .header {
   @media screen and (min-width: $mobile) {
     font-size: 10px;
-}
+  }
 
-@media screen and (min-width: $tablet) {
+  @media screen and (min-width: $tablet) {
     font-size: 16px;
-}
+  }
 
-@media screen and (min-width: $desktop) {
+  @media screen and (min-width: $desktop) {
     font-size: 20px;
-}
-padding-top: 0.5em;
+  }
 
+  // padding-top: 0.5em;
   position: fixed;
   cursor: pointer;
-  width: 100%;
   background-color: rgb(241, 241, 241);
   text-align: center;
   top: 0;
-
-.innerContainer{
-width: 10%;
-padding: 0.2em 0.5em;
-margin-left: auto;
-margin-right: auto;
-
 }
 
-}
+  .headerMain {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .headerUser {
+    width: 10%;
+  }
+
+  .innerContainer {
+    width: 10%;
+    padding: 0.2em 0.5em;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .innerContainerMini {
+    width: 10%;
+    padding: 0.2em 0.5em;
+    // margin-left: auto;
+    // margin-right: auto;
+
+  }
+
+
