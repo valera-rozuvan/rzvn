@@ -9,9 +9,11 @@
     @media screen and (min-width: $tablet) {
         font-size: 14px;
     }
+
     @media screen and (min-width: $desktop) {
         font-size: 18px;
     }
+
     // background-color: #BFD8DF;
     font-weight: 500;
     width: 100%;
@@ -19,21 +21,16 @@
     bottom: 0;
     height: 4em;
 
-
-    background: linear-gradient(
-        237.97deg,
+    background: linear-gradient(237.97deg,
         rgba(255, 255, 255, 0.2) 1.16%,
-        rgba(255, 255, 255, 0) 99.16%
-      );
-    
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      border: linear-gradient(
-        251.43deg,
-        rgba(255, 255, 255, 0.6) -20%,
-        rgba(255, 255, 255, 0.3) 79.79%
-      );
+        rgba(255, 255, 255, 0) 99.16%);
 
-      backdrop-filter: blur(0.3em);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border: linear-gradient(251.43deg,
+        rgba(255, 255, 255, 0.6) -20%,
+        rgba(255, 255, 255, 0.3) 79.79%);
+
+    backdrop-filter: blur(0.3em);
 
     ul {
         margin-left: auto;
@@ -49,17 +46,28 @@
         color: inherit;
         padding: 0.2em 0.5em;
         text-align: center;
-        background: #CDCFED;
+        // background: #CDCFED;
         box-shadow: 0px 0.5em 0.5em rgba(0, 0, 0, 0.25);
         border-radius: 0.2em;
-        transition: $animationQuick;
+        // transition: $animationQuick;
 
-        &:hover{
-            background: #888fe6;  
-        }
-        &:active{
-            background: rgb(255, 255, 255);
-        }
+        // &:hover{
+        //     background: #888fe6;  
+        // }
+        // &:active{
+        //     background-color: green;
+        // }
+
     }
 
+    .active {
+        background-color: rgb(255, 255, 255);
+    }
+    
+    .inactive {
+            background: #CDCFED;
+    }
+
+
 }
+

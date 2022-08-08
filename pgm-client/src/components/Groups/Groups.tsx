@@ -39,7 +39,7 @@ function Groups() {
           <div className={s.groupBox}>
             <p className={s.groupKey}>[0x894tr789utyt8ut8t2]</p>
             <div className={s.btnBox}>
-              <Link to="/" className={s.groupMembers}>members</Link>
+              <Link to="/groups/members" className={s.groupMembers}>members</Link>
               <Link to="/" className={s.groupLeave}>leave</Link>
             </div>
           </div>
@@ -53,7 +53,7 @@ function Groups() {
             <div className={s.groupBox}>
               <p className={s.groupKey}>{group.key}</p>
               <div className={s.btnBox}>
-                <Link to="/" className={s.groupMembers}>members</Link>
+                <Link to="/groups/members" className={s.groupMembers}>members</Link>
                 <Link to="/" className={s.groupLeave}>leave</Link>
               </div>
             </div>

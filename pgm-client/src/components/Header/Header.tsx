@@ -77,9 +77,7 @@ function Header() {
           <div className={s.innerContainer}>
             <button type="button" onClick={() => navigate('/')}>on main</button>
             <h1>
-              PG Messenger
-              <br />
-              LOGO MainPage
+              PGM
             </h1>
           </div>
         </header>
@@ -89,9 +87,7 @@ function Header() {
           <div className={s.innerContainerMini}>
             <button type="button" onClick={() => navigate('/')}>on main</button>
             <h1>
-              PG Messenger
-              <br />
-              LOGO UserPage
+              PGM
             </h1>
           </div>
         </header>

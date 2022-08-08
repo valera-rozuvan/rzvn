@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { NavLink, useLocation } from 'react-router-dom';
 
 import s from './footer.module.scss';
 
@@ -72,26 +72,26 @@ function Footer() {
       setFooterUser(false);
     }
   }, [pathName]);
-
+  const setActive = ({ isActive }:{isActive:boolean}) => (isActive ? s.active : s.inactive);
   return (
     <>
       {footerMain && (
         <footer className={s.footer}>
           <ul>
-            <li><Link to="/about">about</Link></li>
-            <li><Link to="/policy">policy</Link></li>
-            <li><Link to="/contact">contact</Link></li>
+            <li><NavLink className={setActive} to="/about">about</NavLink></li>
+            <li><NavLink className={setActive} to="/policy">policy</NavLink></li>
+            <li><NavLink className={setActive} to="/contact">contact</NavLink></li>
           </ul>
         </footer>
       )}
       {footerUser && (
         <footer className={s.footer}>
           <ul>
-            <li><Link to="/messaging">msg</Link></li>
-            <li><Link to="/friends">friends</Link></li>
-            <li><Link to="/groups">groups</Link></li>
-            <li><Link to="/profile">profile</Link></li>
-            <li><Link to="/">logout</Link></li>
+            <li><NavLink className={setActive} to="/messaging">msg</NavLink></li>
+            <li><NavLink className={setActive} to="/friends">friends</NavLink></li>
+            <li><NavLink className={setActive} to="/groups">groups</NavLink></li>
+            <li><NavLink className={setActive} to="/profile">profile</NavLink></li>
+            <li><NavLink className={setActive} to="/">logout</NavLink></li>
           </ul>
         </footer>
       )}
