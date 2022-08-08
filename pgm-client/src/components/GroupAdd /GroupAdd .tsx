@@ -29,7 +29,7 @@ function GroupAdd() {
   return (
     <section className={s.groupAdd}>
       <div className={s.innerContainer}>
-        <p className={s.searchText}>topic</p>
+        <p className={s.searchText}>group topic</p>
         <div className={s.createBox}>
           <input type="text" placeholder="enter name of group" />
           <Link className={s.btnCreateGroup} to="/groups/add">create</Link>
