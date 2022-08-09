@@ -2,7 +2,7 @@ import React from 'react';
 
 import s from './friendEdit.module.scss';
 
-function Friends() {
+function FriendEdit() {
   return (
     <section className={s.friendEdit}>
       <div className={s.innerContainer}>
@@ -21,4 +21,4 @@ function Friends() {
   );
 }
 
-export default Friends;
+export default FriendEdit;

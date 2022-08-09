@@ -39,19 +39,33 @@ function Footer() {
     {
       url: '/friends',
     },
-    {
-      url: '/friends/add',
-    },
-    {
-      url: '/friends/edit/',
-    },
+    // {
+    //   url: '/friends/add',
+    // },
+    // {
+    //   url: '/friends/edit/',
+    // },
     {
       url: '/groups',
     },
-    {
-      url: '/groups/add/',
-    },
+    // {
+    //   url: '/groups/add/',
+    // },
   ];
+  // const linksFooterUserDeep = [
+  //   {
+  //     url: '/friends/add',
+  //   },
+  //   {
+  //     url: '/friends/edit/',
+  //   },
+  //   {
+  //     url: '/groups/add/',
+  //   },
+  //   {
+  //     url: '/groups/members/',
+  //   },
+  // ];
   useEffect(() => {
     setPathName(locationUrl.pathname);
   }, [locationUrl]);
@@ -59,6 +73,7 @@ function Footer() {
   useEffect(() => {
     const footerFirst = linksFooter.some((link) => pathName.match(link.url));
     const footerSecond = linksFooterUser.some((link) => pathName.match(link.url));
+    // || linksFooterUserDeep.some((link) => pathName.match(link.url));
     const checkMessagingPageforFooter = pathName === '/messaging';
 
     if (footerFirst) {
@@ -72,7 +87,7 @@ function Footer() {
       setFooterUser(false);
     }
   }, [pathName]);
-  const setActive = ({ isActive }:{isActive:boolean}) => (isActive ? s.active : s.inactive);
+  const setActive = ({ isActive }: { isActive: boolean }) => (isActive ? s.active : s.inactive);
   return (
     <>
       {footerMain && (

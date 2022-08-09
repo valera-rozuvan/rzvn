@@ -2,8 +2,12 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import s from './friends.module.scss';
 import Friend from '../Friend/Friend';
+import FriendItem from '../FriendItem/FriendItem';
 
 function Friends() {
+  function editFriend() {
+    console.log('edit friend');
+  }
   const friendList = [
     {
       name: 'Sophie', id: '067uoi0y4ti40t3i', key: '0x6wr61rw16wrw11', notes: 'girlfriend',
@@ -42,17 +46,7 @@ function Friends() {
         {
           (currentFriend)
             ? (
-              <section>
-                <div className={s.friendBox}>
-                  <p className={s.friendName}>{currentFriend.name}</p>
-                  <p className={s.friendKey}>{currentFriend.key}</p>
-                  <Link className={s.friendEdit} to={`/friends/edit/${currentFriend.id}`}>edit</Link>
-                </div>
-                <p className={s.friendNotes}>
-                  notes:
-                  {currentFriend.notes}
-                </p>
-              </section>
+              <FriendItem friend={currentFriend} componentType="friends" actionHandlers={{ edit: editFriend }} />
             )
             : <>nobody</>
         }
