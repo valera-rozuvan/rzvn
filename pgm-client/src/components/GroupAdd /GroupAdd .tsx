@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import FriendList from '../FriendList/FriendList';
 import s from './groupAdd.module.scss';
 
 function GroupAdd() {
@@ -55,7 +56,8 @@ function GroupAdd() {
           <p className={s.subtitle}>friend list </p>
           <input type="search" placeholder="enter name of friend" />
         </div>
-        {groupsList.map((friend) => (
+        <FriendList />
+        {/* {groupsList.map((friend) => (
           <section key={friend.id}>
             <div className={s.groupBox}>
               <p className={s.groupKey}>{friend.name}</p>
@@ -67,20 +69,9 @@ function GroupAdd() {
               {friend.topic}
             </p>
           </section>
-        ))}
+        ))} */}
       </div>
     </section>
-    // <section className={s.groupAdd}>
-    //   <div className={s.innerContainer}>
-    //     <h2 className={s.title}>add group</h2>
-    //     <p>topic</p>
-    //     <input />
-    //     <p>members</p>
-    //     <input />
-    //     <button type="submit">add</button>
-    //   </div>
-    // </section>
-
   );
 }
 

@@ -1,8 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import FriendList from '../FriendList';
 import s from './groupMembers.module.scss';
 
 function GroupAdd() {
+  function addFriend() {
+    console.log('add friend from group members');
+  }
   const groupsList = [
     {
       id: '067uoi0y4ti58uy54yt40t3i', name: 'Monica', key: '0x6wr61rw16wrw11', topic: 'girlfriends b-day',
@@ -42,7 +46,8 @@ function GroupAdd() {
           <p className={s.subtitle}>members of group </p>
           {/* <input type="search" placeholder="enter name of friend" /> */}
         </div>
-        {groupsList.map((friend) => (
+        <FriendList />
+        {/* {groupsList.map((friend) => (
           <section key={friend.id}>
             <div className={s.groupBox}>
               <p className={s.groupKey}>{friend.name}</p>
@@ -54,7 +59,7 @@ function GroupAdd() {
               {friend.topic}
             </p>
           </section>
-        ))}
+        ))} */}
       </div>
     </section>
   );

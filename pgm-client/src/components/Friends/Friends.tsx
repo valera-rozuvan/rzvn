@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import s from './friends.module.scss';
-import Friend from '../Friend/Friend';
+import FriendList from '../FriendList/FriendList';
 import FriendItem from '../FriendItem/FriendItem';
 
 function Friends() {
@@ -52,7 +52,7 @@ function Friends() {
         }
 
         <p className={s.allFriendsTitle}>all friends</p>
-        <Friend />
+        <FriendList />
       </div>
     </section>
   );

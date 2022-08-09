@@ -21,12 +21,12 @@ function FriendItem({ friend, componentType, actionHandlers }: IProps) {
             <p className={s.friendName}>{friend.name}</p>
             <p className={s.friendKey}>{friend.key}</p>
             {
-              componentType === 'friends'
-              && <button type="button" className={s.friendEdit} onClick={actionHandlers.edit}>edit</button>
+              (componentType === 'friends' || componentType === 'friendList')
+              && <button type="button" className={s.friendEditBtn} onClick={actionHandlers.edit}>edit</button>
             }
             {
-              componentType === 'groups'
-              && <button type="button" className={s.friendEdit} onClick={actionHandlers.add}>add</button>
+              componentType === 'groupMembers'
+              && <button type="button" className={s.friendEditBtn} onClick={actionHandlers.add}>add</button>
             }
           </div>
           <p className={s.friendNotes}>
