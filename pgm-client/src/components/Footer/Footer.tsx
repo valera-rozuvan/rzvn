@@ -39,18 +39,9 @@ function Footer() {
     {
       url: '/friends',
     },
-    // {
-    //   url: '/friends/add',
-    // },
-    // {
-    //   url: '/friends/edit/',
-    // },
     {
       url: '/groups',
     },
-    // {
-    //   url: '/groups/add/',
-    // },
   ];
   // const linksFooterUserDeep = [
   //   {

@@ -1,7 +1,6 @@
 import React from 'react';
-// import { Link } from 'react-router-dom';
 import FriendItem from '../FriendItem/FriendItem';
-import s from './friendList.module.scss';
+// import s from './friendList.module.scss';
 
 function FriendList() {
   function editFriend() {
@@ -9,7 +8,7 @@ function FriendList() {
   }
   const friendList = [
     {
-      name: 'Any', id: '067uoi0y4ti40t3i', key: '0x6wr61rw16wrw11', notes: 'girlfriend',
+      name: 'Olly', id: '067uoi0y4ti40t3i', key: '0x6wr61rw16wrw11', notes: 'girlfriend',
     },
     {
       name: 'Max', id: '753y2r830uy38tu', key: '0x8357y92ruu9r2', notes: 'friend from work',
@@ -32,24 +31,11 @@ function FriendList() {
   ];
 
   return (
-    <section className={s.friends}>
-      <div className={s.innerContainer}>
-        {friendList.map((friend) => (
-          <FriendItem friend={friend} componentType="friendList" actionHandlers={{ edit: editFriend }} />
-          // <section key={friend.id}>
-          //   <div className={s.friendBox}>
-          //     <p className={s.friendName}>{friend.name}</p>
-          //     <p className={s.friendKey}>{friend.key}</p>
-          //     <Link className={s.friendEdit} to={`/friends/edit/${friend.id}`}>edit</Link>
-          //   </div>
-          //   <p className={s.friendNotes}>
-          //     notes:
-          //     {friend.notes}
-          //   </p>
-          // </section>
-        ))}
-      </div>
-    </section>
+    <>
+      {friendList.map((friend) => (
+        <FriendItem friend={friend} componentType="friendList" actionHandlers={{ edit: editFriend }} />
+      ))}
+    </>
   );
 }
 

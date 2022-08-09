@@ -26,7 +26,11 @@ function FriendItem({ friend, componentType, actionHandlers }: IProps) {
             }
             {
               componentType === 'groupMembers'
-              && <button type="button" className={s.friendEditBtn} onClick={actionHandlers.add}>add</button>
+              && <button type="button" className={s.friendAddBtn} onClick={actionHandlers.add}>add</button>
+            }
+            {
+              componentType === 'memberList'
+              && <button type="button" className={s.friendRemoveBtn} onClick={actionHandlers.remove}>remove</button>
             }
           </div>
           <p className={s.friendNotes}>

@@ -50,7 +50,6 @@ function Friends() {
             )
             : <>nobody</>
         }
-
         <p className={s.allFriendsTitle}>all friends</p>
         <FriendList />
       </div>
