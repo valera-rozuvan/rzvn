@@ -7,10 +7,17 @@ interface IFriend {
   key: string,
   notes: string,
 }
+
+interface IActionHandlers {
+  edit?: (event: React.MouseEvent<HTMLButtonElement>) => void,
+  add?: (event: React.MouseEvent<HTMLButtonElement>) => void,
+  remove?: (event: React.MouseEvent<HTMLButtonElement>) => void,
+}
+
 interface IProps {
   friend: IFriend,
   componentType: string,
-  actionHandlers: any,
+  actionHandlers: IActionHandlers,
 }
 function FriendItem({ friend, componentType, actionHandlers }: IProps) {
   return (

@@ -34,6 +34,7 @@ module.exports = {
     'max-len': ['error', { ignoreUrls: true, code: 140 }],
     'no-shadow': 'off',
     '@typescript-eslint/no-shadow': 'error',
+    'no-console': 'off',
   },
   settings: {
     'import/resolver': {
