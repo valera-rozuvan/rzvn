@@ -35,7 +35,12 @@ button {
 }
 
 .redBtn {
-   background-color: green;
+   background-color: #FE5B5B;
+   color:white;
+   &:active {
+      background: rgb(255, 255, 255);
+      color:black;
+   }
 }
 
 .purpleBtn {

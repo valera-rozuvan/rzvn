@@ -52,32 +52,32 @@
         background-color: white;
         color: black;
     }
-    .generateBtn {
-        background: #3CF92C;
-        box-shadow: 0px 0.2em 0.2em rgba(0, 0, 0, 0.25);
-        border-radius: 0.2em;
-        padding: 0.2em 0.5em;
-        color: inherit;
-        font-weight: $font500;
+    // .generateBtn {
+    //     background: #3CF92C;
+    //     box-shadow: 0px 0.2em 0.2em rgba(0, 0, 0, 0.25);
+    //     border-radius: 0.2em;
+    //     padding: 0.2em 0.5em;
+    //     color: inherit;
+    //     font-weight: $font500;
 
-        &:active {
-            background: white;
-        }
-    }
-    .update {
-        background-color: #A2A5EE;
-        color: black;
+    //     &:active {
+    //         background: white;
+    //     }
+    // }
+    // .update {
+    //     background-color: #A2A5EE;
+    //     color: black;
         
-        :hover{
-            background-color: white;
-            color: black;
-        }
-    }
-    .delete {
-        background: #FE5B5B;
-        color: white;
+    //     :hover{
+    //         background-color: white;
+    //         color: black;
+    //     }
+    // }
+    // .delete {
+    //     background: #FE5B5B;
+    //     color: white;
 
-    }
+    // }
 
     .pkTitle {
         font-weight: $font500;
@@ -86,6 +86,7 @@
     .pk {
         margin-left: 2em;
         margin-top: 1em;
+        margin-bottom: 1em;
     }
 
     .nickname {
