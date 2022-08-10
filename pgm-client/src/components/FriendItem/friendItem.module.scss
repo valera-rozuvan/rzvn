@@ -17,8 +17,8 @@
         font-size: 18px;
     }
 
-    padding-bottom: 4em;
-    margin-top: 2em;
+    // padding-bottom: 4em;
+    // margin-top: 2em;
 
     .innerContainer {
         width: 100%;
@@ -26,35 +26,12 @@
         margin-right: auto;
     }
 
-    .btnAddFriend {
-        font-weight: $font500;
-        padding: 0.2em 0.5em;
-        color: inherit;
-        background: #55FA47;
-        box-shadow: 0px 0.2em 0.2em rgba(0, 0, 0, 0.25);
-        border-radius: 0.2em;
-        text-align: center;
-
-        &:active {
-            background: white;
-        }
-    }
 
     .addBox {
         margin-top: 0.5em;
         display: flex;
         justify-content: space-around;
         align-items: center;
-    }
-
-    .searchText {
-        font-weight: $font500;
-    }
-
-    .curretFriendTitle {
-        font-size: 1.5em;
-        font-weight: $font700;
-        margin-top: 1.5em;
     }
 
     .friendBox {
@@ -79,21 +56,47 @@
         margin-top: 0.5em;
     }
 
-    .friendEdit {
+    .friendEditBtn {
+        outline: none;
+        border:none;
         background: #ECCA51;
         box-shadow: 0px 0.2em 0.2em rgba(0, 0, 0, 0.25);
         border-radius: 0.2em;
         padding: 0.2em 1em;
         color: inherit;
-        font-weight: $font500;
+        font-weight: $font600;
 
         &:active {
             background: white;
         }
     }
-    .allFriendsTitle{
-        font-size: 1.5em;
-        margin-top: 1em;
-        font-weight: $font700;
+    .friendAddBtn {
+        outline: none;
+        border:none;
+        background: #55FA47;
+        box-shadow: 0px 0.2em 0.2em rgba(0, 0, 0, 0.25);
+        border-radius: 0.2em;
+        padding: 0.2em 1em;
+        color: inherit;
+        font-weight: $font600;
+
+        &:active {
+            background: white;
+        }
+    }
+    .friendRemoveBtn{
+        outline: none;
+        border:none;
+        background: #FE5B5B;
+        color: white;
+        box-shadow: 0px 0.2em 0.2em rgba(0, 0, 0, 0.25);
+        border-radius: 0.2em;
+        padding: 0.2em 1em;
+        font-weight: $font600;
+
+        &:active {
+            background: white;
+            color: inherit;
+        }  
     }
 }

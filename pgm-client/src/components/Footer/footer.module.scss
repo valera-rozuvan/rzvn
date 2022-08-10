@@ -45,29 +45,19 @@
     a {
         color: inherit;
         padding: 0.2em 0.5em;
-        text-align: center;
-        // background: #CDCFED;
+        display: block;
         box-shadow: 0px 0.5em 0.5em rgba(0, 0, 0, 0.25);
         border-radius: 0.2em;
-        // transition: $animationQuick;
-
-        // &:hover{
-        //     background: #888fe6;  
-        // }
-        // &:active{
-        //     background-color: green;
-        // }
 
     }
 
     .active {
         background-color: rgb(255, 255, 255);
     }
-    
+
     .inactive {
-            background: #CDCFED;
+        background: #CDCFED;
     }
 
 
 }
-
