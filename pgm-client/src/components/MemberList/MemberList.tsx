@@ -57,11 +57,11 @@ function MemberList() {
       <div>
         {groupMembersAdd
           && friendList.map((friend) => (
-            <FriendItem friend={friend} componentType="memberList" actionHandlers={{ remove: removeFriend }} />
+            <FriendItem key={friend.key} friend={friend} componentType="memberList" actionHandlers={{ remove: removeFriend }} />
           ))}
         {groupMembers
           && friendList.map((friend) => (
-            <FriendItem friend={friend} componentType="groupMembers" actionHandlers={{ add: addFriend }} />
+            <FriendItem key={friend.key} friend={friend} componentType="groupMembers" actionHandlers={{ add: addFriend }} />
           ))}
       </div>
     </section>
