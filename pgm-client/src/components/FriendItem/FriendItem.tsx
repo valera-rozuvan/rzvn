@@ -1,5 +1,4 @@
 import React from 'react';
-// import { useNavigate } from 'react-router-dom';
 import SuperButton from '../SuperButton';
 import s from './friendItem.module.scss';
 
@@ -10,17 +9,12 @@ interface IFriend {
   notes: string,
 }
 
-// interface IActionHandlers {
-//   onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void,
-// }
-
 interface IProps {
   friend: IFriend,
   componentType: string,
-  // actionHandlers: IActionHandlers,
+
 }
 function FriendItem({ friend, componentType }: IProps) {
-  // const navigate = useNavigate();
   function onEdit() {
     console.log('edit friend clicked');
   }
@@ -40,16 +34,13 @@ function FriendItem({ friend, componentType }: IProps) {
             {
               (componentType === 'friends' || componentType === 'friendList')
               && <SuperButton text="edit" typeStyle="yellow" actionHandlers={{ onClick: onEdit }} />
-              // && <button type="button" className={s.friendEditBtn} onClick={actionHandlers.edit}>edit</button>
             }
             {
               (componentType === 'groupMembers' || componentType === 'friendListGroup')
-              // && <button type="button" className={s.friendAddBtn} onClick={actionHandlers.add}>add</button>
               && <SuperButton text="add" typeStyle="green" actionHandlers={{ onClick: onAdd }} />
             }
             {
               componentType === 'memberList'
-              // && <button type="button" className={s.friendRemoveBtn} onClick={actionHandlers.remove}>remove</button>
               && <SuperButton text="remove" typeStyle="red" actionHandlers={{ onClick: onRemove }} />
             }
           </div>

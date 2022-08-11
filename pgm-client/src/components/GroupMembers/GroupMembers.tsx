@@ -1,7 +1,5 @@
 import React from 'react';
-// import { Link } from 'react-router-dom';
 import MemberList from '../MemberList';
-// import FriendList from '../FriendList';
 import s from './groupMembers.module.scss';
 
 function GroupAdd() {
@@ -15,7 +13,6 @@ function GroupAdd() {
         <p className={s.searchText}>search pubkey, name, notes</p>
         <div className={s.createBox}>
           <input type="text" placeholder="enter name of group" />
-          {/* <Link className={s.btnCreateGroup} to="/groups/add">create</Link> */}
         </div>
         <MemberList />
       </div>

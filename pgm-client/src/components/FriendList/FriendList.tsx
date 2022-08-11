@@ -1,14 +1,7 @@
 import React from 'react';
 import FriendItem from '../FriendItem/FriendItem';
-// import s from './friendList.module.scss';
 
 function FriendList() {
-  // function editFriend(event: React.MouseEvent<HTMLButtonElement>): void {
-  //   event.preventDefault();
-
-  //   console.log('edit friend');
-  // }
-
   const friendList = [
     {
       name: 'Olly', id: '067uoi0y4ti40t3i', key: '0x6wr61rw16wrw11', notes: 'girlfriend',

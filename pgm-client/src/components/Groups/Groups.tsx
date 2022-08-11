@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import SuperButton from '../SuperButton';
 import s from './groups.module.scss';
 
@@ -46,7 +46,6 @@ function Groups() {
           <div className={s.btnCreateGroupBox}>
             <SuperButton typeStyle="green" text="create group" actionHandlers={{ onClick: onGroupCreate }} />
           </div>
-          {/* <Link className={s.btnCreateGroup} to="/groups/add">create group</Link> */}
         </div>
         <p className={s.curretGroupText}>currently chatting in group</p>
         <section>

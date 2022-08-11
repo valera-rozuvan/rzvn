@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import FriendItem from '../FriendItem/FriendItem';
-// import s from './memberList.module.scss';
 
 function MemberList() {
   const locationUrl = useLocation();
@@ -22,12 +21,6 @@ function MemberList() {
     }
   }, [pathName]);
 
-  // function removeFriend() {
-  //   console.log('remove friend');
-  // }
-  // function addFriend() {
-  //   console.log('add friend');
-  // }
   const friendList = [
     {
       name: 'Eva', id: '067uoi0y4ti40t3i', key: '0x6wr61rw16wrw11', notes: 'girlfriend',

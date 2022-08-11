@@ -18,8 +18,7 @@ function FriendAdd() {
           <SuperButton text="add" typeStyle="purple" actionHandlers={{ onClick: onSubmitNewFriend }} />
         </div>
       </div>
-    </section >
-
+    </section>
   );
 }
 

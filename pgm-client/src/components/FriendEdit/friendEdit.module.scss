@@ -20,25 +20,9 @@
         margin-left: auto;
         margin-right: auto;
     }
-    
 
-
-    button {
-        padding: 0.2em 0.5em;
+    .editBtnBox {
         margin-top: 2rem;
-        background: #A2A5EE;
-        box-shadow: 0px 0.2em 0.2em rgba(0, 0, 0, 0.25);
-        border-radius: 0.2em;
-        outline: none;
-        border: 0;
-        font-weight: $font600;
-
-        cursor: pointer;
-        font-weight: $font600;
-
-        &:active{
-            background-color: white;
-        }
     }
 
     .delete {
@@ -62,7 +46,7 @@
         margin-top: 1rem;
     }
 
-    .btnBlock {
+    .btnsBox {
         display: flex;
         justify-content: space-between;
 

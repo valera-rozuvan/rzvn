@@ -1,7 +1,7 @@
 import React from 'react';
 // import { useNavigate } from 'react-router-dom';
 import SuperButton from '../SuperButton';
-import FriendListGroup from '../FriendListGroup/FriendListGroup';
+import FriendListGroup from '../FriendListGroup';
 import MemberList from '../MemberList/MemberList';
 import s from './groupAdd.module.scss';
 
