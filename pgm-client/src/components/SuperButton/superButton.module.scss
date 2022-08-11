@@ -31,7 +31,10 @@ button {
 }
 
 .yellowBtn {
-   background-color: yellow;
+   background-color: #ECCA51;
+   &:active {
+      background: rgb(255, 255, 255);
+   }
 }
 
 .redBtn {
