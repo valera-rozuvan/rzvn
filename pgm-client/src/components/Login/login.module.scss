@@ -1,7 +1,7 @@
 @import '../../variables.scss';
 
 .innerContainer {
-    width: 60%;
+    width: 80%;
     margin-left: auto;
     margin-right: auto;
     padding-bottom: 4em;
@@ -25,40 +25,18 @@
 
     }
 
-    .generateBtn {
-        cursor: pointer;
+    .generateBtnBox {
         margin-left: 1em;
-        background: #3CF92C;
-        box-shadow: 0px 0.2em 0.2em rgba(0, 0, 0, 0.25);
-        border-radius: 0.2em;
-        border:0;
-        padding: 0.2em 0.5em;
-        color: inherit;
-        font-weight: $font600;
-
-        &:active{
-            background-color: white;
-        }
     }
 
-    .loginBtn {
-        cursor: pointer;
-        background: #A2A5EE;
-        box-shadow: 0px 0.2em 0.2em rgba(0, 0, 0, 0.25);
-        border-radius: 0.2em;
-        padding: 0.2em 0.5em;
-        margin-top:1em;
-        margin: 0 auto;
-        display: block;
-        border:0;
-        color: inherit;
-        font-weight: $font600;
-
-        &:active{
-            background-color: white;
-        }
+    .loginBtnBox {
+        display: flex;
+        justify-content: center;
+        margin: 2em auto;
+        align-items: center;
     }
-    .pkFingerprint{
+
+    .pkFingerprint {
         overflow-wrap: break-word;
     }
 }

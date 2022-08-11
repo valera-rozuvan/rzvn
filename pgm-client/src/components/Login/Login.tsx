@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Dispatch } from 'redux';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-
+import SuperButton from '../SuperButton';
 import * as OpenpgpTypeDefs from '../../openpgp.d';
 
 import { IUserReducerActionSetKeyData, IUserReducerActionType, IUserKeyData } from '../../store/reducers/userReducer';
@@ -170,14 +170,13 @@ function Login(): React.ReactElement {
 
         <div>
           <p className={styles.text}>dont have a key pair?</p>
-          <button
-            type="button"
-            name="generateNewKeyPair"
-            className={styles.generateBtn}
-            onClick={generateNewKeyPairOnClick}
-          >
-            generate keypair
-          </button>
+          <div className={styles.generateBtnBox}>
+            <SuperButton
+              typeStyle="green"
+              text="generate keypair"
+              actionHandlers={{ onClick: generateNewKeyPairOnClick }}
+            />
+          </div>
         </div>
 
         {
@@ -198,14 +197,13 @@ function Login(): React.ReactElement {
         {
           canLogin
             ? (
-              <button
-                type="button"
-                name="tryToLogin"
-                className={styles.loginBtn}
-                onClick={tryToLoginOnClick}
-              >
-                login
-              </button>
+              <div className={styles.loginBtnBox}>
+                <SuperButton
+                  typeStyle="purple"
+                  actionHandlers={{ onClick: tryToLoginOnClick }}
+                  text="login"
+                />
+              </div>
             )
             : <>&nbsp;</>
         }

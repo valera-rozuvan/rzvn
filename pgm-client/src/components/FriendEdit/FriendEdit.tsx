@@ -1,8 +1,14 @@
 import React from 'react';
-
+import SuperButton from '../SuperButton';
 import s from './friendEdit.module.scss';
 
 function FriendEdit() {
+  function onUpdateFriend() {
+    console.log('update friend');
+  }
+  function onDeleteInfo() {
+    console.log('delete friends info');
+  }
   return (
     <section className={s.friendEdit}>
       <div className={s.innerContainer}>
@@ -12,9 +18,9 @@ function FriendEdit() {
         <p className={s.userName}>Joey</p>
         <p>notes</p>
         <input type="text" />
-        <div className={s.btnBlock}>
-          <button className={s.update} type="submit">update</button>
-          <button className={s.delete} type="submit">delete</button>
+        <div className={s.btnsBox}>
+          <SuperButton text="update" typeStyle="purple" actionHandlers={{ onClick: onUpdateFriend }} />
+          <SuperButton text="delete" typeStyle="red" actionHandlers={{ onClick: onDeleteInfo }} />
         </div>
       </div>
     </section>

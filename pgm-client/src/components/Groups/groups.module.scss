@@ -30,25 +30,14 @@
 
         @media screen and (max-width: $mobileMAX){
             flex-direction: column;
-            height: 3em;
+            height: 4em;
         }
         @media screen and (min-width: $tablet) {
            width: 160px;
         }
     }
-    .btnCreateGroup {
+    .btnCreateGroupBox {
         margin-left: 2em;
-        font-weight: $font500;
-        padding: 0.2em 0.5em;
-        color: inherit;
-        background: #55FA47;
-        box-shadow: 0px 0.2em 0.2em rgba(0, 0, 0, 0.25);
-        border-radius: 0.2em;
-        text-align: center;
-
-        &:active {
-            background: white;
-        }
     }
 
     .createBox {
@@ -92,36 +81,36 @@
 
 
 
-    .groupMembers {
-        background: #ECCA51;
-        box-shadow: 0px 0.2em 0.2em rgba(0, 0, 0, 0.25);
-        border-radius: 0.2em;
-        padding: 0.2em 1em;
-        color: inherit;
-        font-weight: $font500;
-        text-align: center;
-        font-size: 0.8em;
+    // .groupMembers {
+    //     background: #ECCA51;
+    //     box-shadow: 0px 0.2em 0.2em rgba(0, 0, 0, 0.25);
+    //     border-radius: 0.2em;
+    //     padding: 0.2em 1em;
+    //     color: inherit;
+    //     font-weight: $font500;
+    //     text-align: center;
+    //     font-size: 0.8em;
 
-        &:active {
-            background: white;
-        }
-    }
+    //     &:active {
+    //         background: white;
+    //     }
+    // }
 
-    .groupLeave {
-        background: #FE5B5B;
-        box-shadow: 0px 0.2em 0.2em rgba(0, 0, 0, 0.25);
-        border-radius: 0.2em;
-        padding: 0.2em 1em;
-        color: white;
-        font-weight: $font500;
-        text-align: center;
-        font-size: 0.8em;
+    // .groupLeave {
+    //     background: #FE5B5B;
+    //     box-shadow: 0px 0.2em 0.2em rgba(0, 0, 0, 0.25);
+    //     border-radius: 0.2em;
+    //     padding: 0.2em 1em;
+    //     color: white;
+    //     font-weight: $font500;
+    //     text-align: center;
+    //     font-size: 0.8em;
 
-        &:active {
-            background: white;
-            color:black
-        }
-    }
+    //     &:active {
+    //         background: white;
+    //         color:black
+    //     }
+    // }
 
     .allFriendsText {
         font-size: 1.5em;

@@ -1,7 +1,7 @@
 import React from 'react';
 import FriendItem from '../FriendItem/FriendItem';
 
-function FriendList() {
+function FriendListGroup() {
   const friendList = [
     {
       name: 'Olly', id: '067uoi0y4ti40t3i', key: '0x6wr61rw16wrw11', notes: 'girlfriend',
@@ -29,10 +29,10 @@ function FriendList() {
   return (
     <>
       {friendList.map((friend) => (
-        <FriendItem key={friend.id} friend={friend} componentType="friendList" />
+        <FriendItem key={friend.id} friend={friend} componentType="friendListGroup" />
       ))}
     </>
   );
 }
 
-export default FriendList;
+export default FriendListGroup;

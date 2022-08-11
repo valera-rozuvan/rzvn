@@ -1,12 +1,15 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import s from './friends.module.scss';
 import FriendList from '../FriendList/FriendList';
 import FriendItem from '../FriendItem/FriendItem';
+import SuperButton from '../SuperButton';
 
 function Friends() {
-  function editFriend() {
-    console.log('edit friend');
+  const navigate = useNavigate();
+
+  function onCreateNewFriend() {
+    navigate('/friends/add');
   }
   const friendList = [
     {
@@ -40,13 +43,13 @@ function Friends() {
         <p className={s.searchText}>search pubkey, name, notes</p>
         <div className={s.addBox}>
           <input type="text" placeholder="enter name of friend" />
-          <Link className={s.btnAddFriend} to="/friends/add">add friend</Link>
+          <SuperButton text="add friend" typeStyle="green" actionHandlers={{ onClick: onCreateNewFriend }} />
         </div>
         <p className={s.curretFriendTitle}>currently chatting with friend</p>
         {
           (currentFriend)
             ? (
-              <FriendItem friend={currentFriend} componentType="friends" actionHandlers={{ edit: editFriend }} />
+              <FriendItem friend={currentFriend} componentType="friends" />
             )
             : <>nobody</>
         }
