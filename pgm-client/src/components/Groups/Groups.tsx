@@ -53,8 +53,8 @@ function Groups() {
           <div className={s.groupBox}>
             <p className={s.groupKey}>[0x894tr789utyt8ut8t2]</p>
             <div className={s.btnBox}>
-              <Link to="/groups/members" className={s.groupMembers}>members</Link>
-              <Link to="/" className={s.groupLeave}>leave</Link>
+              <SuperButton typeStyle="yellow" text="members" actionHandlers={{ onClick: onMembersList }} />
+              <SuperButton typeStyle="red" text="leave" actionHandlers={{ onClick: onLeaveClick }} />
             </div>
           </div>
           <p className={s.groupTopic}>

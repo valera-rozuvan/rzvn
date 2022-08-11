@@ -43,7 +43,7 @@ function FriendItem({ friend, componentType }: IProps) {
               // && <button type="button" className={s.friendEditBtn} onClick={actionHandlers.edit}>edit</button>
             }
             {
-              componentType === 'groupMembers'
+              (componentType === 'groupMembers' || componentType === 'friendListGroup')
               // && <button type="button" className={s.friendAddBtn} onClick={actionHandlers.add}>add</button>
               && <SuperButton text="add" typeStyle="green" actionHandlers={{ onClick: onAdd }} />
             }

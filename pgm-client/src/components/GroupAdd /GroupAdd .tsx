@@ -1,7 +1,7 @@
 import React from 'react';
 // import { useNavigate } from 'react-router-dom';
 import SuperButton from '../SuperButton';
-import FriendList from '../FriendList/FriendList';
+import FriendListGroup from '../FriendListGroup/FriendListGroup';
 import MemberList from '../MemberList/MemberList';
 import s from './groupAdd.module.scss';
 
@@ -29,7 +29,7 @@ function GroupAdd() {
           <p className={s.subtitle}>friend list</p>
           <input type="search" placeholder="enter name of friend" />
         </div>
-        <FriendList />
+        <FriendListGroup />
       </div>
     </section>
   );

@@ -1,7 +1,11 @@
 import React from 'react';
+import SuperButton from '../SuperButton';
 import s from './friendAdd.module.scss';
 
 function FriendAdd() {
+  function onSubmitNewFriend() {
+    console.log('submit new friend');
+  }
   return (
     <section className={s.friendAdd}>
       <div className={s.innerContainer}>
@@ -10,9 +14,11 @@ function FriendAdd() {
         <input />
         <p>notes</p>
         <input />
-        <button type="submit">add</button>
+        <div className={s.addBtnBox}>
+          <SuperButton text="add" typeStyle="purple" actionHandlers={{ onClick: onSubmitNewFriend }} />
+        </div>
       </div>
-    </section>
+    </section >
 
   );
 }

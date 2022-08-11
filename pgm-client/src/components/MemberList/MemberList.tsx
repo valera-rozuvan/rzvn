@@ -61,7 +61,7 @@ function MemberList() {
           ))}
         {groupMembers
           && friendList.map((friend) => (
-            <FriendItem key={friend.key} friend={friend} componentType="groupMembers" />
+            <FriendItem key={friend.key} friend={friend} componentType="friendListGroup" />
           ))}
       </div>
     </section>
