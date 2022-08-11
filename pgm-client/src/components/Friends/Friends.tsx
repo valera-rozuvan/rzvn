@@ -5,9 +5,9 @@ import FriendList from '../FriendList/FriendList';
 import FriendItem from '../FriendItem/FriendItem';
 
 function Friends() {
-  function editFriend() {
-    console.log('edit friend');
-  }
+  // function editFriend() {
+  //   console.log('edit friend');
+  // }
   const friendList = [
     {
       name: 'Sophie', id: '067uoi0y4ti40t3i', key: '0x6wr61rw16wrw11', notes: 'girlfriend',
@@ -46,7 +46,7 @@ function Friends() {
         {
           (currentFriend)
             ? (
-              <FriendItem friend={currentFriend} componentType="friends" actionHandlers={{ edit: editFriend }} />
+              <FriendItem friend={currentFriend} componentType="friends" />
             )
             : <>nobody</>
         }

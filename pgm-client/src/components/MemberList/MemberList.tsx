@@ -22,12 +22,12 @@ function MemberList() {
     }
   }, [pathName]);
 
-  function removeFriend() {
-    console.log('remove friend');
-  }
-  function addFriend() {
-    console.log('add friend');
-  }
+  // function removeFriend() {
+  //   console.log('remove friend');
+  // }
+  // function addFriend() {
+  //   console.log('add friend');
+  // }
   const friendList = [
     {
       name: 'Eva', id: '067uoi0y4ti40t3i', key: '0x6wr61rw16wrw11', notes: 'girlfriend',
@@ -57,11 +57,11 @@ function MemberList() {
       <div>
         {groupMembersAdd
           && friendList.map((friend) => (
-            <FriendItem key={friend.key} friend={friend} componentType="memberList" actionHandlers={{ remove: removeFriend }} />
+            <FriendItem key={friend.key} friend={friend} componentType="memberList" />
           ))}
         {groupMembers
           && friendList.map((friend) => (
-            <FriendItem key={friend.key} friend={friend} componentType="groupMembers" actionHandlers={{ add: addFriend }} />
+            <FriendItem key={friend.key} friend={friend} componentType="groupMembers" />
           ))}
       </div>
     </section>

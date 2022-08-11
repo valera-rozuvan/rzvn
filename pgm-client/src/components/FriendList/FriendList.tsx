@@ -3,11 +3,11 @@ import FriendItem from '../FriendItem/FriendItem';
 // import s from './friendList.module.scss';
 
 function FriendList() {
-  function editFriend(event: React.MouseEvent<HTMLButtonElement>): void {
-    event.preventDefault();
+  // function editFriend(event: React.MouseEvent<HTMLButtonElement>): void {
+  //   event.preventDefault();
 
-    console.log('edit friend');
-  }
+  //   console.log('edit friend');
+  // }
 
   const friendList = [
     {
@@ -36,7 +36,7 @@ function FriendList() {
   return (
     <>
       {friendList.map((friend) => (
-        <FriendItem key={friend.id} friend={friend} componentType="friendList" actionHandlers={{ edit: editFriend }} />
+        <FriendItem key={friend.id} friend={friend} componentType="friendList" />
       ))}
     </>
   );
