@@ -12,10 +12,6 @@ interface IProps {
 function SuperInput({ page }: IProps) {
   return (
     <>
-      {/* {
-                (typeStyle === 'green')
-                && <button type="button" className={s.greenBtn} onClick={actionHandlers.onClick}>{text}</button>
-            } */}
       {
                 (page === 'profile')
                 && (
