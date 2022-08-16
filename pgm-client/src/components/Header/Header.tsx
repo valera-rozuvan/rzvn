@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import { useLocation, Link } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import Logo from '../Icons/Logo/Logo';
 import s from './header.module.scss';
 
 function Header() {
+  const navigate = useNavigate();
   const [headerMain, setHeaderMain] = useState(false);
   const [headerUser, setHeaderUser] = useState(false);
   const locationUrl = useLocation();
@@ -74,15 +75,14 @@ function Header() {
       {headerMain && (
         <header className={`${s.header} ${s.headerMain}`}>
           <div className={s.innerContainer}>
-            <Link to="/">logo</Link>
+            <Logo superClick={() => navigate('/')} />
           </div>
         </header>
       )}
       {headerUser && (
         <header className={`${s.header} ${s.headerUser}`}>
           <div className={s.innerContainerMini}>
-            <Link to="/">on main</Link>
-            <Logo />
+            <Logo superClick={() => navigate('/')} />
             <h1>
               PGM
             </h1>
