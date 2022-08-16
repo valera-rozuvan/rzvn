@@ -38,13 +38,35 @@ function SuperInput({ page }: IProps) {
                 </form>
                 )
             }
-                  {
+      {
                 (page === 'groups')
                 && (
                 <form className={s.form}>
                   <label htmlFor="myInput">
-                  search pubkey, topics
+                    search pubkey, topics
                     <input id="myInput" name="myInput" placeholder="enter pubkey, topics" type="text" />
+                  </label>
+                </form>
+                )
+            }
+      {
+                (page === 'addGroup')
+                && (
+                <form className={s.form}>
+                  <label htmlFor="myInput">
+                    group topic
+                    <input id="myInput" name="myInput" placeholder="enter group topic" type="text" />
+                  </label>
+                </form>
+                )
+            }
+      {
+                (page === 'addGroupFilter')
+                && (
+                <form className={s.form}>
+                  <label htmlFor="myInput">
+                    filter
+                    <input id="myInput" name="myInput" placeholder="enter name of friend" type="search" />
                   </label>
                 </form>
                 )
