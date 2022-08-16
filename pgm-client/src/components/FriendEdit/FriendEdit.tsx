@@ -1,5 +1,6 @@
 import React from 'react';
 import SuperButton from '../SuperButton';
+import SuperInput from '../SuperInput';
 import s from './friendEdit.module.scss';
 
 function FriendEdit() {
@@ -16,8 +17,7 @@ function FriendEdit() {
         <p className={s.pkTitle}>public key</p>
         <p className={s.pk}>0x894tr789utyt8ut8t2...</p>
         <p className={s.userName}>Joey</p>
-        <p>notes</p>
-        <input type="text" />
+        <SuperInput page="friendNotes" />
         <div className={s.btnsBox}>
           <SuperButton text="update" typeStyle="purple" actionHandlers={{ onClick: onUpdateFriend }} />
           <SuperButton text="delete" typeStyle="red" actionHandlers={{ onClick: onDeleteInfo }} />

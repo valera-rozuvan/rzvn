@@ -1,5 +1,7 @@
 import React from 'react';
 import SuperButton from '../SuperButton';
+import SuperInput from '../SuperInput';
+
 import s from './friendAdd.module.scss';
 
 function FriendAdd() {
@@ -10,10 +12,8 @@ function FriendAdd() {
     <section className={s.friendAdd}>
       <div className={s.innerContainer}>
         <h2 className={s.title}>add friend</h2>
-        <p>public key</p>
-        <input />
-        <p>notes</p>
-        <input />
+        <SuperInput page="friendPublicKey" />
+        <SuperInput page="friendNotes" />
         <div className={s.addBtnBox}>
           <SuperButton text="add" typeStyle="purple" actionHandlers={{ onClick: onSubmitNewFriend }} />
         </div>

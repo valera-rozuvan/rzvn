@@ -38,6 +38,28 @@ function SuperInput({ page }: IProps) {
                 </form>
                 )
             }
+      {
+                (page === 'friendPublicKey')
+                && (
+                <form className={s.form}>
+                  <label htmlFor="myInput">
+                    public key
+                    <input id="myInput" name="myInput" placeholder="enter pubkey" type="text" />
+                  </label>
+                </form>
+                )
+            }
+      {
+                (page === 'friendNotes')
+                && (
+                <form className={s.form}>
+                  <label htmlFor="myInput">
+                    notes
+                    <input id="myInput" name="myInput" placeholder="enter notes" type="text" />
+                  </label>
+                </form>
+                )
+            }
     </>
   );
 }

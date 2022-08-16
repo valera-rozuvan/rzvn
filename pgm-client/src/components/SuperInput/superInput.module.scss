@@ -8,18 +8,18 @@ flex-direction: column;
 input{
     margin-top: 0.5em;
     display: block;
+    width: 100%;
 }
 label {
     // margin-top: 1em;
     font-weight: $font500;
     display: inline-block;
-}
-
-
-
-   &:active {
-      box-shadow: none;
    }
+//    .friendInput {
+//     // // padding: 0.2em 0.5em;
+//     // font-size: 1em;
+//     width: 100%;
+// }
 }
 
 
