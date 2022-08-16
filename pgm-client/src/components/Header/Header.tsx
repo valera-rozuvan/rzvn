@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useLocation, Link } from 'react-router-dom';
-
+import Logo from '../Icons/Logo/Logo';
 import s from './header.module.scss';
 
 function Header() {
@@ -63,7 +63,7 @@ function Header() {
       setHeaderMain(true);
     } if (headerSecond) {
       setHeaderMain(false);
-      setHeaderUser(true);
+      setHeaderUser(false); // change on true if u need header on user pages
     } if (checkMessagingPageforHeader) {
       setHeaderMain(false);
       setHeaderUser(false);
@@ -74,10 +74,7 @@ function Header() {
       {headerMain && (
         <header className={`${s.header} ${s.headerMain}`}>
           <div className={s.innerContainer}>
-            <Link to="/">on main</Link>
-            <h1>
-              PGM
-            </h1>
+            <Link to="/">logo</Link>
           </div>
         </header>
       )}
@@ -85,10 +82,12 @@ function Header() {
         <header className={`${s.header} ${s.headerUser}`}>
           <div className={s.innerContainerMini}>
             <Link to="/">on main</Link>
+            <Logo />
             <h1>
               PGM
             </h1>
           </div>
+
         </header>
       )}
     </>

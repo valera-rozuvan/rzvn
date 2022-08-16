@@ -1,0 +1,25 @@
+@import '../../variables.scss';
+
+.form{
+margin-top: 1em;
+display:flex;
+flex-direction: column;
+
+input{
+    margin-top: 1em;
+    display: block;
+}
+label {
+    margin-top: 1em;
+    font-weight: $font500;
+    display: inline-block;
+}
+
+
+
+   &:active {
+      box-shadow: none;
+   }
+}
+
+
