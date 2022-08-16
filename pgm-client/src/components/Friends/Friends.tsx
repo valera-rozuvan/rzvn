@@ -4,6 +4,7 @@ import s from './friends.module.scss';
 import FriendList from '../FriendList/FriendList';
 import FriendItem from '../FriendItem/FriendItem';
 import SuperButton from '../SuperButton';
+import SuperInput from '../SuperInput';
 
 function Friends() {
   const navigate = useNavigate();
@@ -40,9 +41,8 @@ function Friends() {
   return (
     <section className={s.friends}>
       <div className={s.innerContainer}>
-        <p className={s.searchText}>search pubkey, name, notes</p>
         <div className={s.addBox}>
-          <input type="text" placeholder="enter name of friend" />
+          <SuperInput page="friends" />
           <SuperButton text="add friend" typeStyle="green" actionHandlers={{ onClick: onCreateNewFriend }} />
         </div>
         <p className={s.curretFriendTitle}>currently chatting with friend</p>

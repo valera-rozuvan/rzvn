@@ -20,9 +20,20 @@ function SuperInput({ page }: IProps) {
                 (page === 'profile')
                 && (
                 <form className={s.form}>
-                  <label htmlFor="userName">
+                  <label htmlFor="myInput">
                     nickname
-                    <input id="userName" name="userName" placeholder="user name" type="text" />
+                    <input id="myInput" name="myInput" placeholder="user name" type="text" />
+                  </label>
+                </form>
+                )
+            }
+      {
+                (page === 'friends')
+                && (
+                <form className={s.form}>
+                  <label htmlFor="myInput">
+                    search pubkey, name, notes
+                    <input id="myInput" name="myInput" placeholder="enter pubkey,name,notes" type="text" />
                   </label>
                 </form>
                 )
