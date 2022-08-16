@@ -43,12 +43,8 @@
     .createBox {
         margin-top: 0.5em;
         display: flex;
-        // justify-content: space-between;
+        justify-content: space-around;
         align-items: center;
-    }
-
-    .searchText {
-        font-weight: $font500;
     }
 
     .curretGroupText {
