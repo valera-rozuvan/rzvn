@@ -1,6 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import SuperButton from '../SuperButton';
+import SuperInput from '../SuperInput';
 import s from './groups.module.scss';
 
 function Groups() {
@@ -40,9 +41,8 @@ function Groups() {
   return (
     <section className={s.groups}>
       <div className={s.innerContainer}>
-        <p className={s.searchText}>search pubkey, topics</p>
         <div className={s.createBox}>
-          <input type="text" placeholder="enter name of group" />
+          <SuperInput page="groups" />
           <div className={s.btnCreateGroupBox}>
             <SuperButton typeStyle="green" text="create group" actionHandlers={{ onClick: onGroupCreate }} />
           </div>

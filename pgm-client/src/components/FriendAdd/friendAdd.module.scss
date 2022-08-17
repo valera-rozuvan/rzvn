@@ -6,11 +6,11 @@
     }
 
     @media screen and (min-width: $tablet) {
-        font-size: 20px;
+        font-size: 16px;
     }
 
     @media screen and (min-width: $desktop) {
-        font-size: 24px;
+        font-size: 18px;
     }
 
     margin-top: 4em;
@@ -22,11 +22,6 @@
         margin-right: auto;
     }
 
-    input {
-        padding: 0.2em 0.5em;
-        font-size: 0.6em;
-        width: 100%;
-    }
 
     .addBtnBox {
         margin-top: 2rem;
@@ -39,11 +34,9 @@
         text-align: center;
     }
 
-    p {
-        margin-top: 1rem;
-    }
+    // p {
+    //     margin-top: 1rem;
+    // }
 
-    input {
-        margin-top: 1rem;
-    }
+
 }

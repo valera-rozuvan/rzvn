@@ -1,0 +1,21 @@
+@import '../../variables.scss';
+
+.form{
+margin-top: 1em;
+display:flex;
+flex-direction: column;
+
+input{
+    padding:0.2em 0.4em;
+    margin-top: 0.5em;
+    display: block;
+    width: 100%;
+}
+label {
+    font-weight: $font500;
+    display: inline-block;
+   }
+
+}
+
+

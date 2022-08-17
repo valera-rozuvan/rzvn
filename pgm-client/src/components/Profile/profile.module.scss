@@ -63,12 +63,18 @@
     }
 
     .nickname {
+        display: inline-block;
         margin-top: 1em;
         font-weight: $font500;
+    }
+    form{
+        display:flex;
+        flex-direction: column;
     }
 
     input {
         margin-top: 1em;
+        display: block;
     }
 
 }

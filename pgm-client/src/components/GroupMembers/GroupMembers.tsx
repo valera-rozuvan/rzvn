@@ -1,5 +1,6 @@
 import React from 'react';
 import MemberList from '../MemberList';
+import SuperInput from '../SuperInput';
 import s from './groupMembers.module.scss';
 
 function GroupAdd() {
@@ -10,9 +11,8 @@ function GroupAdd() {
           <p>group public key: [0x894tr789utyt8ut8t2]</p>
           <p>topic: what to do this weekend</p>
         </div>
-        <p className={s.searchText}>search pubkey, name, notes</p>
         <div className={s.createBox}>
-          <input type="text" placeholder="enter name of group" />
+          <SuperInput page="friends" />
         </div>
         <MemberList />
       </div>

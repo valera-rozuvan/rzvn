@@ -3,6 +3,7 @@ import React from 'react';
 import SuperButton from '../SuperButton';
 import FriendListGroup from '../FriendListGroup';
 import MemberList from '../MemberList/MemberList';
+import SuperInput from '../SuperInput';
 import s from './groupAdd.module.scss';
 
 function GroupAdd() {
@@ -13,21 +14,20 @@ function GroupAdd() {
   return (
     <section className={s.groupAdd}>
       <div className={s.innerContainer}>
-        <p className={s.searchText}>group topic</p>
         <div className={s.createBox}>
-          <input type="text" placeholder="enter name of group" />
+          <SuperInput page="addGroup" />
           <div className={s.btnCreateGroupBox}>
             <SuperButton text="create" typeStyle="green" actionHandlers={{ onClick: onSubmitCreatedGroup }} />
           </div>
         </div>
         <div className={s.subtitleFilterBox}>
           <p className={s.subtitle}>group members list</p>
-          <input type="search" placeholder="enter name of friend" />
+          <SuperInput page="addGroupFilter" />
         </div>
         <MemberList />
         <div className={s.subtitleFilterBox}>
           <p className={s.subtitle}>friend list</p>
-          <input type="search" placeholder="enter name of friend" />
+          <SuperInput page="addGroupFilter" />
         </div>
         <FriendListGroup />
       </div>

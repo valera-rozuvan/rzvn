@@ -8,7 +8,10 @@ function Messaging() {
       name: 'Kate', id: '38poi0y4t2354234i40t3i34534t4t', msg: 'Hello, Alex?', date: '13:47, 24.07.2022',
     },
     {
-      name: 'Kate', id: '38poi0y4ti235340t3i213423sdgf4rt', msg: 'How are you?', date: '13:47, 24.07.2022',
+      name: 'Kate',
+      id: '38poi0y4ti235340t3i213423sdgf4rt',
+      msg: 'How are you? lksfj  skljdsk sdklskjj djd fjd dj d eueyf iu wfu s udfu dljkogukg dkd jdf dk dkdk kdfjkfdjfkf jksdfdk kd kdfsfs',
+      date: '13:47, 24.07.2022',
     },
     {
       name: 'Alex', id: '120poi0y4ti402452435t3i3e4t4t43', msg: 'Hi, i am ok))', date: '13:47, 24.07.2022',
@@ -32,7 +35,10 @@ function Messaging() {
       name: 'Kate', id: '38poi0y4ti40u456uy54yt3ig', msg: '))) i have no idea what to write...', date: '13:47, 24.07.2022',
     },
     {
-      name: 'Alex', id: '120poi0y4t23r32ri40t3if', msg: 'so am i blahblah', date: '13:47, 24.07.2022',
+      name: 'Alex',
+      id: '120poi0y4t23r32ri40t3if',
+      msg: 'so am i blahblah; How are you? lksfj  skljdsk sdklskjj djd fjd dj d eueyf iu wfu s udfu dljkogukg dkd jdf dk dkdk kdfjkfdjfkf',
+      date: '13:47, 24.07.2022',
     },
     {
       name: 'Alex', id: '120poi0y45y56u4ti40t3id', msg: ')))))))', date: '13:47, 24.07.2022',

@@ -12,11 +12,16 @@
   @media screen and (min-width: $desktop) {
     font-size: 20px;
   }
-
+ a{
+   display: block;
+   background: rgb(206, 77, 77);
+   cursor: pointer;
+ }
+  
   // padding-top: 0.5em;
   position: fixed;
-  cursor: pointer;
-  background-color: rgb(241, 241, 241);
+  // cursor: pointer;
+  // background-color: rgb(241, 241, 241);
   text-align: center;
   top: 0;
 }
@@ -32,8 +37,8 @@
   }
 
   .innerContainer {
-    width: 20%;
-    padding: 0.2em 0.5em;
+    // width: 20%;
+    padding: 0.5em 0.5em;
     margin-left: auto;
     margin-right: auto;
   }
