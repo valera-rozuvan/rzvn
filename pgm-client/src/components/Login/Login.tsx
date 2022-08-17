@@ -164,7 +164,7 @@ function Login(): React.ReactElement {
     <section>
       <div className={styles.innerContainer}>
         <p>key pair</p>
-        <textarea name="keyPairTextArea" rows={10} value={keyPairTextAreaStr} onChange={keyPairTextAreaOnChange} />
+        <textarea name="keyPairTextArea" rows={4} value={keyPairTextAreaStr} onChange={keyPairTextAreaOnChange} />
 
         <p className={styles.text}>Make sure to keep your keypair in a safe place!</p>
 
