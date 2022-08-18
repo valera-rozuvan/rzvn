@@ -1,10 +1,10 @@
 import React from 'react';
 
-import './style.scss';
+import s from './noMatch.module.scss';
 
 function NoMatch() {
   return (
-    <div className="ErrorBlock">Error! No match for this route.</div>
+    <div className={s.ErrorBlock}>Error! No match for this route.</div>
   );
 }
 

@@ -12,44 +12,30 @@
   @media screen and (min-width: $desktop) {
     font-size: 20px;
   }
- a{
-   display: block;
-   background: rgb(206, 77, 77);
-   cursor: pointer;
- }
-  
-  // padding-top: 0.5em;
+
+  a {
+    display: block;
+    background: rgb(206, 77, 77);
+    cursor: pointer;
+  }
+
   position: fixed;
-  // cursor: pointer;
-  // background-color: rgb(241, 241, 241);
   text-align: center;
   top: 0;
 }
 
-  .headerMain {
-    width: 100%;
-    margin-left: auto;
-    margin-right: auto;
-  }
+.headerMain {
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+}
 
-  .headerUser {
-    width: 10%;
-  }
+.headerUser {
+  width: 10%;
+}
 
-  .innerContainer {
-    // width: 20%;
-    padding: 0.5em 0.5em;
-    margin-left: auto;
-    margin-right: auto;
-  }
-
-  // .innerContainerMini {
-  //   background-color: rgb(180, 71, 71);
-  //   width: 10%;
-  //   padding: 0.2em 0.5em;
-  //   // margin-left: auto;
-  //   // margin-right: auto;
-
-  // }
-
-
+.innerContainer {
+  padding: 0.5em 0.5em;
+  margin-left: auto;
+  margin-right: auto;
+}

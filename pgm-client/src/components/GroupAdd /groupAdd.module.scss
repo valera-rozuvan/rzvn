@@ -1,138 +1,131 @@
 @import '../../variables.scss';
 
 .groupAdd {
-    section {
-        width: 100%;
-    }
+  section {
+    width: 100%;
+  }
 
-    @media screen and (min-width: $mobile) {
-        font-size: 12px;
-    }
-    @media screen and (min-width: $tablet) {
-        font-size: 16px;
-    }
+  @media screen and (min-width: $mobile) {
+    font-size: 12px;
+  }
 
-    @media screen and (min-width: $desktop) {
-        font-size: 18px;
-    }
+  @media screen and (min-width: $tablet) {
+    font-size: 16px;
+  }
 
-    padding-bottom: 4em;
-    margin-top: 2em;
+  @media screen and (min-width: $desktop) {
+    font-size: 18px;
+  }
 
-    .innerContainer {
-        width: 100%;
-        margin-left: auto;
-        margin-right: auto;
-    }
-    // .btnBox {
-    //     display:flex;
-    //     justify-content: space-between;
+  padding-bottom: 4em;
+  margin-top: 2em;
 
-    //     @media screen and (max-width: $mobileMAX){
-    //         flex-direction: column;
-    //         height: 3em;
-    //     }
-    //     @media screen and (min-width: $tablet) {
-    //        width: 160px;
-    //     }
-    // }
-    .btnCreateGroupBox {
-        margin-left: 2em;
-    }
+  .innerContainer {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+  }
 
-    .createBox {
-        margin-top: 0.5em;
-        display: flex;
-        justify-content: space-around;
-        align-items: center;
-    }
-    .subtitleFilterBox{
-        margin-top: 0.5em;
-        display: flex;
-        justify-content: space-between;
-        align-items: baseline;
-    }
-    .searchText {
-        font-weight: $font500;
-    }
+  .btnCreateGroupBox {
+    margin-left: 2em;
+  }
 
-    .subtitle {
-        font-size: 1em;
-        font-weight: $font700;
-        margin-top: 1.5em;
+  .createBox {
+    margin-top: 0.5em;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+  }
+
+  .subtitleFilterBox {
+    margin-top: 0.5em;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+  }
+
+  .searchText {
+    font-weight: $font500;
+  }
+
+  .subtitle {
+    font-size: 1em;
+    font-weight: $font700;
+    margin-top: 1.5em;
+  }
+
+  .groupBox {
+    margin-top: 1em;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .groupKey {
+    background: #767070;
+    box-shadow: 0px 0.2em 0.2emrgba(0, 0, 0, 0.25);
+    border-radius: 0.2em;
+    padding: 0.4em 1em;
+    color: white;
+  }
+
+  .groupTopic {
+    margin-top: 1em;
+    font-weight: $font400;
+    margin-top: 0.5em;
+  }
+
+  .groupMembers {
+    background: #ECCA51;
+    box-shadow: 0px 0.2em 0.2em rgba(0, 0, 0, 0.25);
+    border-radius: 0.2em;
+    padding: 0.2em 1em;
+    color: inherit;
+    font-weight: $font500;
+    text-align: center;
+    font-size: 0.8em;
+
+    &:active {
+      background: white;
     }
+  }
 
-    .groupBox {
-        margin-top: 1em;
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: center;
+  .friendDelete {
+    background: #FE5B5B;
+    box-shadow: 0px 0.2em 0.2em rgba(0, 0, 0, 0.25);
+    border-radius: 0.2em;
+    padding: 0.2em 1em;
+    color: white;
+    font-weight: $font500;
+    text-align: center;
+    font-size: 0.8em;
+
+    &:active {
+      background: white;
+      color: black
     }
+  }
 
-    .groupKey {
-        background: #767070;
-        box-shadow: 0px 0.2em 0.2emrgba(0, 0, 0, 0.25);
-        border-radius: 0.2em;
-        padding: 0.4em 1em;
-        color: white;
+  .friendAdd {
+    background: #55FA47;
+    box-shadow: 0px 0.2em 0.2em rgba(0, 0, 0, 0.25);
+    border-radius: 0.2em;
+    padding: 0.2em 1em;
+    color: inherit;
+    font-weight: $font500;
+    text-align: center;
+    font-size: 0.8em;
+
+    &:active {
+      background: white;
+      color: black
     }
+  }
 
-    .groupTopic {
-        margin-top: 1em;
-        font-weight: $font400;
-        margin-top: 0.5em;
-    }
-
-    .groupMembers {
-        background: #ECCA51;
-        box-shadow: 0px 0.2em 0.2em rgba(0, 0, 0, 0.25);
-        border-radius: 0.2em;
-        padding: 0.2em 1em;
-        color: inherit;
-        font-weight: $font500;
-        text-align: center;
-        font-size: 0.8em;
-
-        &:active {
-            background: white;
-        }
-    }
-
-    .friendDelete {
-        background: #FE5B5B;
-        box-shadow: 0px 0.2em 0.2em rgba(0, 0, 0, 0.25);
-        border-radius: 0.2em;
-        padding: 0.2em 1em;
-        color: white;
-        font-weight: $font500;
-        text-align: center;
-        font-size: 0.8em;
-
-        &:active {
-            background: white;
-            color:black
-        }
-    }
-    .friendAdd{
-        background: #55FA47;
-        box-shadow: 0px 0.2em 0.2em rgba(0, 0, 0, 0.25);
-        border-radius: 0.2em;
-        padding: 0.2em 1em;
-        color:inherit;
-        font-weight: $font500;
-        text-align: center;
-        font-size: 0.8em;
-
-        &:active {
-            background: white;
-            color:black
-        }
-
-    }
-    .allFriendsText {
-        font-size: 1.5em;
-        margin-top: 1em;
-        font-weight: $font700;
-    }
+  .allFriendsText {
+    font-size: 1.5em;
+    margin-top: 1em;
+    font-weight: $font700;
+  }
 }
