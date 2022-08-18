@@ -1,65 +1,68 @@
 @import '../../variables.scss';
 
 .friendEdit {
-    @media screen and (min-width: $mobile) {
-        font-size: 14px;
-    }
+  @media screen and (min-width: $mobile) {
+    font-size: 14px;
+  }
 
-    @media screen and (min-width: $tablet) {
-        font-size: 20px;
-    }
+  @media screen and (min-width: $tablet) {
+    font-size: 20px;
+  }
 
-    @media screen and (min-width: $desktop) {
-        font-size: 24px;
-    }
+  @media screen and (min-width: $desktop) {
+    font-size: 24px;
+  }
 
-    margin-top: 4em;
-    .innerContainer {
-        margin-top: 4rem;
-        width: 50%;
-        margin-left: auto;
-        margin-right: auto;
-    }
+  margin-top: 4em;
 
-    .editBtnBox {
-        margin-top: 2rem;
-    }
+  .innerContainer {
+    margin-top: 4rem;
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+  }
 
-    .delete {
-        background: #FE5B5B;
-        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-        border-radius: 5px;
-    }
+  .editBtnBox {
+    margin-top: 2rem;
+  }
 
-    .update {
-        background: #A2A5EE;
-        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-        border-radius: 5px;
-    }
-    .title {
-        font-size: 1.5em;
-        font-weight: $font500;
-        text-align: center;
-    }
+  .delete {
+    background: #FE5B5B;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 5px;
+  }
 
-    p {
-        margin-top: 1rem;
-    }
+  .update {
+    background: #A2A5EE;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 5px;
+  }
 
-    .btnsBox {
-        display: flex;
-        justify-content: space-between;
+  .title {
+    font-size: 1.5em;
+    font-weight: $font500;
+    text-align: center;
+  }
 
-    }
+  p {
+    margin-top: 1rem;
+  }
 
-    .pkTitle {
-        font-weight: 500;
-    }
+  .btnsBox {
+    display: flex;
+    justify-content: space-between;
 
-    .pk {
-        margin-left: 1rem;
-    }
-    .userName{
-        font-weight: $font600
-    }
+  }
+
+  .pkTitle {
+    font-weight: 500;
+  }
+
+  .pk {
+    margin-left: 1rem;
+  }
+
+  .userName {
+    font-weight: $font600
+  }
 }
