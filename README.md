@@ -1,4 +1,8 @@
-# general
+# rzvn
+
+Rozuvan Networks
+
+## introduction
 
 You can run all services using [PM2](https://pm2.keymetrics.io/).
 
@@ -32,3 +36,21 @@ If you edit the file `./ecosystem.config.js`, you need to remove the current con
 ```shell
 pm2 delete ./ecosystem.config.js
 ```
+
+---
+
+## license
+
+The project `'rzvn'` is licensed under the MIT License.
+
+See [LICENSE](./LICENSE) for more details.
+
+The latest source code can be retrieved from one of several mirrors:
+
+1. [github.com/valera-rozuvan/rzvn](https://github.com/valera-rozuvan/rzvn)
+
+2. [gitlab.com/valera-rozuvan/rzvn](https://gitlab.com/valera-rozuvan/rzvn)
+
+3. [git.rozuvan.net/rzvn](https://git.rozuvan.net/rzvn)
+
+Copyright (c) 2022-2023 [Valera Rozuvan](https://valera.rozuvan.net/)
