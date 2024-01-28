@@ -8,14 +8,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/DarinaSednevets/back-qa.git"
+    "url": "git+https://github.com/valera-rozuvan/rzvn.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/DarinaSednevets/back-qa/issues"
+    "url": "https://github.com/valera-rozuvan/rzvn/issues"
   },
-  "homepage": "https://github.com/DarinaSednevets/back-qa#readme",
+  "homepage": "https://github.com/valera-rozuvan/rzvn#readme",
   "dependencies": {
     "body-parser": "1.19.2",
     "cors": "^2.8.5",

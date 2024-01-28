@@ -11,7 +11,7 @@ You need Node.js v16.x. See [instructions](https://nodejs.org/en/download/) on h
 First clone this repo somewhere:
 
 ```shell
-git clone https://github.com/DarinaSednevets/qauth-client.git
+git clone https://github.com/valera-rozuvan/rzvn.git
 ```
 
 Switch to repo folder, and install dependencies:
