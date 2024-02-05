@@ -12,8 +12,9 @@ function Footer() {
   return (
     <footer>
       <Container sx={{ textAlign: 'center' }}>
+        Copyright © 2022-2024
         <Button variant="text" onClick={() => handleClickFooterLink()} sx={{ cursor: 'pointer', color: '#000080' }}>
-          Copyright 2021 Privacy Guard Messages
+          RZVN Networks
         </Button>
       </Container>
     </footer>
