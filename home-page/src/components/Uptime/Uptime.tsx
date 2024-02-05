@@ -12,7 +12,8 @@ function Uptime() {
       </Typography>
       <Typography
         variant="h6"
-        align="center">
+        align="center"
+      >
         <a href={process.env.REACT_APP_UPTIME_URL}>go to uptime app</a>
       </Typography>
       <Typography
@@ -20,7 +21,7 @@ function Uptime() {
         align="center"
       >
         Uptime it is an application for control the operation of your site,
-         which will work and track errors while you are drinking a cocktail on the seashore
+        which will work and track errors while you are drinking a cocktail on the seashore
       </Typography>
     </>
   );

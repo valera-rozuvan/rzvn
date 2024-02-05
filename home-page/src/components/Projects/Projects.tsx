@@ -14,7 +14,7 @@ import { useNavigate } from 'react-router-dom';
 interface EnumProject {
   key: string;
   title: string;
-  link: any
+  link: string;
 }
 
 const projects: EnumProject[] = [
