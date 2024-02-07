@@ -14,12 +14,10 @@ import { composeWithDevTools } from 'ReduxDevtools'; // eslint-disable-line impo
 import rootReducer from './store/reducers/rootReducer';
 
 import App from './App';
-
 import Header from './components/Header';
 import Footer from './components/Footer';
-
 import theme from './components/theme';
-// import './index.css';
+
 import './style.scss';
 
 console.log(`process.env.REACT_APP_PGM_URL = '${process.env.REACT_APP_PGM_URL}'`); // eslint-disable-line no-console
@@ -38,7 +36,7 @@ if (process.env.NODE_ENV === 'development') {
       persist: true, // persist states on page reloading
       export: true, // export history of actions in a file
       import: 'custom', // import history of actions from a file
-      jump: true, // jump back and forth (time travelling)
+      jump: true, // jump back and forth (time traveling)
       skip: true, // skip (cancel) actions
       reorder: true, // drag and drop actions in the history list
       dispatch: true, // dispatch custom actions or action creators
@@ -61,9 +59,6 @@ if (!container) {
 // Create a root.
 const root = createRoot(container);
 
-// const store = createStore(rootReducer);
-
-// const root = document.getElementById('root');
 root.render(
   <React.StrictMode>
     <ThemeProvider theme={theme}>
