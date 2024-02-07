@@ -1,5 +1,7 @@
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const autoprefixer = require('autoprefixer');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
 const path = require('path');
 
@@ -9,7 +11,19 @@ require('dotenv').config();
 
 const SOURCE_FOLDER = 'src';
 const BUILD_FOLDER = 'build';
-const DEFAULT_SERVE_PORT = 3000;
+const DEFAULT_SERVER_PORT = 3000;
+
+class RemoveLicenseFilePlugin {
+  apply(compiler) { // eslint-disable-line class-methods-use-this
+    compiler.hooks.emit.tap('RemoveLicenseFilePlugin', (compilation) => {
+      for (const name in compilation.assets) { // eslint-disable-line no-restricted-syntax
+        if (name.endsWith('LICENSE.txt')) {
+          delete compilation.assets[name];
+        }
+      }
+    });
+  }
+}
 
 function logger(msg) {
   if (typeof msg === 'string') {
@@ -65,6 +79,41 @@ function setTsConfigFile(webpackConfig, tsConfigFilePath) {
 }
 
 function generateWebpackConfig(buildSettings) {
+  const styleLoader = buildSettings.webpackMode === 'development' ? 'style-loader' : MiniCssExtractPlugin.loader;
+
+  // for CSS module files
+  const CSSModuleLoader = {
+    loader: 'css-loader',
+    options: {
+      modules: true,
+      importLoaders: 2,
+      sourceMap: false, // turned off as causes delay
+    },
+  };
+
+  // For our normal CSS files - we would like them globally scoped.
+  const CSSLoader = {
+    loader: 'css-loader',
+    options: {
+      modules: 'global',
+      importLoaders: 2,
+      sourceMap: false, // turned off as causes delay
+    },
+  };
+
+  // Add CSS prefixes for older versions of browsers.
+  const PostCSSLoader = {
+    loader: 'postcss-loader',
+    options: {
+      postcssOptions: {
+        plugins: [
+          autoprefixer,
+        ],
+      },
+      sourceMap: false, // turned off as causes delay
+    },
+  };
+
   const webpackConfig = {
     entry: path.join(__dirname, SOURCE_FOLDER, 'index.tsx'),
     output: {
@@ -89,22 +138,24 @@ function generateWebpackConfig(buildSettings) {
           },
         },
         {
-          test: /\.s[ac]ss$/i,
-          use: [
-            // Creates `style` nodes from JS strings
-            'style-loader',
-            // Translates CSS into CommonJS
-            'css-loader',
-            // Compiles Sass to CSS
-            'sass-loader',
-          ],
+          test: /\.(sa|sc|c)ss$/i,
+          exclude: /\.module\.(sa|sc|c)ss$/i,
+          use: [styleLoader, CSSLoader, PostCSSLoader, 'sass-loader'],
+        },
+        {
+          test: /\.module\.(sa|sc|c)ss$/i,
+          use: [styleLoader, CSSModuleLoader, PostCSSLoader, 'sass-loader'],
         },
       ],
     },
     resolve: {
       extensions: ['.ts', '.js', '.json', '.tsx'],
+      alias: {
+        ReduxDevtools: path.resolve(__dirname, 'src/utilities/noop.ts'),
+      },
     },
     plugins: [
+      new MiniCssExtractPlugin(),
       new webpack.DefinePlugin((() => {
         const reactAppEnv = {};
         const processEnvKeys = Object.keys(process.env);
@@ -155,8 +206,15 @@ function generateWebpackConfig(buildSettings) {
     );
   }
 
+  if (buildSettings.reduxDevtoolsExtension) {
+    webpackConfig.resolve.alias.ReduxDevtools = path.resolve(
+      __dirname,
+      'src/utilities/redux-devtools/extension.ts',
+    );
+  }
+
   if (buildSettings.localServer) {
-    let port = DEFAULT_SERVE_PORT;
+    let port = DEFAULT_SERVER_PORT;
 
     if (typeof process.env.PORT === 'string' && process.env.PORT.length > 0) {
       port = Number.parseInt(process.env.PORT, 10);
@@ -177,6 +235,10 @@ function generateWebpackConfig(buildSettings) {
       historyApiFallback: true,
     };
   }
+
+  // Last plugin is a custom hack to remove generated License txt files in the output build folder.
+  // For now, I did not find an official working solution how to disable this behavior.
+  webpackConfig.plugins.push(new RemoveLicenseFilePlugin());
 
   return webpackConfig;
 }

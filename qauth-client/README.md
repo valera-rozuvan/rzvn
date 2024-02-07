@@ -1,23 +1,19 @@
 # qauth-client
 
-SSO authentication for RZVN network. Client application.
-
-## Pre-requisites
-
-You need Node.js v16.x. See [instructions](https://nodejs.org/en/download/) on how to set up Node.js locally.
+SSO authentication for RZVN portal - client application
 
 ## Installing
 
-First clone this repo somewhere:
+First clone the root `rzvn` repo somewhere:
 
 ```shell
 git clone https://github.com/valera-rozuvan/rzvn.git
 ```
 
-Switch to repo folder, and install dependencies:
+Then switch to the `home-page` sub-folder, and install dependencies:
 
 ```shell
-cd /home/user/path/to/qauth-client
+cd /home/user/path/to/rzvn/home-page
 npm install
 ```
 
@@ -76,7 +72,21 @@ npm run lint:fix # To automatically fix some errors.
 
 Out of the box, this project supports a `.env` configuration file. Environment variables from this file are sourced using [dotenv](https://www.npmjs.com/package/dotenv) NPM package. This happens when Webpack is performing a build. Variable names which have a prefix `REACT_APP_` will be available at runtime in the React app via the global object `process.env`. When you run this project, you can open the browser's JavaScript console, and observe the following:
 
-NOTE: The `dotenv` NPM package is used only at build time. It is not included in the resulting build.
+If you put in the file `.env` the following:
+
+```text
+REACT_APP_BASE_URL=https://example.com
+REACT_APP_API_URL=https://api.example.com
+```
+
+then in the application you can do:
+
+```javascript
+console.log(process.env.REACT_APP_BASE_URL); // 'https://example.com'
+console.log(process.env.REACT_APP_API_URL); // 'https://api.example.com'
+```
+
+**NOTE**: The `dotenv` NPM package is used only at build time. It is not included in the resulting build.
 
 ## License
 
