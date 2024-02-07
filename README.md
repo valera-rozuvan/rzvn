@@ -1,6 +1,6 @@
 # rzvn
 
-Rozuvan Networks
+monorepo for RZVN portal projects
 
 ## introduction
 
@@ -53,4 +53,4 @@ The latest source code can be retrieved from one of several mirrors:
 
 3. [git.rozuvan.net/rzvn](https://git.rozuvan.net/rzvn)
 
-Copyright (c) 2022-2023 [Valera Rozuvan](https://valera.rozuvan.net/)
+Copyright (c) 2022-2024 [Valera Rozuvan](https://valera.rozuvan.net/)
