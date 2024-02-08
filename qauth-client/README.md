@@ -10,10 +10,10 @@ First clone the root `rzvn` repo somewhere:
 git clone https://github.com/valera-rozuvan/rzvn.git
 ```
 
-Then switch to the `home-page` sub-folder, and install dependencies:
+Then switch to the `qauth-client` sub-folder, and install dependencies:
 
 ```shell
-cd /home/user/path/to/rzvn/home-page
+cd /home/user/path/to/rzvn/qauth-client
 npm install
 ```
 
