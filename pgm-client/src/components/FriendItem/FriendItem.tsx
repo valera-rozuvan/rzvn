@@ -16,13 +16,13 @@ interface IProps {
 }
 function FriendItem({ friend, componentType }: IProps) {
   function onEdit() {
-    console.log('edit friend clicked');
+    console.log('edit friend clicked'); // eslint-disable-line
   }
   function onAdd() {
-    console.log('add friend clicked');
+    console.log('add friend clicked'); // eslint-disable-line
   }
   function onRemove() {
-    console.log('remove friend clicked');
+    console.log('remove friend clicked'); // eslint-disable-line
   }
   return (
     <section className={s.friends}>

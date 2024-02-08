@@ -8,7 +8,7 @@ function Landing() {
   const navigate = useNavigate();
 
   function onMsgStart() {
-    console.log('start msg');
+    console.log('start msg'); // eslint-disable-line
     navigate('/login');
   }
   return (

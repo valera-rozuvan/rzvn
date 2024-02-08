@@ -2,7 +2,6 @@ const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const autoprefixer = require('autoprefixer');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const TerserPlugin = require('terser-webpack-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
 const path = require('path');
 
@@ -12,7 +11,19 @@ require('dotenv').config();
 
 const SOURCE_FOLDER = 'src';
 const BUILD_FOLDER = 'build';
-const DEFAULT_SERVE_PORT = 3000;
+const DEFAULT_SERVER_PORT = 3000;
+
+class RemoveLicenseFilePlugin {
+  apply(compiler) { // eslint-disable-line class-methods-use-this
+    compiler.hooks.emit.tap('RemoveLicenseFilePlugin', (compilation) => {
+      for (const name in compilation.assets) { // eslint-disable-line no-restricted-syntax
+        if (name.endsWith('LICENSE.txt')) {
+          delete compilation.assets[name];
+        }
+      }
+    });
+  }
+}
 
 function logger(msg) {
   if (typeof msg === 'string') {
@@ -108,16 +119,6 @@ function generateWebpackConfig(buildSettings) {
     output: {
       path: path.join(__dirname, BUILD_FOLDER),
       filename: '[name].js',
-      clean: true,
-    },
-    optimization: {
-      minimize: (buildSettings.webpackMode === 'production'),
-      minimizer: [new TerserPlugin({
-        exclude: [
-          /openpgp.min.mjs/,
-          /base64.mjs/,
-        ],
-      })],
     },
     module: {
       rules: [
@@ -213,7 +214,7 @@ function generateWebpackConfig(buildSettings) {
   }
 
   if (buildSettings.localServer) {
-    let port = DEFAULT_SERVE_PORT;
+    let port = DEFAULT_SERVER_PORT;
 
     if (typeof process.env.PORT === 'string' && process.env.PORT.length > 0) {
       port = Number.parseInt(process.env.PORT, 10);
@@ -234,6 +235,10 @@ function generateWebpackConfig(buildSettings) {
       historyApiFallback: true,
     };
   }
+
+  // Last plugin is a custom hack to remove generated License txt files in the output build folder.
+  // For now, I did not find an official working solution how to disable this behavior.
+  webpackConfig.plugins.push(new RemoveLicenseFilePlugin());
 
   return webpackConfig;
 }

@@ -11,7 +11,7 @@ function Profile() {
     navigate('/generator');
   }
   function onSmth() {
-    console.log('clicked on button');
+    console.log('clicked on button'); // eslint-disable-line
   }
   return (
     <section className={s.profile}>

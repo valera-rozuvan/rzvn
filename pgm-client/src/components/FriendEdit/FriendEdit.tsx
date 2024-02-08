@@ -5,10 +5,10 @@ import s from './friendEdit.module.scss';
 
 function FriendEdit() {
   function onUpdateFriend() {
-    console.log('update friend');
+    console.log('update friend'); // eslint-disable-line
   }
   function onDeleteInfo() {
-    console.log('delete friends info');
+    console.log('delete friends info'); // eslint-disable-line
   }
   return (
     <section className={s.friendEdit}>

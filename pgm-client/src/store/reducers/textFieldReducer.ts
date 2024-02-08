@@ -1,13 +1,18 @@
+import { Reducer } from 'redux';
+
 interface ITextFieldReducerAction {
-  type?: string;
-  data?: string;
+  type: string;
+  data: string;
 }
 
 interface ITextFieldState {
   text: string;
 }
 
-const textFieldReducer = (state: ITextFieldState = { text: '' }, action: ITextFieldReducerAction) => {
+const textFieldReducer: Reducer<ITextFieldState, ITextFieldReducerAction> = (
+  state: ITextFieldState | undefined = { text: '' },
+  action: ITextFieldReducerAction,
+): ITextFieldState => {
   let newState = state;
 
   switch (action.type) {
@@ -28,5 +33,6 @@ const textFieldReducer = (state: ITextFieldState = { text: '' }, action: ITextFi
 
 export {
   textFieldReducer,
+  ITextFieldReducerAction,
   ITextFieldState,
 };

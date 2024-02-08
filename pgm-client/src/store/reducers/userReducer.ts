@@ -1,3 +1,5 @@
+import { Reducer } from 'redux';
+
 interface IUserKeyData {
   publicKeyFingerprint: string;
   privateKeyArmored: string;
@@ -41,7 +43,10 @@ function copyUserState({
   };
 }
 
-const userReducer = (state: IUserState = initialUserState, action: IUserReducerActionSetKeyData | IUserReducerActionSetSessionToken) => {
+const userReducer: Reducer<IUserState, IUserReducerActionSetKeyData | IUserReducerActionSetSessionToken> = (
+  state: IUserState | undefined = initialUserState,
+  action: IUserReducerActionSetKeyData | IUserReducerActionSetSessionToken,
+): IUserState => {
   let newState = state;
 
   switch (action.type) {
