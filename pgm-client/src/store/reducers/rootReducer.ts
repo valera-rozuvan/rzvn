@@ -1,9 +1,11 @@
-import { combineReducers } from 'redux';
+import { combineReducers, Reducer } from 'redux';
 
 import { textFieldReducer } from './textFieldReducer';
 import { userReducer } from './userReducer';
 
-export default combineReducers({
+const rootReducer: Reducer = combineReducers({
   user: userReducer,
   textField: textFieldReducer,
 });
+
+export default rootReducer;

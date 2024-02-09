@@ -1,7 +1,8 @@
 import React from 'react';
+
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
-import { render } from 'react-dom';
+import { createRoot } from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
 
 // Below, the alias 'ReduxDevtools' is pointing to 'src/utilities/redux-devtools/extension.ts' file.
@@ -12,6 +13,7 @@ import { composeWithDevTools } from 'ReduxDevtools'; // eslint-disable-line impo
 import rootReducer from './store/reducers/rootReducer';
 
 import App from './App';
+
 import './global-styles.css';
 
 let store;
@@ -24,7 +26,7 @@ if (process.env.NODE_ENV === 'development') {
       persist: true, // persist states on page reloading
       export: true, // export history of actions in a file
       import: 'custom', // import history of actions from a file
-      jump: true, // jump back and forth (time travelling)
+      jump: true, // jump back and forth (time traveling)
       skip: true, // skip (cancel) actions
       reorder: true, // drag and drop actions in the history list
       dispatch: true, // dispatch custom actions or action creators
@@ -33,16 +35,27 @@ if (process.env.NODE_ENV === 'development') {
   });
 
   store = createStore(rootReducer, composeEnhancers());
+  console.log('Integration with redux devtools extension is available.'); // eslint-disable-line no-console
 } else {
   store = createStore(rootReducer);
 }
 
-const root = document.getElementById('root');
-render(
-  <Provider store={store}>
-    <BrowserRouter>
-      <App />
-    </BrowserRouter>
-  </Provider>,
-  root,
+const container = document.getElementById('root');
+
+if (!container) {
+  throw new Error('Did not find element with id "root".');
+}
+
+// Create a root.
+const root = createRoot(container);
+
+root.render(
+  <React.StrictMode>
+    <Provider store={store}>
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
+    </Provider>
+    ,
+  </React.StrictMode>,
 );

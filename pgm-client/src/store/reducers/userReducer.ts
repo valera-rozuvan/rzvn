@@ -1,26 +1,11 @@
-interface IUserKeyData {
-  publicKeyFingerprint: string;
-  privateKeyArmored: string;
-  publicKeyArmored: string;
-}
+import { Reducer, Action } from 'redux';
+
+import { IUserKeyData } from '../../types';
+import IActionTypes from '../actions/types';
+import { IUserReducerActionSetKeyData, IUserReducerActionSetSessionToken } from '../actions';
 
 interface IUserState extends IUserKeyData {
   sessionToken: string;
-}
-
-enum IUserReducerActionType {
-  SET_KEY_DATA = 'SET_KEY_DATA',
-  SET_SESSION_TOKEN = 'SET_SESSION_TOKEN',
-}
-
-interface IUserReducerActionSetKeyData {
-  type: IUserReducerActionType.SET_KEY_DATA;
-  data: IUserKeyData;
-}
-
-interface IUserReducerActionSetSessionToken {
-  type: IUserReducerActionType.SET_SESSION_TOKEN;
-  data: string;
 }
 
 const initialUserState: IUserState = {
@@ -41,15 +26,23 @@ function copyUserState({
   };
 }
 
-const userReducer = (state: IUserState = initialUserState, action: IUserReducerActionSetKeyData | IUserReducerActionSetSessionToken) => {
+const userReducer: Reducer<IUserState, Action> = (
+  state: IUserState | undefined = initialUserState,
+  unkAction: Action,
+): IUserState => {
   let newState = state;
+  let action;
 
-  switch (action.type) {
-    case IUserReducerActionType.SET_KEY_DATA:
+  switch (unkAction.type) {
+    case IActionTypes.SET_KEY_DATA:
+      action = unkAction as IUserReducerActionSetKeyData;
+
       newState = { ...copyUserState(state), ...action.data };
 
       break;
-    case IUserReducerActionType.SET_SESSION_TOKEN:
+    case IActionTypes.SET_SESSION_TOKEN:
+      action = unkAction as IUserReducerActionSetSessionToken;
+
       newState = { ...copyUserState(state), ...{ sessionToken: action.data } };
 
       break;
@@ -62,9 +55,5 @@ const userReducer = (state: IUserState = initialUserState, action: IUserReducerA
 
 export {
   userReducer,
-  IUserReducerActionType,
-  IUserReducerActionSetKeyData,
-  IUserReducerActionSetSessionToken,
-  IUserKeyData,
   IUserState,
 };

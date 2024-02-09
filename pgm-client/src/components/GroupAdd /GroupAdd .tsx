@@ -9,7 +9,7 @@ import s from './groupAdd.module.scss';
 function GroupAdd() {
   // const navigate = useNavigate();
   function onSubmitCreatedGroup() {
-    console.log('ceated new group');
+    console.log('ceated new group'); // eslint-disable-line
   }
   return (
     <section className={s.groupAdd}>

@@ -9,15 +9,21 @@ function Logo({ superClick }: { superClick: (event: React.MouseEvent<HTMLDivElem
       role="button"
       tabIndex={0}
       onClick={superClick}
-      onKeyUp={() => { console.log('clicked on logo'); }}
+      onKeyUp={() => {
+        console.log('clicked on logo'); // eslint-disable-line
+      }}
     >
+      removeme
       <div
         className={s.logoScreen}
         role="button"
         tabIndex={0}
         onClick={superClick}
-        onKeyUp={() => { console.log('clicked on logo'); }}
+        onKeyUp={() => {
+          console.log('clicked on logo');  // eslint-disable-line
+        }}
       >
+        removeme
         &nbsp;
       </div>
       <object

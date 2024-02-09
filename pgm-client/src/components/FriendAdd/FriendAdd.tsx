@@ -6,7 +6,7 @@ import s from './friendAdd.module.scss';
 
 function FriendAdd() {
   function onSubmitNewFriend() {
-    console.log('submit new friend');
+    console.log('submit new friend'); // eslint-disable-line
   }
   return (
     <section className={s.friendAdd}>

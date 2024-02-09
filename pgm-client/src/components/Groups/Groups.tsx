@@ -36,7 +36,7 @@ function Groups() {
     navigate('/groups/members');
   }
   function onLeaveClick() {
-    console.log('leave clicked');
+    console.log('leave clicked'); // eslint-disable-line
   }
   return (
     <section className={s.groups}>
