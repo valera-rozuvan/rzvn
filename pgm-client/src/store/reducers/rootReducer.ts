@@ -1,16 +1,11 @@
-import { combineReducers } from 'redux';
+import { combineReducers, Reducer } from 'redux';
 
-// import { textFieldReducer } from './textFieldReducer';
+import { textFieldReducer } from './textFieldReducer';
 import { userReducer } from './userReducer';
 
-const rootReducer = combineReducers({
+const rootReducer: Reducer = combineReducers({
   user: userReducer,
-  // textField: textFieldReducer,
+  textField: textFieldReducer,
 });
 
-type RootState = ReturnType<typeof rootReducer>;
-
-export {
-  rootReducer,
-  RootState,
-};
+export default rootReducer;

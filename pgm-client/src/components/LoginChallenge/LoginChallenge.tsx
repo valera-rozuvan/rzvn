@@ -7,7 +7,10 @@ import axios from 'axios';
 import * as OpenpgpTypeDefs from '../../openpgp.d';
 import * as Base64TypeDefs from '../../base64.d';
 
-import { IUserReducerActionSetSessionToken, IUserReducerActionType, IUserState } from '../../store/reducers/userReducer';
+import IActionTypes from '../../store/actions/types';
+import { IUserReducerActionSetSessionToken } from '../../store/actions';
+
+import { IUserState } from '../../store/reducers/userReducer';
 import IStore from '../../store';
 
 type TOpenpgp = typeof OpenpgpTypeDefs;
@@ -134,7 +137,7 @@ function LoginChallenge() {
       return;
     }
 
-    dispatchSetSessionToken({ type: IUserReducerActionType.SET_SESSION_TOKEN, data: sessionToken });
+    dispatchSetSessionToken({ type: IActionTypes.SET_SESSION_TOKEN, data: sessionToken });
 
     navigate('/messaging');
   }, [flowStep, navigate, sessionToken, dispatchSetSessionToken]);

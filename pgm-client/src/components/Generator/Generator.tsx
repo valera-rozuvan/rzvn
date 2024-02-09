@@ -5,7 +5,9 @@ import { useNavigate } from 'react-router-dom';
 
 import * as OpenpgpTypeDefs from '../../openpgp.d';
 
-import { IUserReducerActionSetKeyData, IUserReducerActionType, IUserKeyData } from '../../store/reducers/userReducer';
+import { IUserKeyData } from '../../types';
+import IActionTypes from '../../store/actions/types';
+import { IUserReducerActionSetKeyData } from '../../store/actions';
 
 import styles from './generator.module.scss';
 
@@ -67,7 +69,7 @@ function Generator(): React.ReactElement {
   }, [canLogin, setCanLogin, tempUserKeyData]);
 
   useEffect((): void => {
-    dispatchSetKeyData({ type: IUserReducerActionType.SET_KEY_DATA, data: tempUserKeyData });
+    dispatchSetKeyData({ type: IActionTypes.SET_KEY_DATA, data: tempUserKeyData });
   }, [dispatchSetKeyData, tempUserKeyData]);
 
   function tryToLoginOnClick(event: React.MouseEvent<HTMLButtonElement>): void {

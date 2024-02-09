@@ -8,9 +8,9 @@ import { BrowserRouter } from 'react-router-dom';
 // Below, the alias 'ReduxDevtools' is pointing to 'src/utilities/redux-devtools/extension.ts' file.
 // This is configured in 'webpack.config.js' file.
 // We only want to import the `redux-devtools/extension` code when in 'development' mode.
-// import { composeWithDevTools } from 'ReduxDevtools'; // eslint-disable-line import/no-unresolved
+import { composeWithDevTools } from 'ReduxDevtools'; // eslint-disable-line import/no-unresolved
 
-import { rootReducer } from './store/reducers/rootReducer';
+import rootReducer from './store/reducers/rootReducer';
 
 import App from './App';
 
@@ -18,8 +18,6 @@ import './global-styles.css';
 
 let store;
 if (process.env.NODE_ENV === 'development') {
-  // TODO: figure out why below does not work.
-  /*
   const composeEnhancers = composeWithDevTools({
     // Specify here name, actionsDenylist, actionsCreators and other options
     features: {
@@ -37,8 +35,6 @@ if (process.env.NODE_ENV === 'development') {
   });
 
   store = createStore(rootReducer, composeEnhancers());
-  */
-  store = createStore(rootReducer);
   console.log('Integration with redux devtools extension is available.'); // eslint-disable-line no-console
 } else {
   store = createStore(rootReducer);

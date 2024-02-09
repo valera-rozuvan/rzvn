@@ -35,6 +35,7 @@ module.exports = {
     'no-shadow': 'off',
     '@typescript-eslint/no-shadow': 'error',
     'no-param-reassign': [2, { props: false }],
+    'max-classes-per-file': 'off',
   },
   settings: {
     'import/resolver': {
