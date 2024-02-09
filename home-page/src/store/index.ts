@@ -1,9 +1,9 @@
 import { ICounterState } from './reducers/counterReducer';
 import { ITextFieldState } from './reducers/textFieldReducer';
 
-interface IStore {
+interface IRootState {
   counter: ICounterState,
   textField: ITextFieldState,
 }
 
-export default IStore;
+export default IRootState;
