@@ -1,20 +1,25 @@
-interface ICounterReducerAction {
-  type?: string;
-  data?: number;
-}
+import { Reducer, Action } from 'redux';
+
+import { CounterReducerAction, EActionTypes } from '../actions';
 
 interface ICounterState {
   number: number;
 }
 
-const counterReducer = (state: ICounterState = { number: 0 }, action: ICounterReducerAction) => {
-  let newState = state;
+const initialCounterState: ICounterState = {
+  number: 0,
+};
 
-  switch (action.type) {
-    case 'SET_NUMBER':
-      if (typeof action.data === 'undefined' || Number.isNaN(action.data)) {
-        break;
-      }
+const counterReducer: Reducer<ICounterState, Action> = (
+  state: ICounterState | undefined = initialCounterState,
+  unkAction: Action,
+): ICounterState => {
+  let newState = state;
+  let action;
+
+  switch (unkAction.type) {
+    case EActionTypes.SET_NUMBER:
+      action = unkAction as CounterReducerAction;
 
       newState = { number: action.data };
 

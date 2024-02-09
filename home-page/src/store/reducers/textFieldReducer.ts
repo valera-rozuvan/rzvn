@@ -1,20 +1,25 @@
-interface ITextFieldReducerAction {
-  type?: string;
-  data?: string;
-}
+import { Reducer, Action } from 'redux';
+
+import { TextFieldReducerAction, EActionTypes } from '../actions';
 
 interface ITextFieldState {
   text: string;
 }
 
-const textFieldReducer = (state: ITextFieldState = { text: '' }, action: ITextFieldReducerAction) => {
-  let newState = state;
+const initialTextFieldState: ITextFieldState = {
+  text: '',
+};
 
-  switch (action.type) {
-    case 'SET_TEXT':
-      if (typeof action.data !== 'string') {
-        break;
-      }
+const textFieldReducer: Reducer<ITextFieldState, Action> = (
+  state: ITextFieldState | undefined = initialTextFieldState,
+  unkAction: Action,
+): ITextFieldState => {
+  let newState = state;
+  let action;
+
+  switch (unkAction.type) {
+    case EActionTypes.SET_TEXT:
+      action = unkAction as TextFieldReducerAction;
 
       newState = { text: action.data };
 
