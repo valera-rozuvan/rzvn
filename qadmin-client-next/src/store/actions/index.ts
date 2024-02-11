@@ -10,6 +10,14 @@ import {
   DeleteAppAction,
 } from './apps';
 
+import {
+  TriggerVerificationAction,
+  LoginAction,
+  InitLogoutAction,
+  LoginVerifiedAction,
+  LogoutAction,
+} from './authUser';
+
 export {
   CounterReducerAction,
   TextFieldReducerAction,
@@ -18,4 +26,10 @@ export {
   UpdateAppAction,
   CreateAppAction,
   DeleteAppAction,
+
+  TriggerVerificationAction,
+  LoginAction,
+  InitLogoutAction,
+  LoginVerifiedAction,
+  LogoutAction,
 };

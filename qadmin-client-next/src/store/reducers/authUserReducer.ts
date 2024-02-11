@@ -1,51 +1,73 @@
-import {AuthUserAuthStates} from '../../constants';
-import {AuthUserActionTypes} from '../../constants/actions/AuthUserActionTypes';
+import { Reducer, Action } from 'redux';
 
-const copyAuthUserItem = ({ email, authToken, authState }) => ({
+import {
+  TriggerVerificationAction,
+  LoginAction,
+  InitLogoutAction,
+  LoginVerifiedAction,
+  LogoutAction,
+} from '../actions';
+import { IAuthUserState, EAuthUserAuthState, EActionTypes } from '../../types';
+
+const copyAuthUserItem = ({
+  email,
+  authToken,
+  authState,
+}: IAuthUserState) => ({
   email,
   authToken,
   authState,
 });
 
 const defaultAuthUser = {
-  email: "",
-  authToken: "",
-  authState: AuthUserAuthStates.loggedOut,
+  email: '',
+  authToken: '',
+  authState: EAuthUserAuthState.LOGGED_OUT,
 };
 
 if (localStorage && localStorage.getItem) {
-  const cachedKeys = ['email', 'authToken'];
-  cachedKeys.forEach((key) => {
+  ['email', 'authToken'].forEach((key: string) => {
     const value = localStorage.getItem(key);
-    if (typeof value === 'string' && value.length !== 0) {
-      defaultAuthUser[key] = value;
+
+    if (typeof value === 'string' && value.length > 0) {
+      switch (key) {
+        case 'email':
+          defaultAuthUser.email = value;
+          break;
+        case 'authToken':
+          defaultAuthUser.authToken = value;
+          defaultAuthUser.authState = EAuthUserAuthState.UNVERIFIED;
+          break;
+        default:
+          break;
+      }
     }
   });
 }
 
-if (typeof defaultAuthUser.authToken === 'string' && defaultAuthUser.authToken.length > 0) {
-  defaultAuthUser.authState = AuthUserAuthStates.unverified;
-}
-
-const authUserReducer = (state = defaultAuthUser, action) => {
+const authUserReducer: Reducer<IAuthUserState, Action> = (
+  state: IAuthUserState | undefined = defaultAuthUser,
+  unkAction: Action,
+): IAuthUserState => {
   let newState = state;
+  let action;
 
-  switch (action.type) {
-    case AuthUserActionTypes.triggerVerification:
+  switch (unkAction.type) {
+    case EActionTypes.TRIGGER_VERIFICATION:
+      action = unkAction as TriggerVerificationAction;
+
       newState = copyAuthUserItem(state);
-      newState.authState = AuthUserAuthStates.unverified;
+      newState.authState = EAuthUserAuthState.UNVERIFIED;
 
       break;
 
-    case AuthUserActionTypes.login:
-      if (typeof action.data === 'undefined') {
-        break;
-      }
+    case EActionTypes.LOGIN:
+      action = unkAction as LoginAction;
 
       newState = {
-        email: (typeof action.data.email === 'string') ? action.data.email : '',
-        authToken: (typeof action.data.authToken === 'string') ? action.data.authToken : '',
-        authState: AuthUserAuthStates.loggedIn,
+        email: action.data.email,
+        authToken: action.data.authToken,
+        authState: EAuthUserAuthState.LOGGED_IN,
       };
 
       if (localStorage && localStorage.setItem) {
@@ -55,28 +77,34 @@ const authUserReducer = (state = defaultAuthUser, action) => {
 
       break;
 
-    case AuthUserActionTypes.initLogout:
+    case EActionTypes.INIT_LOGOUT:
+      action = unkAction as InitLogoutAction;
+
       newState = copyAuthUserItem(state);
-      newState.authState = AuthUserAuthStates.loggingOut;
+      newState.authState = EAuthUserAuthState.LOGGING_OUT;
 
       break;
 
-    case AuthUserActionTypes.loginVerified:
+    case EActionTypes.LOGIN_VERIFIED:
+      action = unkAction as LoginVerifiedAction;
+
       newState = copyAuthUserItem(state);
-      newState.authState = AuthUserAuthStates.loggedIn;
+      newState.authState = EAuthUserAuthState.LOGGED_IN;
 
       break;
 
-    case AuthUserActionTypes.logout:
+    case EActionTypes.LOGOUT:
+      action = unkAction as LogoutAction;
+
       newState = {
-        email: "",
-        authToken: "",
-        authState: AuthUserAuthStates.loggedOut,
+        email: '',
+        authToken: '',
+        authState: EAuthUserAuthState.LOGGED_OUT,
       };
 
       if (localStorage && localStorage.setItem) {
-        localStorage.setItem('email', "");
-        localStorage.setItem('authToken', "");
+        localStorage.setItem('email', '');
+        localStorage.setItem('authToken', '');
       }
 
       break;
@@ -88,4 +116,4 @@ const authUserReducer = (state = defaultAuthUser, action) => {
   return newState;
 };
 
-export { authUserReducer };
+export default authUserReducer;

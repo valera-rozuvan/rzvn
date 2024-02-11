@@ -58,11 +58,11 @@ const appsReducer: Reducer<IAppsState, Action> = (state: IAppsState | undefined 
 
       updatedExisting = false;
       newState = state.map((item) => {
-        const actionTemp = unkAction as UpdateAppAction;
+        action = unkAction as UpdateAppAction;
 
-        if (item.id === actionTemp.data.id) {
+        if (item.id === action.data.id) {
           updatedExisting = true;
-          return copyAppItem(actionTemp.data);
+          return copyAppItem(action.data);
         }
 
         return copyAppItem(item);
@@ -86,9 +86,9 @@ const appsReducer: Reducer<IAppsState, Action> = (state: IAppsState | undefined 
 
       newState = [];
       state.forEach((item) => {
-        const actionTemp = unkAction as DeleteAppAction;
+        action = unkAction as DeleteAppAction;
 
-        if (item.id === actionTemp.data) {
+        if (item.id === action.data) {
           return;
         }
 

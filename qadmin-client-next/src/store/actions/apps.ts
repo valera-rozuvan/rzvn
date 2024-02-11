@@ -1,4 +1,3 @@
-// SetAllAppsAction
 import { Action } from 'redux';
 
 import { EActionTypes, IAppsStateItem } from '../../types';
