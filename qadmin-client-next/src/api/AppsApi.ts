@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const REACT_APP_REQUEST_API = process.env.REACT_APP_REQUEST_API || '';
+const REACT_APP_QADMIN_API = process.env.REACT_APP_QADMIN_API || '';
 
 class AppsApi {
   baseUrl = '';
@@ -8,7 +8,7 @@ class AppsApi {
   authToken = '';
 
   constructor(authToken: string) {
-    this.baseUrl = REACT_APP_REQUEST_API;
+    this.baseUrl = REACT_APP_QADMIN_API;
     this.authToken = authToken;
   }
 

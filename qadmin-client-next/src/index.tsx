@@ -21,6 +21,7 @@ console.log(`process.env.REACT_APP_QADMIN_URL = '${process.env.REACT_APP_QADMIN_
 console.log(`process.env.REACT_APP_UPTIME_URL = '${process.env.REACT_APP_UPTIME_URL}'`); // eslint-disable-line no-console
 console.log(`process.env.REACT_APP_QAUTH_URL = '${process.env.REACT_APP_QAUTH_URL}'`); // eslint-disable-line no-console
 console.log(`process.env.REACT_APP_GENERAL_URL = '${process.env.REACT_APP_GENERAL_URL}'`); // eslint-disable-line no-console
+console.log(`process.env.REACT_APP_QADMIN_API = '${process.env.REACT_APP_QADMIN_API}'`); // eslint-disable-line no-console
 
 let store;
 if (process.env.NODE_ENV === 'development') {

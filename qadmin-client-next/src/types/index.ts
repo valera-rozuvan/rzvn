@@ -10,6 +10,23 @@ import {
   EAuthUserAuthState,
 } from './authUser';
 
+import {
+  ISuperAdminsStateItem,
+  ISuperAdminsState,
+} from './superAdmins';
+
+import {
+  IUsersStateItem,
+  IUsersState,
+} from './users';
+
+interface IRootState {
+  apps: IAppsState,
+  users: IUsersState,
+  authUser: IAuthUserState,
+  superAdmins: ISuperAdminsState,
+}
+
 export {
   EActionTypes,
 
@@ -18,4 +35,12 @@ export {
 
   IAuthUserState,
   EAuthUserAuthState,
+
+  ISuperAdminsStateItem,
+  ISuperAdminsState,
+
+  IUsersStateItem,
+  IUsersState,
+
+  IRootState,
 };

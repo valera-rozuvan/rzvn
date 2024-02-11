@@ -1,6 +1,20 @@
-import { SuperAdminsActionTypes } from '../../constants/actions/SuperAdminsActionTypes';
+import { Reducer, Action } from 'redux';
 
-const copySuperAdminItem = ({id, email, password, isActive, createdAt}) => ({
+import {
+  SetSuperAdminsAction,
+  UpdateSuperAdminAction,
+  CreateSuperAdminAction,
+  DeleteSuperAdminAction,
+} from '../actions';
+import { ISuperAdminsState, ISuperAdminsStateItem, EActionTypes } from '../../types';
+
+const copySuperAdminItem = ({
+  id,
+  email,
+  password,
+  isActive,
+  createdAt,
+}: ISuperAdminsStateItem) => ({
   id,
   email,
   password,
@@ -8,14 +22,17 @@ const copySuperAdminItem = ({id, email, password, isActive, createdAt}) => ({
   createdAt,
 });
 
-const superAdminsReducer = (state = [], action) => {
+const superAdminsReducer: Reducer<ISuperAdminsState, Action> = (
+  state: ISuperAdminsState | undefined = [],
+  unkAction: Action,
+): ISuperAdminsState => {
   let newState = state;
+  let action;
+  let updatedExisting;
 
-  switch (action.type) {
-    case SuperAdminsActionTypes.setSuperAdmins:
-      if (!Array.isArray(action.data)) {
-        break;
-      }
+  switch (unkAction.type) {
+    case EActionTypes.SET_SUPER_ADMINS:
+      action = unkAction as SetSuperAdminsAction;
 
       if (action.data.length === 0) {
         newState = [];
@@ -27,10 +44,8 @@ const superAdminsReducer = (state = [], action) => {
 
       break;
 
-    case SuperAdminsActionTypes.updateSuperAdmin:
-      if (!action.data || !action.data.id) {
-        break;
-      }
+    case EActionTypes.UPDATE_SUPER_ADMIN:
+      action = unkAction as UpdateSuperAdminAction;
 
       if (state.length === 0) {
         newState = [copySuperAdminItem(action.data)];
@@ -38,8 +53,10 @@ const superAdminsReducer = (state = [], action) => {
         break;
       }
 
-      let updatedExisting = false;
+      updatedExisting = false;
       newState = state.map((item) => {
+        action = unkAction as UpdateSuperAdminAction;
+
         if (item.id === action.data.id) {
           updatedExisting = true;
           return copySuperAdminItem(action.data);
@@ -53,24 +70,22 @@ const superAdminsReducer = (state = [], action) => {
 
       break;
 
-    case SuperAdminsActionTypes.createSuperAdmin:
-      if (!action.data) {
-        break;
-      }
+    case EActionTypes.CREATE_SUPER_ADMIN:
+      action = unkAction as CreateSuperAdminAction;
 
       newState = state.map((item) => copySuperAdminItem(item));
       newState.push(copySuperAdminItem(action.data));
 
       break;
 
-    case SuperAdminsActionTypes.deleteSuperAdmin:
-      if (!action.data || !action.data.id) {
-        break;
-      }
+    case EActionTypes.DELETE_SUPER_ADMIN:
+      action = unkAction as DeleteSuperAdminAction;
 
       newState = [];
       state.forEach((item) => {
-        if (item.id === action.data.id) {
+        action = unkAction as DeleteSuperAdminAction;
+
+        if (item.id === action.data) {
           return;
         }
 
@@ -86,4 +101,4 @@ const superAdminsReducer = (state = [], action) => {
   return newState;
 };
 
-export { superAdminsReducer };
+export default superAdminsReducer;

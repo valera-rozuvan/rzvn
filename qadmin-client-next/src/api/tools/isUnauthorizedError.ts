@@ -1,6 +1,8 @@
 import IError from './errorType';
 
-function isUnauthorizedError(err: IError) {
+function isUnauthorizedError(unkErr: unknown) {
+  const err = unkErr as IError;
+
   return !!(err && err.response && err.response.status === 401);
 }
 

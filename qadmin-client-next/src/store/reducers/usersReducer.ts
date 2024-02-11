@@ -1,22 +1,35 @@
-import { UsersActionTypes } from '../../constants/actions/UsersActionTypes';
+import { Reducer, Action } from 'redux';
 
-const copyUserItem = ({id, firstName, lastName, email, isActive, createdAt}) => ({
+import {
+  SetUsersAction,
+  UpdateUserAction,
+  CreateUserAction,
+  DeleteUserAction,
+} from '../actions';
+import { IUsersState, IUsersStateItem, EActionTypes } from '../../types';
+
+const copyUserItem = ({
   id,
-  firstName,
-  lastName,
   email,
+  password,
+  isActive,
+  createdAt,
+}: IUsersStateItem) => ({
+  id,
+  email,
+  password,
   isActive,
   createdAt,
 });
 
-const usersReducer = (state = [], action) => {
+const usersReducer: Reducer<IUsersState, Action> = (state: IUsersState | undefined = [], unkAction: Action): IUsersState => {
   let newState = state;
+  let action;
+  let updatedExisting;
 
-  switch (action.type) {
-    case UsersActionTypes.setUsers:
-      if (!Array.isArray(action.data)) {
-        break;
-      }
+  switch (unkAction.type) {
+    case EActionTypes.SET_USERS:
+      action = unkAction as SetUsersAction;
 
       if (action.data.length === 0) {
         newState = [];
@@ -28,10 +41,8 @@ const usersReducer = (state = [], action) => {
 
       break;
 
-    case UsersActionTypes.updateUser:
-      if (!action.data || !action.data.id) {
-        break;
-      }
+    case EActionTypes.UPDATE_USER:
+      action = unkAction as UpdateUserAction;
 
       if (state.length === 0) {
         newState = [copyUserItem(action.data)];
@@ -39,8 +50,10 @@ const usersReducer = (state = [], action) => {
         break;
       }
 
-      let updatedExisting = false;
+      updatedExisting = false;
       newState = state.map((item) => {
+        action = unkAction as UpdateUserAction;
+
         if (item.id === action.data.id) {
           updatedExisting = true;
           return copyUserItem(action.data);
@@ -54,24 +67,22 @@ const usersReducer = (state = [], action) => {
 
       break;
 
-    case UsersActionTypes.createUser:
-      if (!action.data) {
-        break;
-      }
+    case EActionTypes.CREATE_USER:
+      action = unkAction as CreateUserAction;
 
       newState = state.map((item) => copyUserItem(item));
       newState.push(copyUserItem(action.data));
 
       break;
 
-    case UsersActionTypes.deleteUser:
-      if (!action.data || !action.data.id) {
-        break;
-      }
+    case EActionTypes.DELETE_USER:
+      action = unkAction as DeleteUserAction;
 
       newState = [];
       state.forEach((item) => {
-        if (item.id === action.data.id) {
+        action = unkAction as DeleteUserAction;
+
+        if (item.id === action.data) {
           return;
         }
 
@@ -87,4 +98,4 @@ const usersReducer = (state = [], action) => {
   return newState;
 };
 
-export { usersReducer };
+export default usersReducer;

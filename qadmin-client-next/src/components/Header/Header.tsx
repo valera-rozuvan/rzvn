@@ -2,55 +2,63 @@ import React, { useEffect, useMemo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, Link } from 'react-router-dom';
 
+import './style.scss';
+
 import { AuthApi } from '../../api';
 import { isUnauthorizedError, logApiError } from '../../api/tools';
-import AuthUserAuthStates from '../../constants';
-import AuthUserActionTypes from '../../constants/actions/AuthUserActionTypes';
+import {
+  IRootState,
+  IAuthUserState,
+  EAuthUserAuthState,
+  EActionTypes,
+} from '../../types';
 
 function Header() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const authUser = useSelector((state) => state.authUser);
-  const { authToken, authState } = useMemo(() => ({ authToken: authUser.authToken, authState: authUser.authState }), [authUser]);
+  const authUser = useSelector<IRootState, IAuthUserState>((state: IRootState): IAuthUserState => state.authUser);
+  const { authToken, authState } = useMemo(() => ({
+    authToken: authUser.authToken,
+    authState: authUser.authState,
+  }), [authUser]);
+
+  async function callCheckAuthTokenApi() {
+    try {
+      const api = new AuthApi(authToken);
+      await api.checkAuthToken();
+    } catch (err: unknown) {
+      logApiError(err);
+
+      if (isUnauthorizedError(err)) {
+        return false;
+      }
+    }
+
+    return true;
+  }
 
   useEffect(() => {
     switch (authState) {
-      case AuthUserAuthStates.loggedIn:
+      case EAuthUserAuthState.LOGGED_IN:
         break;
-      case AuthUserAuthStates.loggingOut:
-        dispatch({ type: AuthUserActionTypes.logout });
+      case EAuthUserAuthState.LOGGING_OUT:
+        dispatch({ type: EActionTypes.LOGOUT });
         navigate('/login');
         break;
-      case AuthUserAuthStates.loggedOut:
+      case EAuthUserAuthState.LOGGED_OUT:
         break;
-      case AuthUserAuthStates.unverified:
-        async function callCheckAuthTokenApi() {
-          try {
-            const api = new AuthApi(authToken);
-            await api.checkAuthToken();
-          } catch (err) {
-            logApiError(err);
-
-            if (isUnauthorizedError(err)) {
-              return false;
-            }
-          }
-
-          return true;
-        }
-
+      case EAuthUserAuthState.UNVERIFIED:
         callCheckAuthTokenApi().then((isAuthorized) => {
           switch (isAuthorized) {
             case true:
-              dispatch({ type: AuthUserActionTypes.loginVerified });
+              dispatch({ type: EActionTypes.LOGIN_VERIFIED });
               break;
             default:
-              dispatch({ type: AuthUserActionTypes.initLogout });
+              dispatch({ type: EActionTypes.INIT_LOGOUT });
               break;
           }
         });
-
         break;
       default:
         break;
@@ -73,7 +81,7 @@ function Header() {
               <Link to="/superadmins">Super Admins</Link>
               {' '}
               {' | '}
-              <Link to="/apps">Apps</Link>
+              <Link to="/applications">Apps</Link>
               {' '}
               {' | '}
               <Link to="/logout">Logout</Link>
